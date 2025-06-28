@@ -1,6 +1,6 @@
 ---
 layout: about
-title: About
+title: Research
 permalink: /
 position: Assistant professor
 subtitle: <a href='https://www.ualberta.ca/index.html'>University of Alberta</a>, Edmonton, Canada
@@ -21,6 +21,19 @@ opening: true
 social: true  # includes social icons at the bottom of the page
 ---
 
-Dr. An Ran Chen is an Assistant Professor at the [Electrical and Computer Engineering Department](https://www.ualberta.ca/engineering/electrical-computer-engineering/index.html) of University of Alberta. Prior to joining UAlberta, An Ran received his Ph.D. from Concordia University in September 2023, under the supervision of Dr. [Tse-Hsun (Peter) Chen](https://petertsehsun.github.io/). During his Ph.D., An Ran worked as an algorithm engineer at Huawei Technologies in 2022 and visited [Tianjin University](https://www.tju.edu.cn/english/index.htm) in 2021. Before starting his graduate studies in 2018, An Ran also worked at the [Bank of Canada](https://www.bankofcanada.ca/), [McGill University's Web Services Group](https://www.mcgill.ca/web-services/) and [Application Development Services](https://www.mcgill.ca/it/). An Ran attended [Collège Jean-de-Brébeuf](https://www.brebeuf.qc.ca/) (in French) for his pre-university college degree in Quebec.
+The Software REBELs
+(a.k.a., the Software Repository Excavation and Build Engineering Labs) develop tool and decision support for modern software development and release teams. Specifically, we support software development teams by excavating software repositories to provide decision support today based on past tendencies. Moreover, we support release engineering teams by extracting and analyzing data from (and about) software build systems.
 
-His research focuses on software engineering topics, including software debugging, software testing, AIOps, program analysis, and mining software repositories.
+My research focuses on software engineering topics that include **Software Debugging**, **Software Testing**, **AIOps**, Program Analysis, and Mining Software Repositories. 
+
+Located at the University of Waterloo
+in one of Canada's fastest growing and most innovative cities. The Software REBELs are a part of the Cheriton School of Computer Science and are funded by the Faculty of Math, the Natural Sciences and Engineering Research Council of Canada (NSERC), Mitacs, and our industrial partners at Ubisoft, Dell EMC, YourBase, and Shopify.
+
+Join the rebellion!
+We are actively recruiting bright and motivated Master's or PhD students. The ideal Software REBEL has strong programming skills (e.g., Java, C, Ruby, Python, C++) and communication skills. Practical experience in software development and/or release engineering is valuable, but not required. For more information, please contact:
+
+Shane McIntosh
+Associate Professor
+Cheriton School of Computer Science
+University of Waterloo
+Email: [first_name].[family_name]@uwaterloo.ca

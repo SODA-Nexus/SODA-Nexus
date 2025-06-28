@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: page
 permalink: /teaching/
 title: Teaching
@@ -24,3 +24,4 @@ nav_order: 4
 2019: Concordia University - Teaching Assistant, Montreal, Canada
 - [SOEN 390](https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-70-department-of-computer-science-and-software-engineering/section-71-70-10-computer-science-and-software-engineering-courses.html#3719): Software Engineering Team Design Project (Winter 2019)
 - [SOEN7481](https://www.concordia.ca/academics/graduate/calendar/current/gina-cody-school-of-engineering-and-computer-science-courses/computer-science-and-software-engineering-master-s-and-phd-courses.html#:~:text=SOEN%207481%20Software%20Verification%20and%20Testing): Software Verification and Testing (Fall 2019)
+ -->

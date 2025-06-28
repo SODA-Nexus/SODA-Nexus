@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: page
 permalink: /services/
 title: Services
@@ -19,4 +19,4 @@ Journal Reviewer
 - ACM Transactions on Software Engineering and Methodology (TOSEM)
 - IEEE Transactions on Software Engineering(TSE)
 - IEEE Software
-- Springer's Software Quality Journal (SQJ)
+- Springer's Software Quality Journal (SQJ) -->
