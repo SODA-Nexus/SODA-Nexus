@@ -74,10 +74,6 @@ html[data-theme=dark] {
   width: 7em!important;
 }
 
-.card img {
-  margin-bottom: 10px;
-}
-
 .card img.logo_resize_min {
   margin-bottom: 10px;
   width: 4em!important;
@@ -125,6 +121,7 @@ table.table-sm th, table.table-sm td {
 figure {
   margin_right: 1em;
   margin: 0 0 0rem;
+  padding: 10px;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -222,6 +219,9 @@ table.table a {
 figure,
 img {
   max-width: 90vw;
+}
+.logo {
+  max-width: 20vw;
 }
 
 blockquote {
@@ -699,6 +699,9 @@ footer.sticky-bottom {
   .grid-item {
     width: 220px;
     margin-bottom: 10px;
+  }
+  .projects.grid-item {
+    margin: 10px;
   }
 
   h2.category {

@@ -3,9 +3,9 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: An Ran
+first_name:
 middle_name: 
-last_name: Chen
+last_name:
 email: anran6 [at] ualberta [dot] ca
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -15,6 +15,7 @@ keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your 
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon:   # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+logo: /assets/img/logo2.png
 
 url: https://anrchen.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
