@@ -19,6 +19,7 @@ latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 opening: true
 social: true  # includes social icons at the bottom of the page
+nav_order: 1
 ---
 
 The Software REBELs
