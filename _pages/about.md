@@ -1,13 +1,13 @@
 ---
 layout: about
-title: Research
+title: The Nexus
 permalink: /
-position: Assistant professor
-subtitle: <a href='https://www.ualberta.ca/index.html'>University of Alberta</a>, Edmonton, Canada
+# position: Assistant professor
+# subtitle: <a href='https://www.ualberta.ca/index.html'>University of Alberta</a>, Edmonton, Canada
 
 profile:
   align: left
-  image: anranchen.jpg
+  image: logo3.png
   image_circular: false # crops the image to make it circular
 #   address: >
 #     <p>555 your office number</p>
@@ -22,19 +22,30 @@ social: true  # includes social icons at the bottom of the page
 nav_order: 1
 ---
 
-The Software REBELs
-(a.k.a., the Software Repository Excavation and Build Engineering Labs) develop tool and decision support for modern software development and release teams. Specifically, we support software development teams by excavating software repositories to provide decision support today based on past tendencies. Moreover, we support release engineering teams by extracting and analyzing data from (and about) software build systems.
+<!-- At the SODA Nexus (SOftware Debugging and Analysis Nexus), we develop innovative tools and solutions to improve modern software development. Our research supports software engineering teams in two key ways:
 
-My research focuses on software engineering topics that include **Software Debugging**, **Software Testing**, **AIOps**, Program Analysis, and Mining Software Repositories. 
+Decision Support in DevOps
+By mining and analyzing software repositories, we uncover patterns from past development practices to guide better decisions today.
 
-Located at the University of Waterloo
-in one of Canada's fastest growing and most innovative cities. The Software REBELs are a part of the Cheriton School of Computer Science and are funded by the Faculty of Math, the Natural Sciences and Engineering Research Council of Canada (NSERC), Mitacs, and our industrial partners at Ubisoft, Dell EMC, YourBase, and Shopify.
+Automated Debugging and Testing
+We extract and analyze data from software build systems and pipelines to assist release engineering teams in achieving reliable, efficient, and high-quality releases.
 
-Join the rebellion!
-We are actively recruiting bright and motivated Master's or PhD students. The ideal Software REBEL has strong programming skills (e.g., Java, C, Ruby, Python, C++) and communication skills. Practical experience in software development and/or release engineering is valuable, but not required. For more information, please contact:
+---
 
-Shane McIntosh
-Associate Professor
-Cheriton School of Computer Science
-University of Waterloo
-Email: [first_name].[family_name]@uwaterloo.ca
+**Projects**
+
+Our lab explores a broad range of research directions, including:
+
+- Quality Assurance in DevOps
+- LLMs for Software Engineering
+- Software Debugging and Testing
+- Program Analysis
+- Bug Management and Resolution
+
+--- -->
+
+**About the Lab**
+
+The SODA Lab is based at the University of Alberta in Edmonton, one of Canada’s most dynamic research and technology hubs. Our work is supported by university, provincial, federal, and industry funding. We are actively seeking motivated graduate students and exploring collaborative opportunities with both academic and industry partners.
+
+---

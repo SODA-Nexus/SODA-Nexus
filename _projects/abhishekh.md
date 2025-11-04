@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Abhishekh Jayaprakash
-description: Undergrad. Reseach Assistant
+description: Research Intern
 year: Summer 2025
-img: assets/img/placeholder.png
-importance: 5
+img: assets/img/abhishekh.jpg
+importance: 8
 category: nexus
 ---

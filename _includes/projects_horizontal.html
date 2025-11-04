@@ -1,9 +1,9 @@
 <div class="card-item col">
-  {%- if project.redirect -%}
-  <a href="{{ project.redirect }}">
-  {%- else -%}
-  <a href="{{ project.url | relative_url }}">
-  {%- endif -%}
+  <!-- {%- if project.redirect -%} -->
+  <!-- <a href="{{ project.redirect }}"> -->
+  <!-- {%- else -%} -->
+  <!-- <a href="{{ project.url | relative_url }}"> -->
+  <!-- {%- endif -%} -->
     <div class="card hoverable">
       <div class="row g-0">
         {%- if project.img -%}
@@ -15,7 +15,7 @@
         <div class="col-md-12">
         {%- endif -%}
           <div class="card-body">
-            <h3 class="card-title text-lowercase">{{ project.title }}</h3>
+            <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-text">{{ project.description }}</p>
             <div class="row ml-1 mr-1 p-0">
               {%- if project.github -%}
@@ -36,5 +36,5 @@
         </div>
       </div>
     </div>
-  </a>
+  <!-- </a> -->
 </div>

@@ -4,6 +4,26 @@
 ---
 ---
 
+@article{wang2409python,
+  abbr={NACCL},
+  title={TESTEVAL: Benchmarking Large Language Models for Test Case Generation},
+  author={Wang, Wenhan and Yang, Chenyuan and Wang, Zhijie and Huang, Yuheng and Chu, Zhaoyang and Song, Da and Zhang, Lingming and Chen, An Ran and Ma, Lei},
+  journal={2025 Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics},
+  year={2025},
+  pdf={testeval-benchmarking-llms-for-test-case-generation.pdf},
+  abstract={For program languages, testing plays a crucial role in the software development cycle, enabling the detection of bugs, vulnerabilities, and other undesirable behaviors. To perform software testing, testers need to write code snippets that execute the program under test. Recently, researchers have recognized the potential of large language models (LLMs) in software testing. However, there remains a lack of fair comparisons between different LLMs in terms of test case generation capabilities. In this paper, we propose TESTEVAL, a novel benchmark for test case generation with LLMs. We collect 210 Python programs from an online programming platform, LeetCode, and design three different tasks: overall coverage, targeted line/branch coverage, and targeted path coverage. We further evaluate 17 popular LLMs, including both commercial and open-source ones, on TESTEVAL. We find that generating test cases to cover specific program lines/branches/paths is still challenging for current LLMs, indicating a lack of ability to comprehend program logic and execution paths.}
+}
+
+@article{rafi2025revisiting,
+  abbr={MSR},
+  title={Revisiting Defects4J for Fault Localization in Diverse Development Scenarios},
+  author={Rafi, Md Nakhla and Chen, An Ran and Chen, Tse-Hsun Peter and Wang, Shaohua},
+  journal={2025 IEEE/ACM 22nd International Conference on Mining Software Repositories (MSR)},
+  year={2025},
+  pdf={revisiting_defects4j.pdf},
+  abstract={Defects4J stands out as a leading benchmark dataset for software testing research, providing a controlled environment to study real bugs from prominent open-source systems. While Defects4J provides a clean and valuable dataset, we aim to explore how fault localization techniques perform under less- controlled development scenarios. In this paper, we revisited Defects4J to study developers’ changes to fault-triggering tests after the bugs were reported/fixed. We aim to introduce a new evaluation scenario within Defects4J, focusing on the implications of regression tests and test changes added after the bug was fixed. We analyze when these tests were modified relative to bug report creation and examine spectrum-based fault localization (SBFL) performance in less-controlled settings. Our findings show that 1) 55% of the fault-triggering tests were added to replicate the bug or test for regression; 2) 22% of the tests were changed after the bug reports, incorporating information related to the bug; 3) developers often update tests with new assertions or changes to match source code updates; and 4) SBFL performance differs significantly in less-controlled settings (down by at most 90% for Mean First Rank). Our study points out the diverse development scenarios in the studied bugs, highlighting new settings for future SBFL evaluations and bug benchmarks.}
+}
+
 @article{rafi2024towards,
   abbr={FSE},
   title={Towards Better Graph Neural Neural Network-based Fault Localization Through Enhanced Code Representation},

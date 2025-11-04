@@ -1,13 +1,14 @@
 ---
 layout: page
-title: Nexus
+title: Members
 permalink: /projects/
-description:
+description: 
 nav: true
 nav_order: 2
-display_categories: [nexus, alumni]
-horizontal: false
+display_categories: [lab lead, nexus, alumni]
+horizontal: true
 img: assets/img/group.jpg
+img2: assets/img/group2.jpg
 ---
 
 <!-- pages/projects.md -->
@@ -21,14 +22,32 @@ img: assets/img/group.jpg
   <!-- Generate cards for each project -->
   {% if page.horizontal -%}
   <div class="container">
-    <div class="row row-cols-2">
+    <div class="row row-cols-3">
     {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
+      {% unless project.bio %}
+        {% include projects_horizontal.html %}
+      {% endunless %}
     {%- endfor %}
     </div>
+    {%- for project in sorted_projects -%}
+      {% if project.bio %}
+      <div>
+        <div style="float:left; margin-right:1rem; max-width:13.5rem;">
+          <div class="card-item col">
+            <div class="card hoverable">
+              <div class="card-img">
+                {% include figure.html path=project.img alt="project thumbnail"%}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div> {{ project.content }} </div>
+      </div>
+      {% endif %}
+    {%- endfor %}
   </div>
   {%- else -%}
-  <div class="grid">
+  <div class="grid text-center">
     {%- for project in sorted_projects -%}
       {% include projects.html %}
     {%- endfor %}
@@ -42,11 +61,29 @@ img: assets/img/group.jpg
   <!-- Generate cards for each project -->
   {% if page.horizontal -%}
   <div class="container">
-    <div class="row row-cols-2">
+    <div class="row row-cols-3">
     {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
+      {% unless project.bio %}
+        {% include projects_horizontal.html %}
+      {% endunless %}    
     {%- endfor %}
     </div>
+    {%- for project in sorted_projects -%}
+      {% if project.bio %}
+        <div>
+          <div style="float:left; margin-right:1rem">
+            <div class="card-item col">
+              <div class="card hoverable">
+                <div class="card-img col-md-6">
+                  {% include figure.html path=project.img alt="project thumbnail" %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div> {{ project.content }} </div>
+        </div>
+      {% endif %}
+    {%- endfor %}
   </div>
   {%- else -%}
   <div class="grid">
