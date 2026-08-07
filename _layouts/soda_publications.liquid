@@ -1,0 +1,80 @@
+---
+---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.liquid %}
+    {% include soda-force-light.liquid %}
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+  </head>
+  <body class="soda-page">
+    {% include soda-nav.liquid %}
+
+    <div class="soda-page-head">
+      <div class="soda-wrap">
+        <p class="soda-eyebrow">{{ page.eyebrow }}</p>
+        <h1>{{ page.title }}</h1>
+        <hr class="soda-rule" />
+        <p class="soda-sub">{{ page.subtitle }}</p>
+      </div>
+    </div>
+
+    <section class="soda-section">
+      <div class="soda-wrap">
+        {% if site.publications.size == 0 %}
+          <p class="soda-empty-state">Publications are being added — check back soon.</p>
+        {% endif %}
+        {% assign years = site.publications | map: 'year' | uniq | sort | reverse %}
+        {% for year in years %}
+          {% assign pubs = site.publications | where: 'year', year | sort: 'order' %}
+          <div class="soda-year-block">
+            <div class="soda-year-head">
+              <div class="soda-num">{{ year }}</div>
+              <div class="soda-count">{{ pubs.size }} paper{% unless pubs.size == 1 %}s{% endunless %}</div>
+              <div class="soda-rule2"></div>
+            </div>
+
+            {% for pub in pubs %}
+              <div class="soda-pub">
+                <div class="soda-thumb">
+                  <div class="soda-tl1"></div>
+                  <div class="soda-tl2"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-ln soda-colbreak"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-ln"></div>
+                  <div class="soda-tag">PDF</div>
+                </div>
+                <div class="soda-pub-body">
+                  <h3>{{ pub.title }}</h3>
+                  <div class="soda-venue">{{ pub.venue }}</div>
+                  <div class="soda-authors">
+                    {% for author in pub.authors %}
+                      {% if author.slug %}
+                        <a href="{{ '/people/' | append: author.slug | append: '/' | relative_url }}">{{ author.name }}</a>
+                      {% else %}
+                        <span class="soda-ext">{{ author.name }}</span>
+                      {% endif %}{% unless forloop.last %},
+                      {% endunless %}
+                    {% endfor %}
+                  </div>
+                  <div class="soda-pub-actions"><a class="soda-dl" href="{{ pub.pdf_url | default: '#' }}">⬇ Download PDF</a></div>
+                  <details>
+                    <summary>Abstract</summary>
+                    <p class="soda-abstract">{{ pub.abstract }}</p>
+                  </details>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% include soda-footer.liquid %}
+    {% include scripts.liquid %}
+  </body>
+</html>

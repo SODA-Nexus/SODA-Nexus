@@ -1,0 +1,17 @@
+<div class="soda-nav">
+  <div class="soda-wrap">
+    <a href="{{ '/' | relative_url }}" class="soda-brand">
+      <div class="soda-mark">SN</div>
+      <div class="soda-name">SODA Nexus</div>
+    </a>
+    <ul>
+      <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="soda-active"{% endif %}>Home</a></li>
+      <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="soda-active"{% endif %}>About</a></li>
+      <li><a href="{{ '/team/' | relative_url }}" {% if page.url == '/team/' or page.collection == 'people' %}class="soda-active"{% endif %}>Team</a></li>
+      <li>
+        <a href="{{ '/publications/' | relative_url }}" {% if page.url == '/publications/' %}class="soda-active"{% endif %}>Publications</a>
+      </li>
+      <li><a href="{{ '/join/' | relative_url }}" {% if page.url == '/join/' %}class="soda-active"{% endif %}>Join</a></li>
+    </ul>
+  </div>
+</div>

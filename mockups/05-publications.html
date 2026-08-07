@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Publications — SODA Nexus Lab</title>
+<style>
+  :root{
+    --red:#C8262A; --red-dark:#A31E22; --ink:#1A1A1A; --slate:#5B6B7C;
+    --line:#E7E5E1; --panel:#F7F6F3; --cream:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  a{color:inherit;text-decoration:none;}
+  .nav{border-bottom:1px solid var(--line);padding:16px 0;}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:800;font-size:13px;}
+  .brand .name{font-weight:800;font-size:18px;}
+  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;}
+  .nav ul a.active{color:var(--red);}
+
+  .page-head{padding:48px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:0 0 8px;}
+  h1{font-size:34px;margin:0 0 10px;font-weight:800;}
+  .rule{width:56px;height:4px;background:var(--red);margin:16px 0;border:none;}
+  .sub{font-size:15px;color:#333;max-width:70ch;margin:0;}
+
+  .section{padding:40px 0;}
+  .year-block{margin-bottom:40px;}
+  .year-block:last-child{margin-bottom:0;}
+  .year-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+  .year-head .num{font-size:24px;font-weight:800;color:var(--red);}
+  .year-head .count{font-size:12.5px;color:var(--slate);font-weight:700;}
+  .year-head .rule2{flex:1;height:1px;background:var(--line);}
+
+  .pub{display:flex;gap:22px;border:1px solid var(--line);border-radius:10px;padding:20px;background:#fff;margin-bottom:16px;}
+  .pub:last-child{margin-bottom:0;}
+
+  /* first-page preview thumbnail */
+  .thumb{
+    width:110px;height:142px;flex:none;background:#fff;border:1px solid var(--line);border-radius:4px;
+    box-shadow:3px 3px 0 var(--panel), 6px 6px 0 #fff, 6px 6px 0 1px var(--line);
+    padding:12px 10px;position:relative;
+  }
+  .thumb .tl1{height:6px;background:var(--ink);border-radius:1px;margin-bottom:6px;width:90%;}
+  .thumb .tl2{height:4px;background:#c8c8c8;border-radius:1px;margin-bottom:10px;width:60%;}
+  .thumb .ln{height:3px;background:#e0e0e0;border-radius:1px;margin-bottom:4px;}
+  .thumb .ln:nth-child(4){width:95%;}
+  .thumb .ln:nth-child(5){width:88%;}
+  .thumb .ln:nth-child(6){width:92%;}
+  .thumb .ln:nth-child(7){width:70%;}
+  .thumb .colbreak{margin-top:8px;}
+  .thumb .tag{position:absolute;bottom:8px;right:8px;font-size:8px;font-weight:800;color:var(--red);letter-spacing:.05em;}
+
+  .pub-body{flex:1;min-width:0;}
+  .pub h3{font-size:15.5px;margin:0 0 6px;font-weight:800;}
+  .venue{font-size:12px;color:var(--red);font-weight:700;margin-bottom:6px;}
+  .authors{font-size:13px;color:#444;margin-bottom:10px;}
+  .authors a{color:var(--ink);font-weight:700;border-bottom:1px dashed var(--slate);}
+  .authors a:hover{color:var(--red);border-color:var(--red);}
+  .authors .ext{color:#444;font-weight:400;}
+
+  .pub-actions{display:flex;gap:10px;align-items:center;margin-bottom:2px;}
+  .dl{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--red);border:1.5px solid var(--red);padding:6px 12px;border-radius:6px;}
+  .dl:hover{background:#FDF0EF;}
+
+  details{margin-top:10px;}
+  summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--slate);list-style:none;display:inline-flex;align-items:center;gap:6px;}
+  summary::-webkit-details-marker{display:none;}
+  summary:before{content:"▸";color:var(--red);font-size:11px;transition:transform .15s ease;}
+  details[open] summary:before{transform:rotate(90deg);}
+  details[open] summary{color:var(--red);}
+  .abstract{font-size:13px;color:#4a4a4a;margin-top:8px;padding-top:10px;border-top:1px solid var(--line);max-width:75ch;}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:var(--slate);}
+
+  @media(max-width:700px){.pub{flex-direction:column;}.thumb{width:100%;height:110px;}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
+  <ul>
+    <li><a href="01-home.html">Home</a></li>
+    <li><a href="02-about.html">About</a></li>
+    <li><a href="04-team.html">Team</a></li>
+    <li><a href="03-person.html">People</a></li>
+    <li><a href="05-publications.html" class="active">Publications</a></li>
+  </ul>
+</div></div>
+
+<div class="page-head"><div class="wrap">
+  <p class="eyebrow">Research output</p>
+  <h1>Publications</h1>
+  <hr class="rule">
+  <p class="sub">Papers and preprints from the SODA Nexus Lab on AI-assisted debugging, fault localization, program repair, and software repository mining.</p>
+</div></div>
+
+<section class="section"><div class="wrap">
+
+  <div class="year-block">
+    <div class="year-head"><div class="num">2026</div><div class="count">3 papers</div><div class="rule2"></div></div>
+
+    <div class="pub">
+      <div class="thumb">
+        <div class="tl1"></div><div class="tl2"></div>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div class="ln colbreak"></div><div class="ln"></div><div class="ln"></div>
+        <div class="tag">PDF</div>
+      </div>
+      <div class="pub-body">
+        <h3>FaR-Loc: Functionality-Aware Fault Localizations via Retrieval-Augmented Generation</h3>
+        <div class="venue">IEEE Transactions on Software Engineering, 2026</div>
+        <div class="authors"><a href="03-person.html">Jordan Whitfield</a>, <a href="03-person.html">Amara Reyes</a>, <span class="ext">Wei Chen</span></div>
+        <div class="pub-actions"><a class="dl">⬇ Download PDF</a></div>
+        <details>
+          <summary>Abstract</summary>
+          <p class="abstract">We introduce a retrieval-augmented approach that leverages functionality information to localize software defects more accurately and efficiently. By retrieving semantically related code fragments and grounding a language model's reasoning in real functionality descriptions, our method reduces false positives compared to purely embedding-based baselines across five open-source benchmarks.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb">
+        <div class="tl1"></div><div class="tl2"></div>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div class="ln colbreak"></div><div class="ln"></div><div class="ln"></div>
+        <div class="tag">PDF</div>
+      </div>
+      <div class="pub-body">
+        <h3>TRAIL: Template-preserving Rare-event Augmentation for Log-based Anomaly Detection</h3>
+        <div class="venue">Preprint, 2026</div>
+        <div class="authors"><a href="03-person.html">Emily Sato</a>, <a href="03-person.html">Amara Reyes</a></div>
+        <div class="pub-actions"><a class="dl">⬇ Download PDF</a></div>
+        <details>
+          <summary>Abstract</summary>
+          <p class="abstract">Rare failure events are underrepresented in system logs, making them difficult for anomaly detectors to learn. TRAIL generates synthetic rare-event log sequences that preserve the structural templates of real logs, improving detection recall on infrequent failure types without degrading precision on common patterns.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb">
+        <div class="tl1"></div><div class="tl2"></div>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div class="ln colbreak"></div><div class="ln"></div><div class="ln"></div>
+        <div class="tag">PDF</div>
+      </div>
+      <div class="pub-body">
+        <h3>Explainable Retrieval-Augmented Debugging for Large Codebases</h3>
+        <div class="venue">ICSE 2026 Student Research Competition</div>
+        <div class="authors"><a href="03-person.html">Jordan Whitfield</a>, <a href="03-person.html">Priya Kapoor</a>, <a href="03-person.html">Amara Reyes</a></div>
+        <div class="pub-actions"><a class="dl">⬇ Download PDF</a></div>
+        <details>
+          <summary>Abstract</summary>
+          <p class="abstract">We present a debugging assistant that pairs retrieval-augmented generation with structured explanations, letting developers inspect why a suggested fix location was chosen. A user study with 24 developers shows faster triage times and higher trust compared to unexplained LLM suggestions.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="year-block">
+    <div class="year-head"><div class="num">2025</div><div class="count">2 papers</div><div class="rule2"></div></div>
+
+    <div class="pub">
+      <div class="thumb">
+        <div class="tl1"></div><div class="tl2"></div>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div class="ln colbreak"></div><div class="ln"></div><div class="ln"></div>
+        <div class="tag">PDF</div>
+      </div>
+      <div class="pub-body">
+        <h3>Mining Commit Histories for Recurring Defect Patterns</h3>
+        <div class="venue">ASE 2025</div>
+        <div class="authors"><a href="03-person.html">Daniel Nkemelu</a>, <a href="03-person.html">Amara Reyes</a>, <span class="ext">Sofia Martins</span></div>
+        <div class="pub-actions"><a class="dl">⬇ Download PDF</a></div>
+        <details>
+          <summary>Abstract</summary>
+          <p class="abstract">We mine commit histories across 40 large open-source repositories to identify recurring defect patterns tied to specific code change types. Our taxonomy of patterns is used to build a lightweight static checker that flags commits with elevated defect risk before merge.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb">
+        <div class="tl1"></div><div class="tl2"></div>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div class="ln colbreak"></div><div class="ln"></div><div class="ln"></div>
+        <div class="tag">PDF</div>
+      </div>
+      <div class="pub-body">
+        <h3>LLM-Guided Test Generation for Concurrent Systems</h3>
+        <div class="venue">FSE 2025</div>
+        <div class="authors"><a href="03-person.html">Marcus Thibault</a>, <a href="03-person.html">Ravi Hallan</a>, <a href="03-person.html">Amara Reyes</a></div>
+        <div class="pub-actions"><a class="dl">⬇ Download PDF</a></div>
+        <details>
+          <summary>Abstract</summary>
+          <p class="abstract">Testing concurrent systems requires exercising rare thread interleavings that are hard to construct by hand. We use large language models to synthesize targeted test schedules guided by static race-detection hints, uncovering 15 previously unknown concurrency bugs in evaluated projects.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+</div></section>
+
+<footer>© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</footer>
+
+</body>
+</html>

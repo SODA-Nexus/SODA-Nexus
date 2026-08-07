@@ -1,0 +1,107 @@
+---
+---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.liquid %}
+    {% include soda-force-light.liquid %}
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+  </head>
+  <body class="soda-page">
+    {% include soda-nav.liquid %}
+
+    <div class="soda-wrap soda-breadcrumb"><a href="{{ '/team/' | relative_url }}">Team</a> / <span>{{ page.name }}</span></div>
+
+    <div class="soda-wrap soda-profile">
+      <div>
+        <div class="soda-avatar" style="background: {{ page.avatar_gradient }};">{{ page.avatar_initials }}</div>
+        <div class="soda-side-box">
+          {% if page.email %}
+            <div class="soda-row"><div class="soda-k">Email</div><div class="soda-v soda-link">{{ page.email }}</div></div>
+          {% endif %}
+          {% if page.office %}
+            <div class="soda-row"><div class="soda-k">Office</div><div class="soda-v">{{ page.office }}</div></div>
+          {% endif %}
+          {% if page.since %}
+            <div class="soda-row"><div class="soda-k">Since</div><div class="soda-v">{{ page.since }}</div></div>
+          {% endif %}
+        </div>
+        {% if page.socials %}
+          <div class="soda-social-row">
+            {% for social in page.socials %}
+              <a href="{{ social.url }}" aria-label="{{ social.label }}">{{ social.icon }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        <p class="soda-role">{{ page.role }}</p>
+        <h1>{{ page.name }}</h1>
+        <p class="soda-position">{{ page.position }}</p>
+        <div class="soda-bio">{{ content }}</div>
+        {% if page.tags %}
+          <div class="soda-tag-row">
+            {% for tag in page.tags %}
+              <div class="soda-tag">{{ tag }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if page.education %}
+      <section class="soda-section">
+        <div class="soda-wrap">
+          <div class="soda-section-head"><div class="soda-bar"></div><h2>Education</h2></div>
+          {% for edu in page.education %}
+            <div class="soda-edu-item">
+              <div class="soda-yrbox">{{ edu.years }}</div>
+              <div>
+                <h4>{{ edu.degree }}</h4>
+                <p>{{ edu.institution }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.publications %}
+      <section class="soda-section" style="background: var(--soda-panel)">
+        <div class="soda-wrap">
+          <div class="soda-section-head"><div class="soda-bar"></div><h2>Selected publications</h2></div>
+          {% for pub in page.publications %}
+            <div class="soda-pub-card">
+              <div class="soda-pub-thumb"></div>
+              <div>
+                <h4>{{ pub.title }}</h4>
+                <div class="soda-venue">{{ pub.venue }}</div>
+                <p>{{ pub.description }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.awards %}
+      <section class="soda-section">
+        <div class="soda-wrap">
+          <div class="soda-section-head"><div class="soda-bar"></div><h2>Awards &amp; honors</h2></div>
+          {% for award in page.awards %}
+            <div class="soda-award-item">
+              <div class="soda-ic">🏆</div>
+              <div>
+                <div class="soda-t">{{ award.title }}</div>
+                <div class="soda-d">{{ award.detail }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% include soda-footer.liquid %}
+    {% include scripts.liquid %}
+  </body>
+</html>

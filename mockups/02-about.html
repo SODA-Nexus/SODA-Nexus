@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SODA Nexus Lab — About</title>
+<style>
+  :root{
+    --red:#C8262A; --red-dark:#A31E22; --ink:#1A1A1A; --slate:#5B6B7C;
+    --line:#E7E5E1; --panel:#F7F6F3; --cream:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  a{color:inherit;text-decoration:none;}
+  .nav{border-bottom:1px solid var(--line);padding:16px 0;}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:800;font-size:13px;}
+  .brand .name{font-weight:800;font-size:18px;}
+  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;}
+  .nav ul a.active{color:var(--red);}
+
+  .page-head{padding:48px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:0 0 8px;}
+  h1{font-size:34px;margin:0 0 10px;font-weight:800;}
+  .rule{width:56px;height:4px;background:var(--red);margin:16px 0;border:none;}
+  .sub{font-size:15px;color:#333;max-width:70ch;margin:0;}
+
+  .section{padding:44px 0;}
+  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .section-head .bar{width:4px;height:20px;background:var(--red);border-radius:2px;}
+  .section-head h2{font-size:20px;margin:0;font-weight:800;}
+
+  .mission-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;}
+  .mission-grid p{font-size:14.5px;color:#333;margin:0 0 14px;}
+  .stat-card{border:1px solid var(--line);border-radius:10px;padding:22px;background:var(--panel);}
+  .stat-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row .n{font-size:22px;font-weight:800;color:var(--red);}
+  .stat-row .l{font-size:12.5px;color:var(--slate);text-align:right;max-width:140px;}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:24px;}
+  .t-item{position:relative;padding-bottom:26px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item:before{content:"";position:absolute;left:-31px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--red);border:3px solid #fff;box-shadow:0 0 0 1px var(--red);}
+  .t-item .yr{font-size:12px;font-weight:800;color:var(--red);}
+  .t-item .h{font-size:14.5px;font-weight:700;margin:2px 0 4px;}
+  .t-item .d{font-size:13px;color:#4a4a4a;}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .value-card{border:1px solid var(--line);border-radius:10px;padding:20px;background:#fff;}
+  .value-card h3{font-size:14.5px;margin:0 0 8px;font-weight:800;}
+  .value-card p{font-size:13px;color:#4a4a4a;margin:0;}
+
+  .funders{display:flex;gap:16px;flex-wrap:wrap;}
+  .fund-chip{border:1px solid var(--line);border-radius:8px;padding:16px 24px;font-size:13px;font-weight:700;color:var(--slate);background:var(--panel);}
+
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+  .map-box{height:220px;border-radius:10px;background:
+    repeating-linear-gradient(0deg,#e3e1dc 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg,#e3e1dc 0 1px, transparent 1px 24px),
+    #f2f1ee;
+    border:1px solid var(--line);position:relative;}
+  .map-box:after{content:"📍 ECERF";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:14px;font-weight:800;color:var(--red);background:#fff;padding:6px 12px;border-radius:20px;border:1px solid var(--line);}
+  .addr p{font-size:14px;margin:4px 0;}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:var(--slate);}
+  @media(max-width:840px){.mission-grid,.grid-3,.loc-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
+  <ul>
+    <li><a href="01-home.html">Home</a></li>
+    <li><a href="02-about.html" class="active">About</a></li>
+    <li><a href="04-team.html">Team</a></li>
+    <li><a href="03-person.html">People</a></li>
+    <li><a href="#">Publications</a></li>
+    <li><a href="#">Join Us</a></li>
+  </ul>
+</div></div>
+
+<div class="page-head"><div class="wrap">
+  <p class="eyebrow">About the lab</p>
+  <h1>Software you can trust, built with AI you can trust</h1>
+  <hr class="rule">
+  <p class="sub">SODA Nexus is a research lab in the Department of Electrical and Computer Engineering at the University of Alberta, focused on making software more reliable through the combination of program analysis and modern AI.</p>
+</div></div>
+
+<section class="section"><div class="wrap mission-grid">
+  <div>
+    <div class="section-head"><div class="bar"></div><h2>Our mission</h2></div>
+    <p>Modern software systems are large, fast-changing, and increasingly hard to verify by hand. SODA Nexus exists to close that gap — building tools and techniques that help engineers find, understand, and fix defects faster, with less manual effort.</p>
+    <p>We treat large language models as a new kind of instrument for software engineering research: powerful, but only trustworthy when paired with rigorous program analysis and careful evaluation on real systems.</p>
+    <p>Our work spans automated debugging, fault localization, test generation, mining software repositories, and intelligent software operations — always grounded in problems that practicing developers actually face.</p>
+  </div>
+  <div class="stat-card">
+    <div class="stat-row"><div class="n">4</div><div class="l">core research areas</div></div>
+    <div class="stat-row"><div class="n">10+</div><div class="l">active graduate &amp; undergrad researchers</div></div>
+    <div class="stat-row"><div class="n">2023</div><div class="l">lab founded</div></div>
+    <div class="stat-row"><div class="n">UAlberta</div><div class="l">ECE department home</div></div>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--panel);"><div class="wrap">
+  <div class="section-head"><div class="bar"></div><h2>Lab history</h2></div>
+  <div class="timeline">
+    <div class="t-item"><div class="yr">2023</div><div class="h">Lab founded</div><div class="d">SODA Nexus is established within the ECE department to pursue AI-assisted software engineering research.</div></div>
+    <div class="t-item"><div class="yr">2024</div><div class="h">First graduate cohort</div><div class="d">First MSc and PhD students join, launching work on automated fault localization and repository mining.</div></div>
+    <div class="t-item"><div class="yr">2025</div><div class="h">Industry collaborations begin</div><div class="d">Partnerships formed around applying LLM-based debugging tools to production-scale codebases.</div></div>
+    <div class="t-item"><div class="yr">2026</div><div class="h">ICSE recognition</div><div class="d">Lab research accepted at the ICSE Student Research Competition; TRAIL preprint released.</div></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div class="bar"></div><h2>What we value</h2></div>
+  <div class="grid-3">
+    <div class="value-card"><h3>Rigor</h3><p>Every technique is evaluated against realistic systems and real defects, not synthetic benchmarks alone.</p></div>
+    <div class="value-card"><h3>Openness</h3><p>We publish code, data, and preprints so the community can build on and verify our results.</p></div>
+    <div class="value-card"><h3>Mentorship</h3><p>We invest in students as researchers first, giving them ownership over problems from day one.</p></div>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--panel);"><div class="wrap">
+  <div class="section-head"><div class="bar"></div><h2>Affiliations &amp; support</h2></div>
+  <div class="funders">
+    <div class="fund-chip">University of Alberta</div>
+    <div class="fund-chip">Dept. of ECE</div>
+    <div class="fund-chip">NSERC</div>
+    <div class="fund-chip">Alberta Innovates</div>
+    <div class="fund-chip">Industry Partner</div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div class="bar"></div><h2>Visit us</h2></div>
+  <div class="loc-grid">
+    <div class="map-box"></div>
+    <div class="addr">
+      <p><b>ECERF W6-073</b></p>
+      <p>University of Alberta</p>
+      <p>Edmonton, Alberta, Canada</p>
+      <p style="color:var(--red);font-weight:700;">soda.nexus.lab@ualberta.ca</p>
+    </div>
+  </div>
+</div></section>
+
+<footer>© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</footer>
+
+</body>
+</html>

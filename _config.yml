@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: DobeWop # the website title (if blank, full name will be used instead)
 first_name: You
 middle_name: R.
 last_name: Name
@@ -209,6 +209,11 @@ collections:
     output: true
   teachings:
     output: true
+  people:
+    output: true
+    permalink: /people/:path/
+  publications:
+    output: false
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

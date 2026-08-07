@@ -65,10 +65,22 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
   failures.push("`Gemfile` must not use git-branch pin for `al_math`; use released gem version.");
 }
 
+const OVERRIDABLE_PATHS = new Set(["_includes", "_layouts", "_sass"]);
+const overridesManifestExists = exists(".al-folio-overrides.yml");
+
 for (const forbiddenPath of ["_includes", "_layouts", "_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
-  if (exists(forbiddenPath)) {
-    failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
+  if (!exists(forbiddenPath)) continue;
+
+  if (OVERRIDABLE_PATHS.has(forbiddenPath)) {
+    if (!overridesManifestExists) {
+      failures.push(
+        `\`${forbiddenPath}\` exists but is not acknowledged in \`.al-folio-overrides.yml\`; run \`bundle exec al-folio upgrade overrides audit\` and commit the manifest.`,
+      );
+    }
+    continue; // tracked local override — legal per docs/ARCHITECTURE.md#local-overrides-your-site-vs-this-repo
   }
+
+  failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
 }
 
 for (const forbiddenGlobPath of [

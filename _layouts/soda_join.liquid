@@ -1,0 +1,96 @@
+---
+---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.liquid %}
+    {% include soda-force-light.liquid %}
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+  </head>
+  <body class="soda-page">
+    {% include soda-nav.liquid %}
+
+    <div class="soda-page-head">
+      <div class="soda-wrap">
+        <p class="soda-eyebrow">{{ page.eyebrow }}</p>
+        <h1>{{ page.title }}</h1>
+        <hr class="soda-rule" />
+        <p class="soda-sub">{{ page.subtitle }}</p>
+      </div>
+    </div>
+
+    <section class="soda-section">
+      <div class="soda-wrap">
+        <p class="soda-label">Who we're looking for</p>
+        <div class="soda-grid-4">
+          {% for track in page.tracks %}
+            <div class="soda-card soda-track-card">
+              <span class="soda-tag soda-track-tag">{{ track.tag }}</span>
+              <h3>{{ track.title }}</h3>
+              <p>{{ track.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="soda-section">
+      <div class="soda-wrap">
+        <div class="soda-section-head"><div class="soda-bar"></div><h2>Application form</h2></div>
+        <p class="soda-sub soda-apply-intro">Fields for name, email, program of interest, a short note, and an optional resume upload.</p>
+
+        <div class="soda-apply-panel">
+          <div class="soda-apply-note">{{ page.form_note }}</div>
+          <div class="soda-apply-body">
+            <form action="{{ page.form_action }}" method="POST" enctype="multipart/form-data">
+              <div class="soda-form-grid">
+                <div class="soda-field">
+                  <label for="name">Full name</label>
+                  <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+                </div>
+                <div class="soda-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="jane@ualberta.ca" required />
+                </div>
+                <div class="soda-field soda-field-full">
+                  <label for="track">I'm interested in</label>
+                  <select id="track" name="track">
+                    <option>PhD program</option>
+                    <option>MSc program</option>
+                    <option>Undergraduate research</option>
+                    <option>Collaboration / industry partnership</option>
+                    <option>Something else</option>
+                  </select>
+                </div>
+                <div class="soda-field soda-field-full">
+                  <label for="message">Tell us about yourself <span class="soda-hint">— background, interests, why this lab</span></label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="A few sentences about your research interests and relevant experience..."
+                  ></textarea>
+                </div>
+                <div class="soda-field soda-field-full">
+                  <label for="resume">Resume / CV <span class="soda-hint">— PDF preferred, optional</span></label>
+                  <label class="soda-file-drop" for="resume">
+                    <div class="soda-file-icon">↑</div>
+                    <p>Click to upload, or drag a file here</p>
+                    <p class="soda-file-sub">PDF, DOC — up to 5MB</p>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+                  </label>
+                </div>
+              </div>
+              <div class="soda-submit-row">
+                <p class="soda-fine-print">We read every application and typically respond within two weeks.</p>
+                <button type="submit" class="soda-btn soda-solid">Send application</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include soda-footer.liquid %}
+    {% include scripts.liquid %}
+  </body>
+</html>

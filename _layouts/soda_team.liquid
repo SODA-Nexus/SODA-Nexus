@@ -1,0 +1,44 @@
+---
+---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.liquid %}
+    {% include soda-force-light.liquid %}
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+  </head>
+  <body class="soda-page">
+    {% include soda-nav.liquid %}
+
+    <div class="soda-page-head">
+      <div class="soda-wrap">
+        <p class="soda-eyebrow">{{ page.eyebrow }}</p>
+        <h1>{{ page.title }}</h1>
+        <hr class="soda-rule" />
+        <p class="soda-sub">{{ page.subtitle }}</p>
+        <div class="soda-team-photo"><div class="soda-cap">{{ page.photo_caption }}</div></div>
+      </div>
+    </div>
+
+    <section class="soda-section">
+      <div class="soda-wrap">
+        {% for group in page.role_groups %}
+          {% assign members = site.people | where: 'role_group', group.key %}
+          {% if members.size > 0 %}
+            <div class="soda-role-group">
+              <div class="soda-label">{{ group.label }}</div>
+              <div class="soda-team-grid">
+                {% for person in members %}
+                  {% include soda-person-card.liquid person=person %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    {% include soda-footer.liquid %}
+    {% include scripts.liquid %}
+  </body>
+</html>

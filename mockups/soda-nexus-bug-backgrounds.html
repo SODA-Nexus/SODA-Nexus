@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SODA Nexus — Bug Pattern Background Options</title>
+<style>
+  :root {
+    --brand-red: #d5333f;
+    --brand-red-dark: #b32530;
+    --ink: #1b1b1b;
+    --muted: #5b5f66;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+  }
+  .label-bar {
+    text-align: center;
+    padding: 18px 12px 10px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+  }
+  .demo {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .demo svg.pattern-layer {
+    position: absolute;
+    top: -100px; left: -100px;
+    width: calc(100% + 200px);
+    height: calc(100% + 200px);
+    animation: drift 68s linear infinite;
+    will-change: transform;
+  }
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(84px, -84px); } /* one tile diagonally: bottom-left → top-right, seamless loop */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .demo svg.pattern-layer { animation: none; }
+  }
+  .note {
+    max-width: 640px;
+    margin: 0 auto 28px;
+    padding: 0 24px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #777;
+  }
+  .card {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    margin: 40px 24px;
+    padding: 36px 40px;
+    text-align: left;
+  }
+  .card h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+  }
+  .card p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 0 0 22px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--brand-red);
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  /* Option 1: light gray base, faint red bug outlines */
+  .opt1 { background: #f7f6f5; }
+  .opt1 .card h1 { color: var(--ink); }
+  .opt1 .card p { color: var(--muted); }
+
+  /* Option 2: white base, subtle black bugs */
+  .opt2 { background: #ffffff; }
+  .opt2 .card h1 { color: var(--ink); }
+  .opt2 .card p { color: var(--muted); }
+
+  /* Option 3: dark base, red bugs */
+  .opt3 { background: #17181a; }
+  .opt3 .card h1 { color: #ffffff; }
+  .opt3 .card p { color: #c7c9cc; }
+</style>
+</head>
+<body>
+
+<div class="label-bar">Option 1 — Light gray base, faint red bug outlines (tighter + slow drift)</div>
+<p class="note">Tile size reduced from 110px to 84px so the pattern reads as denser/busier. The pattern now drifts diagonally from bottom-left to top-right on a slow 68s loop — smooth and barely perceptible, giving the page a subtle "alive" feel without being distracting.</p>
+<div class="demo opt1">
+  <svg class="pattern-layer" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="p1" width="84" height="84" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <!-- simple bug silhouette -->
+        <g transform="translate(10,12) scale(0.8)" stroke="#d5333f" stroke-width="1.4" fill="none" opacity="0.28">
+          <ellipse cx="12" cy="16" rx="7" ry="10"/>
+          <circle cx="12" cy="4" r="3.4"/>
+          <line x1="12" y1="7.4" x2="12" y2="9"/>
+          <line x1="9" y1="1" x2="6" y2="-2.5"/>
+          <line x1="15" y1="1" x2="18" y2="-2.5"/>
+          <line x1="5" y1="10" x2="-1" y2="7"/>
+          <line x1="5" y1="16" x2="-1.5" y2="16"/>
+          <line x1="5" y1="22" x2="-1" y2="25"/>
+          <line x1="19" y1="10" x2="25" y2="7"/>
+          <line x1="19" y1="16" x2="25.5" y2="16"/>
+          <line x1="19" y1="22" x2="25" y2="25"/>
+          <line x1="12" y1="6" x2="12" y2="26"/>
+        </g>
+        <!-- magnifier-debug icon -->
+        <g transform="translate(52,48) scale(0.8)" stroke="#d5333f" stroke-width="1.4" fill="none" opacity="0.22">
+          <circle cx="8" cy="8" r="7"/>
+          <line x1="13" y1="13" x2="20" y2="20"/>
+          <ellipse cx="8" cy="8" rx="3" ry="4"/>
+          <line x1="8" y1="4" x2="8" y2="12"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#p1)"/>
+  </svg>
+  <div class="card">
+    <h1>Building intelligent techniques for more reliable software</h1>
+    <p>The SODA Nexus Lab develops AI-assisted software engineering techniques that help developers understand, test, debug, and improve complex software systems.</p>
+    <a class="btn" href="#">Meet the Team</a>
+  </div>
+</div>
+
+<div class="label-bar">Option 2 — White base, subtle black bug icons</div>
+<div class="demo opt2">
+  <svg class="pattern-layer" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="p2" width="84" height="84" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <g transform="translate(10,12) scale(0.8)" stroke="#1b1b1b" stroke-width="1.3" fill="none" opacity="0.10">
+          <ellipse cx="12" cy="16" rx="7" ry="10"/>
+          <circle cx="12" cy="4" r="3.4"/>
+          <line x1="12" y1="7.4" x2="12" y2="9"/>
+          <line x1="9" y1="1" x2="6" y2="-2.5"/>
+          <line x1="15" y1="1" x2="18" y2="-2.5"/>
+          <line x1="5" y1="10" x2="-1" y2="7"/>
+          <line x1="5" y1="16" x2="-1.5" y2="16"/>
+          <line x1="5" y1="22" x2="-1" y2="25"/>
+          <line x1="19" y1="10" x2="25" y2="7"/>
+          <line x1="19" y1="16" x2="25.5" y2="16"/>
+          <line x1="19" y1="22" x2="25" y2="25"/>
+          <line x1="12" y1="6" x2="12" y2="26"/>
+        </g>
+        <g transform="translate(52,48) scale(0.8)" stroke="#1b1b1b" stroke-width="1.3" fill="none" opacity="0.09">
+          <circle cx="8" cy="8" r="7"/>
+          <line x1="13" y1="13" x2="20" y2="20"/>
+          <ellipse cx="8" cy="8" rx="3" ry="4"/>
+          <line x1="8" y1="4" x2="8" y2="12"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#p2)"/>
+  </svg>
+  <div class="card">
+    <h1>Building intelligent techniques for more reliable software</h1>
+    <p>The SODA Nexus Lab develops AI-assisted software engineering techniques that help developers understand, test, debug, and improve complex software systems.</p>
+    <a class="btn" href="#">Meet the Team</a>
+  </div>
+</div>
+
+<div class="label-bar">Option 3 — Dark base, red bug icons</div>
+<div class="demo opt3">
+  <svg class="pattern-layer" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="p3" width="84" height="84" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <g transform="translate(10,12) scale(0.8)" stroke="#e2545e" stroke-width="1.4" fill="none" opacity="0.35">
+          <ellipse cx="12" cy="16" rx="7" ry="10"/>
+          <circle cx="12" cy="4" r="3.4"/>
+          <line x1="12" y1="7.4" x2="12" y2="9"/>
+          <line x1="9" y1="1" x2="6" y2="-2.5"/>
+          <line x1="15" y1="1" x2="18" y2="-2.5"/>
+          <line x1="5" y1="10" x2="-1" y2="7"/>
+          <line x1="5" y1="16" x2="-1.5" y2="16"/>
+          <line x1="5" y1="22" x2="-1" y2="25"/>
+          <line x1="19" y1="10" x2="25" y2="7"/>
+          <line x1="19" y1="16" x2="25.5" y2="16"/>
+          <line x1="19" y1="22" x2="25" y2="25"/>
+          <line x1="12" y1="6" x2="12" y2="26"/>
+        </g>
+        <g transform="translate(52,48) scale(0.8)" stroke="#e2545e" stroke-width="1.4" fill="none" opacity="0.28">
+          <circle cx="8" cy="8" r="7"/>
+          <line x1="13" y1="13" x2="20" y2="20"/>
+          <ellipse cx="8" cy="8" rx="3" ry="4"/>
+          <line x1="8" y1="4" x2="8" y2="12"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#p3)"/>
+  </svg>
+  <div class="card">
+    <h1>Building intelligent techniques for more reliable software</h1>
+    <p>The SODA Nexus Lab develops AI-assisted software engineering techniques that help developers understand, test, debug, and improve complex software systems.</p>
+    <a class="btn" href="#">Meet the Team</a>
+  </div>
+</div>
+
+</body>
+</html>

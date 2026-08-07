@@ -1,0 +1,1160 @@
+/*
+ * SODA Nexus Lab — shared brand stylesheet for the local lab pages
+ * (home, about, team, person, publications). Ported from mockups/*.html.
+ *
+ * Every selector is prefixed `.soda-` (or scoped under `--soda-*` custom
+ * properties) so nothing here can collide with al_folio_core's own
+ * Tailwind-generated classes or component partials.
+ */
+
+:root {
+  --soda-red: #c8262a;
+  --soda-red-dark: #a31e22;
+  --soda-ink: #1a1a1a;
+  --soda-slate: #5b6b7c;
+  --soda-line: #e7e5e1;
+  --soda-panel: #f7f6f3;
+  --soda-cream: #ffffff;
+}
+
+.soda-page {
+  color-scheme: light;
+  margin: 0;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  color: var(--soda-ink);
+  background: var(--soda-cream);
+  line-height: 1.6;
+}
+.soda-page * {
+  box-sizing: border-box;
+}
+.soda-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.soda-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* NAV */
+.soda-nav {
+  border-bottom: 1px solid var(--soda-line);
+  padding: 16px 0;
+}
+.soda-nav .soda-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.soda-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.soda-brand .soda-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--soda-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--soda-red);
+  font-weight: 800;
+  font-size: 13px;
+}
+.soda-brand .soda-name {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+.soda-nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--soda-ink);
+}
+.soda-nav ul a:hover,
+.soda-nav ul a.soda-active {
+  color: var(--soda-red);
+}
+
+/* FOOTER */
+.soda-footer {
+  border-top: 1px solid var(--soda-line);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--soda-slate);
+}
+
+/* HERO */
+.soda-hero {
+  padding: 64px 0 48px;
+}
+.soda-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: start;
+}
+.soda-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soda-slate);
+  margin: 0 0 10px;
+}
+.soda-page h1 {
+  font-size: 38px;
+  line-height: 1.18;
+  margin: 0 0 4px;
+  font-weight: 800;
+}
+.soda-page-head h1 {
+  font-size: 34px;
+  margin: 0 0 10px;
+}
+.soda-rule {
+  width: 56px;
+  height: 4px;
+  background: var(--soda-red);
+  margin: 18px 0;
+  border: none;
+}
+.soda-lead {
+  font-size: 15.5px;
+  color: #333;
+  margin: 0 0 14px;
+  max-width: 52ch;
+}
+.soda-lead b {
+  color: var(--soda-ink);
+}
+.soda-cta-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.soda-btn {
+  padding: 11px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--soda-red);
+  cursor: pointer;
+}
+.soda-btn.soda-solid {
+  background: var(--soda-red);
+  color: #fff;
+}
+.soda-btn.soda-solid:hover {
+  background: var(--soda-red-dark);
+}
+.soda-btn.soda-ghost {
+  color: var(--soda-red);
+  background: #fff;
+}
+.soda-btn.soda-ghost:hover {
+  background: #fdf0ef;
+}
+
+.soda-side-card {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.soda-side-photo {
+  height: 170px;
+  background:
+    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 55%),
+    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(180deg, #bcd4ea, #8fa9c2);
+  position: relative;
+}
+.soda-side-info {
+  padding: 18px 20px;
+  font-size: 13.5px;
+}
+.soda-side-info .soda-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.soda-side-info .soda-row:last-child {
+  margin-bottom: 0;
+}
+.soda-side-info .soda-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--soda-red);
+  flex: none;
+  margin-top: 2px;
+}
+.soda-side-info .soda-link,
+.soda-link {
+  color: var(--soda-red);
+  font-weight: 700;
+}
+
+/* SECTIONS */
+.soda-section {
+  padding: 44px 0;
+}
+.soda-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.soda-section-head.soda-between {
+  justify-content: space-between;
+}
+.soda-section-head .soda-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.soda-section-head .soda-bar {
+  width: 4px;
+  height: 20px;
+  background: var(--soda-red);
+  border-radius: 2px;
+}
+.soda-section-head h2 {
+  font-size: 21px;
+  margin: 0;
+  font-weight: 800;
+}
+
+.soda-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.soda-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.soda-card {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 22px 18px;
+  background: #fff;
+  text-align: center;
+}
+.soda-card .soda-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--soda-panel);
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--soda-red);
+}
+.soda-card h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+.soda-card p {
+  font-size: 13px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.soda-split,
+.soda-split-2,
+.soda-mission-grid,
+.soda-loc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.soda-mission-grid {
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+.soda-mission-grid p {
+  font-size: 14.5px;
+  color: #333;
+  margin: 0 0 14px;
+}
+.soda-loc-grid {
+  gap: 32px;
+  align-items: center;
+}
+
+ul.soda-check {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.soda-check li {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+ul.soda-check li:before {
+  content: "✓";
+  color: var(--soda-red);
+  font-weight: 800;
+}
+.soda-contact-tile {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.soda-contact-tile .soda-icn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fdeceb;
+  color: var(--soda-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  font-size: 16px;
+}
+.soda-contact-tile p {
+  margin: 2px 0 0;
+  font-size: 13.5px;
+  color: #444;
+}
+
+.soda-list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--soda-line);
+}
+.soda-list-item:last-child {
+  border-bottom: none;
+}
+.soda-list-item .soda-tag {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--soda-panel);
+  flex: none;
+}
+.soda-list-item .soda-t {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.soda-list-item .soda-d {
+  font-size: 12px;
+  color: var(--soda-slate);
+  margin-top: 3px;
+}
+.soda-view-all {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-red);
+}
+
+.soda-pub-card {
+  display: flex;
+  gap: 16px;
+}
+.soda-pub-thumb {
+  width: 110px;
+  height: 82px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #eee, #ccc);
+  flex: none;
+}
+.soda-pub-card h4 {
+  font-size: 14px;
+  margin: 0 0 4px;
+  font-weight: 800;
+}
+.soda-pub-card .soda-venue {
+  font-size: 12px;
+  color: var(--soda-red);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.soda-pub-card p {
+  font-size: 12.5px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+/* ABOUT PAGE */
+.soda-page-head {
+  padding: 48px 0 28px;
+  border-bottom: 1px solid var(--soda-line);
+}
+.soda-page-head .soda-sub {
+  font-size: 15px;
+  color: #333;
+  max-width: 70ch;
+  margin: 0;
+}
+
+.soda-stat-card {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 22px;
+  background: var(--soda-panel);
+}
+.soda-stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--soda-line);
+}
+.soda-stat-row:last-child {
+  border-bottom: none;
+}
+.soda-stat-row .soda-n {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--soda-red);
+}
+.soda-stat-row .soda-l {
+  font-size: 12.5px;
+  color: var(--soda-slate);
+  text-align: right;
+  max-width: 140px;
+}
+
+.soda-timeline {
+  border-left: 2px solid var(--soda-line);
+  margin-left: 8px;
+  padding-left: 24px;
+}
+.soda-t-item {
+  position: relative;
+  padding-bottom: 26px;
+}
+.soda-t-item:last-child {
+  padding-bottom: 0;
+}
+.soda-t-item:before {
+  content: "";
+  position: absolute;
+  left: -31px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--soda-red);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--soda-red);
+}
+.soda-t-item .soda-yr {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--soda-red);
+}
+.soda-t-item .soda-h {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin: 2px 0 4px;
+}
+.soda-t-item .soda-d {
+  font-size: 13px;
+  color: #4a4a4a;
+}
+
+.soda-value-card {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+}
+.soda-value-card h3 {
+  font-size: 14.5px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+.soda-value-card p {
+  font-size: 13px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.soda-funders {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.soda-fund-chip {
+  border: 1px solid var(--soda-line);
+  border-radius: 8px;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--soda-slate);
+  background: var(--soda-panel);
+}
+
+.soda-map-box {
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f2f1ee;
+  border: 1px solid var(--soda-line);
+  position: relative;
+}
+.soda-map-box iframe {
+  display: block;
+}
+.soda-addr p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+/* PERSON PAGE */
+.soda-breadcrumb {
+  padding: 14px 0 0;
+  font-size: 12.5px;
+  color: var(--soda-slate);
+}
+.soda-breadcrumb span {
+  color: var(--soda-red);
+  font-weight: 700;
+}
+
+.soda-profile {
+  padding: 28px 0 40px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 44px;
+  border-bottom: 1px solid var(--soda-line);
+}
+.soda-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.soda-side-box {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 13px;
+  margin-top: 6px;
+}
+.soda-side-box .soda-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.soda-side-box .soda-row:last-child {
+  margin-bottom: 0;
+}
+.soda-side-box .soda-k {
+  color: var(--soda-slate);
+  width: 64px;
+  flex: none;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.soda-side-box .soda-v {
+  font-size: 13px;
+}
+.soda-social-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.soda-social-row a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--soda-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 1px solid var(--soda-line);
+}
+
+.soda-role {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--soda-red);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 6px;
+}
+.soda-profile h1 {
+  font-size: 32px;
+  margin: 0 0 6px;
+}
+.soda-position {
+  font-size: 15px;
+  color: #333;
+  margin: 0 0 18px;
+}
+.soda-bio {
+  font-size: 14.5px;
+  color: #333;
+  max-width: 70ch;
+  margin: 0 0 22px;
+}
+.soda-tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.soda-tag {
+  background: var(--soda-panel);
+  border: 1px solid var(--soda-line);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-slate);
+}
+
+.soda-edu-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--soda-line);
+}
+.soda-edu-item:last-child {
+  border-bottom: none;
+}
+.soda-edu-item .soda-yrbox {
+  width: 78px;
+  flex: none;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--soda-red);
+}
+.soda-edu-item h4 {
+  font-size: 14.5px;
+  margin: 0 0 3px;
+  font-weight: 800;
+}
+.soda-edu-item p {
+  font-size: 13px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.soda-award-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--soda-line);
+  align-items: flex-start;
+}
+.soda-award-item:last-child {
+  border-bottom: none;
+}
+.soda-award-item .soda-ic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fdeceb;
+  color: var(--soda-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  font-size: 14px;
+}
+.soda-award-item .soda-t {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.soda-award-item .soda-d {
+  font-size: 12px;
+  color: var(--soda-slate);
+}
+
+/* TEAM PAGE */
+.soda-team-photo {
+  margin-top: 28px;
+  height: 320px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 60%),
+    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(180deg, #bcd4ea, #8fa9c2);
+}
+.soda-team-photo .soda-cap {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.soda-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.soda-member {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px 16px;
+  text-align: center;
+}
+.soda-member .soda-avatar {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 14px;
+  font-size: 22px;
+}
+.soda-member .soda-role {
+  font-size: 11px;
+  margin: 0 0 4px;
+}
+.soda-member h3 {
+  font-size: 14.5px;
+  margin: 0 0 6px;
+  font-weight: 800;
+}
+.soda-member p {
+  font-size: 12.5px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.soda-role-group {
+  margin-bottom: 36px;
+}
+.soda-role-group:last-child {
+  margin-bottom: 0;
+}
+.soda-role-group .soda-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--soda-slate);
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .soda-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 840px) {
+  .soda-hero-grid,
+  .soda-split,
+  .soda-split-2,
+  .soda-mission-grid,
+  .soda-grid-3,
+  .soda-loc-grid,
+  .soda-profile {
+    grid-template-columns: 1fr;
+  }
+  .soda-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* PUBLICATIONS PAGE */
+.soda-empty-state {
+  font-size: 14px;
+  color: var(--soda-slate);
+  border: 1px dashed var(--soda-line);
+  border-radius: 10px;
+  padding: 32px;
+  text-align: center;
+}
+.soda-year-block {
+  margin-bottom: 40px;
+}
+.soda-year-block:last-child {
+  margin-bottom: 0;
+}
+.soda-year-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.soda-year-head .soda-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--soda-red);
+}
+.soda-year-head .soda-count {
+  font-size: 12.5px;
+  color: var(--soda-slate);
+  font-weight: 700;
+}
+.soda-year-head .soda-rule2 {
+  flex: 1;
+  height: 1px;
+  background: var(--soda-line);
+}
+
+.soda-pub {
+  display: flex;
+  gap: 22px;
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+.soda-pub:last-child {
+  margin-bottom: 0;
+}
+
+.soda-thumb {
+  width: 110px;
+  height: 142px;
+  flex: none;
+  background: #fff;
+  border: 1px solid var(--soda-line);
+  border-radius: 4px;
+  box-shadow:
+    3px 3px 0 var(--soda-panel),
+    6px 6px 0 #fff,
+    6px 6px 0 1px var(--soda-line);
+  padding: 12px 10px;
+  position: relative;
+}
+.soda-thumb .soda-tl1 {
+  height: 6px;
+  background: var(--soda-ink);
+  border-radius: 1px;
+  margin-bottom: 6px;
+  width: 90%;
+}
+.soda-thumb .soda-tl2 {
+  height: 4px;
+  background: #c8c8c8;
+  border-radius: 1px;
+  margin-bottom: 10px;
+  width: 60%;
+}
+.soda-thumb .soda-ln {
+  height: 3px;
+  background: #e0e0e0;
+  border-radius: 1px;
+  margin-bottom: 4px;
+}
+.soda-thumb .soda-ln:nth-child(4) {
+  width: 95%;
+}
+.soda-thumb .soda-ln:nth-child(5) {
+  width: 88%;
+}
+.soda-thumb .soda-ln:nth-child(6) {
+  width: 92%;
+}
+.soda-thumb .soda-ln:nth-child(7) {
+  width: 70%;
+}
+.soda-thumb .soda-colbreak {
+  margin-top: 8px;
+}
+.soda-thumb .soda-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--soda-red);
+  letter-spacing: 0.05em;
+}
+
+.soda-pub-body {
+  flex: 1;
+  min-width: 0;
+}
+.soda-pub-body h3 {
+  font-size: 15.5px;
+  margin: 0 0 6px;
+  font-weight: 800;
+}
+.soda-authors {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+.soda-authors a {
+  color: var(--soda-ink);
+  font-weight: 700;
+  border-bottom: 1px dashed var(--soda-slate);
+}
+.soda-authors a:hover {
+  color: var(--soda-red);
+  border-color: var(--soda-red);
+}
+.soda-authors .soda-ext {
+  color: #444;
+  font-weight: 400;
+}
+
+.soda-pub-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.soda-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-red);
+  border: 1.5px solid var(--soda-red);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+.soda-dl:hover {
+  background: #fdf0ef;
+}
+
+.soda-pub-body details {
+  margin-top: 10px;
+}
+.soda-pub-body summary {
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-slate);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.soda-pub-body summary::-webkit-details-marker {
+  display: none;
+}
+.soda-pub-body summary:before {
+  content: "▸";
+  color: var(--soda-red);
+  font-size: 11px;
+  transition: transform 0.15s ease;
+}
+.soda-pub-body details[open] summary:before {
+  transform: rotate(90deg);
+}
+.soda-pub-body details[open] summary {
+  color: var(--soda-red);
+}
+.soda-abstract {
+  font-size: 13px;
+  color: #4a4a4a;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--soda-line);
+  max-width: 75ch;
+}
+
+@media (max-width: 700px) {
+  .soda-pub {
+    flex-direction: column;
+  }
+  .soda-thumb {
+    width: 100%;
+    height: 110px;
+  }
+}
+
+/* JOIN PAGE */
+.soda-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--soda-slate);
+  letter-spacing: 0.08em;
+  margin: 0 0 18px;
+}
+.soda-track-card {
+  text-align: left;
+}
+.soda-track-tag {
+  border-radius: 5px;
+  background: #fdecec;
+  color: var(--soda-red-dark);
+  border: none;
+  margin-bottom: 12px;
+}
+.soda-apply-intro {
+  margin: -8px 0 22px;
+}
+.soda-apply-panel {
+  border: 1px solid var(--soda-line);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: #fff;
+}
+.soda-apply-note {
+  background: var(--soda-panel);
+  border-bottom: 1px solid var(--soda-line);
+  padding: 10px 28px;
+  font-size: 12px;
+  color: var(--soda-slate);
+}
+.soda-apply-note code {
+  background: #fff;
+  border: 1px solid var(--soda-line);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11.5px;
+}
+.soda-apply-body {
+  padding: 32px;
+}
+.soda-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.soda-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.soda-field-full {
+  grid-column: 1 / -1;
+}
+.soda-field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--soda-ink);
+}
+.soda-field .soda-hint {
+  font-size: 12px;
+  color: #a1a1aa;
+  font-weight: 400;
+}
+.soda-field input[type="text"],
+.soda-field input[type="email"],
+.soda-field select,
+.soda-field textarea {
+  border: 1px solid var(--soda-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--soda-ink);
+  background: #fff;
+}
+.soda-field input:focus,
+.soda-field select:focus,
+.soda-field textarea:focus {
+  outline: none;
+  border-color: var(--soda-red);
+  box-shadow: 0 0 0 3px #fdecec;
+}
+.soda-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.soda-file-drop {
+  border: 1.5px dashed var(--soda-line);
+  border-radius: 8px;
+  padding: 22px;
+  text-align: center;
+  background: var(--soda-panel);
+  cursor: pointer;
+  display: block;
+}
+.soda-file-drop:hover {
+  border-color: var(--soda-red);
+  background: #fdecec;
+}
+.soda-file-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--soda-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--soda-red);
+  font-size: 15px;
+  font-weight: 700;
+}
+.soda-file-drop p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--soda-slate);
+}
+.soda-file-drop p.soda-file-sub {
+  font-size: 11.5px;
+  color: #a1a1aa;
+  margin-top: 2px;
+}
+.soda-file-drop input[type="file"] {
+  display: none;
+}
+.soda-submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--soda-line);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.soda-fine-print {
+  font-size: 12px;
+  color: #a1a1aa;
+  max-width: 340px;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .soda-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
