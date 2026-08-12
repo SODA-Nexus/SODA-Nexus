@@ -4,6 +4,7 @@
 <html lang="{{ site.lang }}">
   <head>
     {% include head.liquid %}
+    {% include soda-fonts.liquid %}
     {% include soda-force-light.liquid %}
     <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
   </head>
@@ -70,8 +71,6 @@
               <p><b>{{ tile.title }}:</b> {{ tile.description }}</p>
             </div>
           {% endfor %}
-          <a class="soda-btn soda-solid" style="margin-top: 6px" href="{{ '/join/' | relative_url }}">🎓 Apply to join</a>
-          <a class="soda-btn soda-ghost" style="margin-top: 6px" href="mailto:{{ site.socials.email }}">✉ Get in touch</a>
         </div>
       </div>
     </section>

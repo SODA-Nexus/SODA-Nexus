@@ -20,12 +20,7 @@
 .soda-page {
   color-scheme: light;
   margin: 0;
-  font-family:
-    "Segoe UI",
-    -apple-system,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  font-family: "Inter", -apple-system, sans-serif;
   color: var(--soda-ink);
   background: var(--soda-cream);
   line-height: 1.6;
@@ -43,15 +38,59 @@
   padding: 0 32px;
 }
 
-/* NAV */
+/* BUG PATTERN (shared drift layer, ported from mockups/12-bugicon-dense-tilted-3color.html) */
+.soda-bug-drift {
+  position: absolute;
+  top: -84px;
+  right: -84px;
+  bottom: -84px;
+  left: -84px;
+  will-change: transform;
+  animation: soda-bug-drift 68s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes soda-bug-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(42px, -56px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .soda-bug-drift {
+    animation: none;
+  }
+}
+.soda-bug-mask {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+  mask-repeat: repeat;
+  -webkit-mask-repeat: repeat;
+  mask-size: 42px 56px;
+  -webkit-mask-size: 42px 56px;
+  width: 100%;
+  height: 100%;
+}
+
+/* NAV — background schema #2 (white base, subtle black icon) */
 .soda-nav {
   border-bottom: 1px solid var(--soda-line);
   padding: 16px 0;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+.soda-nav .soda-bug-drift .soda-bug-mask {
+  background-color: rgba(22, 22, 22, 0.16);
 }
 .soda-nav .soda-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 .soda-brand {
   display: flex;
@@ -90,13 +129,28 @@
   color: var(--soda-red);
 }
 
-/* FOOTER */
+/* FOOTER — background schema #3 (dark charcoal base, red icon) */
 .soda-footer {
   border-top: 1px solid var(--soda-line);
   padding: 24px 0;
   text-align: center;
   font-size: 12.5px;
-  color: var(--soda-slate);
+  color: #cfcfcf;
+  position: relative;
+  overflow: hidden;
+  background: #1c1c1c;
+}
+.soda-footer .soda-bug-drift .soda-bug-mask {
+  background-color: rgba(230, 45, 35, 0.55);
+}
+.soda-footer .soda-foot-text {
+  position: relative;
+  z-index: 1;
+}
+.soda-footer,
+.soda-footer span,
+.soda-footer .soda-foot-text {
+  color: #cfcfcf;
 }
 
 /* HERO */
@@ -734,17 +788,32 @@ ul.soda-check li:before {
   gap: 20px;
 }
 .soda-member {
+  display: block;
+  cursor: pointer;
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   background: #fff;
   padding: 20px 16px;
   text-align: center;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+.soda-member:hover {
+  border-color: var(--soda-red);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 .soda-member .soda-avatar {
   width: 76px;
   height: 76px;
   margin: 0 auto 14px;
-  font-size: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(0deg, rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0) 60%),
+    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(180deg, #bcd4ea, #8fa9c2);
 }
 .soda-member .soda-role {
   font-size: 11px;

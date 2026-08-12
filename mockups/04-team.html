@@ -3,17 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Meet the Team — SODA Nexus Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --red:#C8262A; --red-dark:#A31E22; --ink:#1A1A1A; --slate:#5B6B7C;
     --line:#E7E5E1; --panel:#F7F6F3; --cream:#FFFFFF;
   }
   *{box-sizing:border-box;}
-  body{margin:0;font-family:'Segoe UI',-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
+  body{margin:0;font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
   .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
   a{color:inherit;text-decoration:none;}
-  .nav{border-bottom:1px solid var(--line);padding:16px 0;}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+
+  /* BUG PATTERN (shared drift layer, from 12-bugicon-dense-tilted-3color.html) */
+  .bug-drift{position:absolute;top:-84px;right:-84px;bottom:-84px;left:-84px;will-change:transform;animation:bug-drift 68s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes bug-drift{0%{transform:translate(0,0);}100%{transform:translate(42px,-56px);}}
+  @media (prefers-reduced-motion:reduce){.bug-drift{animation:none;}}
+  .bug-mask{
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    mask-repeat:repeat; -webkit-mask-repeat:repeat;
+    mask-size:42px 56px; -webkit-mask-size:42px 56px;
+    width:100%; height:100%;
+  }
+
+  /* NAV — background schema #2 (white base, subtle black icon) */
+  .nav{border-bottom:1px solid var(--line);padding:16px 0;position:relative;overflow:hidden;background:#ffffff;}
+  .nav .bug-drift .bug-mask{background-color:rgba(22,22,22,.16);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
   .brand{display:flex;align-items:center;gap:12px;}
   .brand .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:800;font-size:13px;}
   .brand .name{font-weight:800;font-size:18px;}
@@ -46,10 +63,14 @@
   .filter-row span.active{background:var(--red);color:#fff;border-color:var(--red);}
 
   .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-  .member{border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 16px;text-align:center;}
+  .member{display:block;cursor:pointer;border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 16px;text-align:center;transition:box-shadow .15s ease,border-color .15s ease,transform .15s ease;}
+  .member:hover{border-color:var(--red);box-shadow:0 8px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
   .member .avatar{
-    width:76px;height:76px;border-radius:50%;margin:0 auto 14px;
-    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;
+    width:76px;height:76px;border-radius:50%;margin:0 auto 14px;overflow:hidden;
+    background:
+      linear-gradient(0deg, rgba(26,26,26,.45), rgba(26,26,26,0) 60%),
+      repeating-linear-gradient(90deg,#8a99a8 0 3px, #99a7b5 3px 6px),
+      linear-gradient(180deg,#bcd4ea,#8fa9c2);
   }
   .member .role{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin:0 0 4px;}
   .member h3{font-size:14.5px;margin:0 0 6px;font-weight:800;}
@@ -59,21 +80,26 @@
   .role-group:last-child{margin-bottom:0;}
   .role-group .label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);margin-bottom:14px;}
 
-  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:var(--slate);}
+  /* FOOTER — background schema #3 (dark charcoal base, red icon) */
+  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:#cfcfcf;position:relative;overflow:hidden;background:#1c1c1c;}
+  footer .bug-drift .bug-mask{background-color:rgba(230,45,35,.55);}
+  footer .foot-text{position:relative;z-index:1;}
 
   @media(max-width:900px){.team-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
 
-<div class="nav"><div class="wrap">
+<div class="nav">
+  <div class="bug-drift"><div class="bug-mask"></div></div>
+  <div class="wrap">
   <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
   <ul>
     <li><a href="01-home.html">Home</a></li>
     <li><a href="02-about.html">About</a></li>
     <li><a href="04-team.html" class="active">Team</a></li>
-    <li><a href="03-person.html">People</a></li>
-    <li><a href="#">Publications</a></li>
+    <li><a href="05-publications.html">Publications</a></li>
+    <li><a href="06-join.html">Join Us</a></li>
   </ul>
 </div></div>
 
@@ -90,84 +116,87 @@
   <div class="role-group">
     <div class="label">Faculty</div>
     <div class="team-grid">
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,var(--ink),#3a3a3a);">AR</div>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">Principal Investigator</p>
         <h3>Dr. Amara Reyes</h3>
         <p>Studies AI-driven debugging for large-scale systems.</p>
-      </div>
+      </a>
     </div>
   </div>
 
   <div class="role-group">
     <div class="label">PhD Students</div>
     <div class="team-grid">
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,var(--red),#7a1215);">JW</div>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">PhD Student</p>
         <h3>Jordan Whitfield</h3>
         <p>Builds explainable, retrieval-augmented fault localization tools.</p>
-      </div>
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#4a6fa5,#2c4a75);">PK</div>
+      </a>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">PhD Student</p>
-        <h3>Priya Kapoor</p>
+        <h3>Priya Kapoor</h3>
         <p>Researches automated program repair using LLM agents.</p>
-      </div>
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#5c8a63,#3a5f40);">DN</div>
+      </a>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">PhD Student</p>
-        <h3>Daniel Nkemelu</p>
+        <h3>Daniel Nkemelu</h3>
         <p>Mines repositories to uncover recurring software defect patterns.</p>
-      </div>
+      </a>
     </div>
   </div>
 
   <div class="role-group">
     <div class="label">MSc Students</div>
     <div class="team-grid">
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#b07d3a,#7a5522);">ES</div>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">MSc Student</p>
         <h3>Emily Sato</h3>
         <p>Detects anomalies in logs using rare-event augmentation.</p>
-      </div>
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#8a5ca8,#5c3a75);">MT</div>
+      </a>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">MSc Student</p>
-        <h3>Marcus Thibault</p>
+        <h3>Marcus Thibault</h3>
         <p>Applies program analysis to catch concurrency bugs early.</p>
-      </div>
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#3a9188,#256058);">RH</div>
+      </a>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">MSc Student</p>
-        <h3>Ravi Hallan</p>
+        <h3>Ravi Hallan</h3>
         <p>Generates realistic test cases using large language models.</p>
-      </div>
+      </a>
     </div>
   </div>
 
   <div class="role-group">
     <div class="label">Undergraduate Researchers</div>
     <div class="team-grid">
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#c05a7a,#8a3a54);">LC</div>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">Undergrad Researcher</p>
         <h3>Lena Cho</h3>
         <p>Evaluates fault localization tools on open-source projects.</p>
-      </div>
-      <div class="member">
-        <div class="avatar" style="background:linear-gradient(135deg,#5a7a3a,#3a5424);">TO</div>
+      </a>
+      <a class="member" href="03-person.html">
+        <div class="avatar"></div>
         <p class="role">Undergrad Researcher</p>
         <h3>Tobi Ogundele</h3>
         <p>Builds dashboards for visualizing software repository metrics.</p>
-      </div>
+      </a>
     </div>
   </div>
 
 </div></section>
 
-<footer>© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</footer>
+<footer>
+  <div class="bug-drift"><div class="bug-mask"></div></div>
+  <span class="foot-text">© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</span>
+</footer>
 
 </body>
 </html>

@@ -38,11 +38,9 @@ values:
     description: We invest in students as researchers first, giving them ownership over problems from day one.
 
 funders:
-  - University of Alberta
-  - Dept. of ECE
   - NSERC
   - Alberta Innovates
-  - Industry Partner
+  - Faculty of Engineering
 
 address:
   - "<b>ECERF W6-073</b>"

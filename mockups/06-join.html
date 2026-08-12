@@ -37,7 +37,7 @@
     letter-spacing: 0.03em;
   }
 
-  a { color: inherit; }
+  a { color: inherit; text-decoration: none; }
 
   .wrap {
     max-width: 1120px;
@@ -45,55 +45,26 @@
     padding: 0 32px;
   }
 
-  /* ---------- NAV ---------- */
-  nav.site-nav {
-    border-bottom: 1px solid var(--gray-200);
-    position: sticky;
-    top: 0;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    z-index: 50;
+  /* ---------- NAV (matches mockups/01-home.html .nav exactly) ---------- */
+  .bug-drift{position:absolute;top:-84px;right:-84px;bottom:-84px;left:-84px;will-change:transform;animation:bug-drift 68s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes bug-drift{0%{transform:translate(0,0);}100%{transform:translate(42px,-56px);}}
+  @media (prefers-reduced-motion:reduce){.bug-drift{animation:none;}}
+  .bug-mask{
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    mask-repeat:repeat; -webkit-mask-repeat:repeat;
+    mask-size:42px 56px; -webkit-mask-size:42px 56px;
+    width:100%; height:100%;
   }
-  .nav-inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 14px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 18px;
-    text-decoration: none;
-    color: var(--black);
-  }
-  .nav-brand .badge {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background: var(--black);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--red);
-    font-size: 14px;
-    font-weight: 800;
-  }
-  .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gray-600);
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-  }
-  .nav-links a.active {
-    color: var(--black);
-    border-bottom-color: var(--red);
-    font-weight: 600;
-  }
+  .nav{border-bottom:1px solid #E7E5E1;padding:16px 0;position:relative;overflow:hidden;background:#ffffff;}
+  .nav .bug-drift .bug-mask{background-color:rgba(22,22,22,.16);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{width:38px;height:38px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:#C8262A;font-weight:800;font-size:13px;}
+  .brand .name{font-weight:800;font-size:18px;letter-spacing:.2px;color:#1A1A1A;}
+  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;color:#1A1A1A;}
+  .nav ul a:hover{color:#C8262A;}
+  .nav ul a.active{color:#C8262A;}
 
   /* ---------- HERO ---------- */
   .hero {
@@ -354,31 +325,32 @@
 
   .panel-hidden { display: none; }
 
+  /* FOOTER — background schema #3 (dark charcoal base, red icon) */
+  footer{border-top:1px solid var(--gray-200);padding:24px 0;text-align:center;font-size:12.5px;color:#cfcfcf;position:relative;overflow:hidden;background:#1c1c1c;}
+  footer .bug-drift .bug-mask{background-color:rgba(230,45,35,.55);}
+  footer .foot-text{position:relative;z-index:1;}
+
   @media (max-width: 720px) {
     .track-grid { grid-template-columns: 1fr 1fr; }
     .form-grid { grid-template-columns: 1fr; }
     h1.hero-title { font-size: 32px; }
-    .nav-links { display: none; }
   }
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="nav-inner">
-    <a href="01-home.html" class="nav-brand">
-      <span class="badge">S</span>
-      SODA Nexus
-    </a>
-    <ul class="nav-links">
-      <li><a href="01-home.html">Home</a></li>
-      <li><a href="02-about.html">About</a></li>
-      <li><a href="04-team.html">Team</a></li>
-      <li><a href="05-publications.html">Publications</a></li>
-      <li><a href="06-join.html" class="active">Join</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="nav">
+  <div class="bug-drift"><div class="bug-mask"></div></div>
+  <div class="wrap">
+  <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
+  <ul>
+    <li><a href="01-home.html">Home</a></li>
+    <li><a href="02-about.html">About</a></li>
+    <li><a href="04-team.html">Team</a></li>
+    <li><a href="05-publications.html">Publications</a></li>
+    <li><a href="06-join.html" class="active">Join Us</a></li>
+  </ul>
+</div></div>
 
 <header class="hero">
   <div class="wrap">
@@ -479,6 +451,11 @@
     </div>
   </div>
 </section>
+
+<footer>
+  <div class="bug-drift"><div class="bug-mask"></div></div>
+  <span class="foot-text">© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</span>
+</footer>
 
 </body>
 </html>

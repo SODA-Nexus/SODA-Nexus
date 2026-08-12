@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SODA Nexus — Small, Dense, Tilted Bug Mark, 3 Color Schemes</title>
+<style>
+  :root{
+    --ink:#161616;
+    --muted:#6b6b6b;
+    --line:#e6e6e6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:#ffffff;
+    color:var(--ink);
+    padding:56px 24px 120px;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+  header{margin-bottom:48px;}
+  .eyebrow{
+    color:#e10200;font-weight:700;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  h1{font-size:28px;margin:0 0 14px;letter-spacing:-.01em;}
+  header p{color:var(--muted);max-width:660px;line-height:1.6;font-size:15px;margin:0 0 10px;}
+
+  .compare{
+    display:flex;gap:24px;align-items:center;margin:28px 0 56px;flex-wrap:wrap;
+    padding:20px;border:1px solid var(--line);border-radius:8px;background:#fafafa;
+  }
+  .compare .icon-box{width:100px;height:100px;flex:none;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:6px;}
+  .compare .icon-box svg{width:44px;height:56px;}
+  .compare .caption{font-size:13px;color:var(--muted);line-height:1.6;flex:1;min-width:200px;}
+  .compare .caption b{color:var(--ink);}
+
+  .scheme{margin-bottom:56px;}
+  .scheme-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    margin-bottom:14px;border-bottom:2px solid var(--ink);padding-bottom:10px;
+  }
+  .scheme-head h2{font-size:18px;margin:0;}
+  .scheme-head .tag{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.03em;}
+
+  .panel{position:relative;height:320px;border-radius:6px;overflow:hidden;border:1px solid var(--line);}
+  .drift{position:absolute;inset:-25%;width:150%;height:150%;will-change:transform;animation:drift 68s linear infinite;}
+  @keyframes drift{0%{transform:translate(0,0);}100%{transform:translate(72px,-96px);}}
+  @media (prefers-reduced-motion:reduce){.drift{animation:none;}}
+
+  .panel .content{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;}
+  .panel .content span{
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    background:rgba(255,255,255,.75);padding:6px 12px;border-radius:100px;
+    border:1px solid var(--line);backdrop-filter:blur(2px);
+  }
+
+  /* shared tile: same Figma path, now scaled down + rotated 45° and packed into a smaller cell */
+  .bug-mask{
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    mask-repeat:repeat; -webkit-mask-repeat:repeat;
+    mask-size:72px 96px; -webkit-mask-size:72px 96px;
+    width:100%; height:100%;
+  }
+
+  .scheme-1 .panel{background:#f3f3f3;}
+  .scheme-1 .bug-mask{background-color:rgba(193,20,18,0.4);}
+
+  .scheme-2 .panel{background:#ffffff;}
+  .scheme-2 .bug-mask{background-color:rgba(22,22,22,0.16);}
+
+  .scheme-3 .panel{background:#1c1c1c;}
+  .scheme-3 .bug-mask{background-color:rgba(230,45,35,0.55);}
+  .scheme-3 .content span{background:rgba(28,28,28,.75);color:#cfcfcf;border-color:#3a3a3a;}
+
+  footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.7;}
+  footer strong{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Background pattern — bug mark v7</div>
+    <h1>Smaller, denser, tilted 45°</h1>
+    <p>Same path as your Figma export, unchanged — just scaled down, rotated 45° clockwise, and packed into a much smaller tile (72×96, down from 170×190) so there are noticeably more copies visible per panel.</p>
+  </header>
+
+  <div class="compare">
+    <div class="icon-box">
+      <svg viewBox="0 0 72 96" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)">
+          <path d="M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967" fill="none" stroke="#161616" stroke-width="3.16552" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="caption">One tile at true size — icon shrunk to roughly half its previous footprint and tilted 45° clockwise, cell shrunk to match so copies sit much closer together.</div>
+  </div>
+
+  <section class="scheme scheme-1">
+    <div class="scheme-head"><h2>1 · Light gray base</h2><span class="tag">Faint red outline</span></div>
+    <div class="panel">
+      <div class="drift"><div class="bug-mask"></div></div>
+      <div class="content"><span>Scheme 1</span></div>
+    </div>
+  </section>
+
+  <section class="scheme scheme-2">
+    <div class="scheme-head"><h2>2 · White base</h2><span class="tag">Subtle black icon</span></div>
+    <div class="panel">
+      <div class="drift"><div class="bug-mask"></div></div>
+      <div class="content"><span>Scheme 2</span></div>
+    </div>
+  </section>
+
+  <section class="scheme scheme-3">
+    <div class="scheme-head"><h2>3 · Dark charcoal base</h2><span class="tag">Red icon</span></div>
+    <div class="panel">
+      <div class="drift"><div class="bug-mask"></div></div>
+      <div class="content"><span>Scheme 3</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Tile is 72×96, drift moves <strong>72px right / 96px up</strong> per 68s loop to stay seamless. Density and tilt are both single-number knobs from here: bump <code>mask-size</code> down for even tighter packing, or change the <code>rotate(45, ...)</code> angle if 45° ends up too aggressive once it's behind real content.
+  </footer>
+</div>
+</body>
+</html>

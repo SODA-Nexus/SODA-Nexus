@@ -10,7 +10,7 @@ cta:
     url: /team/
     style: soda-solid
   - label: 🔬 Our Research
-    url: /#soda-work-with-us
+    url: /about/
     style: soda-ghost
   - label: 🎓 Join the Lab
     url: /join/
