@@ -2,6 +2,7 @@
 layout: soda_join
 permalink: /join/
 title: Help us build software that debugs and explains itself.
+description: Join the SODA Nexus Lab at the University of Alberta — we're recruiting PhD, MSc, and undergraduate researchers for projects in AI-assisted debugging and software analysis.
 eyebrow: Join the lab
 subtitle: We're looking for curious, driven students and collaborators to work on AI-assisted debugging, testing, and software analysis. Tell us a bit about yourself below.
 

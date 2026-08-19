@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Abhishekh Jayaprakash
+description: Abhishekh Jayaprakash is a Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Abhishekh Jayaprakash
 role: Research Intern
 role_group: intern

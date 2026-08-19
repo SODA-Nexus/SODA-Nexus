@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Jaskeerat Singh
+description: Jaskeerat Singh is an MSc student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Jaskeerat Singh
 role: MSc Student
 role_group: msc

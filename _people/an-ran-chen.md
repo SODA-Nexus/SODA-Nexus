@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: An Ran Chen
+description: An Ran Chen is the Principal Investigator of the SODA Nexus Lab at the University of Alberta, studying intelligent software quality assurance including automated debugging and testing.
 name: An Ran Chen
 role: Principal Investigator
 role_group: faculty

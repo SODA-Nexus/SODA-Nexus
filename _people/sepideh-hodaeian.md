@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Sepideh Hodaeian
+description: Sepideh Hodaeian is an MSc student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Sepideh Hodaeian
 role: MSc Student
 role_group: msc

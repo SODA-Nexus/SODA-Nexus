@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Xinyu Shi
+description: Xinyu Shi is a PhD student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Xinyu Shi
 role: PhD Student
 role_group: phd

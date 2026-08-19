@@ -78,7 +78,9 @@
 .soda-nav {
   border-bottom: 1px solid var(--soda-line);
   padding: 16px 0;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   overflow: hidden;
   background: #ffffff;
 }
@@ -867,6 +869,56 @@ ul.soda-check li:before {
 }
 
 /* PUBLICATIONS PAGE */
+.soda-pub-search {
+  margin-bottom: 28px;
+}
+.soda-kw-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.soda-kw-btn {
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-slate);
+  background: var(--soda-panel);
+  border: 1px solid var(--soda-line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.soda-kw-btn:hover {
+  color: var(--soda-red);
+  border-color: var(--soda-red);
+}
+.soda-kw-btn.soda-kw-active {
+  color: #fff;
+  background: var(--soda-red);
+  border-color: var(--soda-red);
+}
+.soda-search-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--soda-ink);
+  background: #fff;
+  border: 1.5px solid var(--soda-line);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+.soda-search-input:focus {
+  outline: none;
+  border-color: var(--soda-red);
+}
+.soda-search-input::placeholder {
+  color: var(--soda-slate);
+}
 .soda-empty-state {
   font-size: 14px;
   color: var(--soda-slate);

@@ -24,19 +24,38 @@
       <div class="soda-wrap">
         {% if site.publications.size == 0 %}
           <p class="soda-empty-state">Publications are being added — check back soon.</p>
+        {% else %}
+          <div class="soda-pub-search">
+            <div class="soda-kw-row" id="soda-kw-row" role="group" aria-label="Filter publications by keyword">
+              <button type="button" class="soda-kw-btn" data-kw="Fault Localization">Fault Localization</button>
+              <button type="button" class="soda-kw-btn" data-kw="LLMs">LLMs</button>
+              <button type="button" class="soda-kw-btn" data-kw="Testing">Testing</button>
+              <button type="button" class="soda-kw-btn" data-kw="Log Analysis">Log Analysis</button>
+              <button type="button" class="soda-kw-btn" data-kw="Program Repair">Program Repair</button>
+              <button type="button" class="soda-kw-btn" data-kw="Repository Mining">Repository Mining</button>
+            </div>
+            <input
+              type="text"
+              id="soda-pub-search-input"
+              class="soda-search-input"
+              placeholder="Search publications by title, author, or venue…"
+              autocomplete="off"
+            />
+          </div>
+          <p class="soda-empty-state soda-no-results" id="soda-no-results" hidden>No publications match your search.</p>
         {% endif %}
         {% assign years = site.publications | map: 'year' | uniq | sort | reverse %}
         {% for year in years %}
           {% assign pubs = site.publications | where: 'year', year | sort: 'order' %}
-          <div class="soda-year-block">
+          <div class="soda-year-block" data-year-block>
             <div class="soda-year-head">
               <div class="soda-num">{{ year }}</div>
-              <div class="soda-count">{{ pubs.size }} paper{% unless pubs.size == 1 %}s{% endunless %}</div>
+              <div class="soda-count" data-year-count>{{ pubs.size }} paper{% unless pubs.size == 1 %}s{% endunless %}</div>
               <div class="soda-rule2"></div>
             </div>
 
             {% for pub in pubs %}
-              <div class="soda-pub">
+              <div class="soda-pub" data-pub data-kw="{{ pub.keywords | join: '|' }}">
                 <div class="soda-thumb">
                   <div class="soda-tl1"></div>
                   <div class="soda-tl2"></div>
@@ -77,5 +96,73 @@
 
     {% include soda-footer.liquid %}
     {% include scripts.liquid %}
+    {% if site.publications.size > 0 %}
+      <script>
+        (function () {
+          var searchInput = document.getElementById("soda-pub-search-input");
+          var kwButtons = Array.prototype.slice.call(document.querySelectorAll(".soda-kw-btn"));
+          var yearBlocks = Array.prototype.slice.call(document.querySelectorAll("[data-year-block]"));
+          var noResults = document.getElementById("soda-no-results");
+          var activeKeyword = null;
+
+          function pubText(pub) {
+            return pub.textContent.toLowerCase();
+          }
+
+          function pubKeywords(pub) {
+            return (pub.getAttribute("data-kw") || "").split("|");
+          }
+
+          function applyFilters() {
+            var query = searchInput.value.trim().toLowerCase();
+            var visibleTotal = 0;
+
+            yearBlocks.forEach(function (block) {
+              var visibleInYear = 0;
+              var blockPubs = Array.prototype.slice.call(block.querySelectorAll("[data-pub]"));
+
+              blockPubs.forEach(function (pub) {
+                var matchesQuery = query === "" || pubText(pub).indexOf(query) !== -1;
+                var matchesKeyword = activeKeyword === null || pubKeywords(pub).indexOf(activeKeyword) !== -1;
+                var visible = matchesQuery && matchesKeyword;
+
+                pub.style.display = visible ? "" : "none";
+                if (visible) {
+                  visibleInYear += 1;
+                }
+              });
+
+              block.hidden = visibleInYear === 0;
+              var countEl = block.querySelector("[data-year-count]");
+              if (countEl) {
+                countEl.textContent = visibleInYear + " paper" + (visibleInYear === 1 ? "" : "s");
+              }
+              visibleTotal += visibleInYear;
+            });
+
+            noResults.hidden = visibleTotal !== 0;
+          }
+
+          searchInput.addEventListener("input", applyFilters);
+
+          kwButtons.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var kw = btn.getAttribute("data-kw");
+              if (activeKeyword === kw) {
+                activeKeyword = null;
+                btn.classList.remove("soda-kw-active");
+              } else {
+                activeKeyword = kw;
+                kwButtons.forEach(function (b) {
+                  b.classList.remove("soda-kw-active");
+                });
+                btn.classList.add("soda-kw-active");
+              }
+              applyFilters();
+            });
+          });
+        })();
+      </script>
+    {% endif %}
   </body>
 </html>

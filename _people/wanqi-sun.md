@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Wanqi Sun
+description: Wanqi Sun is a former Globalink Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Wanqi Sun
 role: Alumni
 role_group: alumni

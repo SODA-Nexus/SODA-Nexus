@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Ashrit Reddy Yarava
+description: Ashrit Reddy Yarava is an MSc student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Ashrit Reddy Yarava
 role: MSc Student
 role_group: msc

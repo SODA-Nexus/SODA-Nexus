@@ -1,6 +1,7 @@
 ---
 layout: default
 permalink: /blog/
+sitemap: false
 title: blog
 nav: true
 nav_order: 1

@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Ahnaful Hoque
+description: Ahnaful Hoque is a former Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Ahnaful Hoque
 role: Alumni
 role_group: alumni

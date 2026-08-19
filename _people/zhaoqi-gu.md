@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Zhaoqi (Zoki) Gu
+description: Zhaoqi (Zoki) Gu is an MSc student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Zhaoqi (Zoki) Gu
 role: MSc Student
 role_group: msc

@@ -2,6 +2,7 @@
 layout: soda_home
 permalink: /
 title: Building intelligent techniques for more reliable software
+description: "Research lab at the University of Alberta building AI-assisted techniques for software debugging, testing, and repository analysis."
 eyebrow: Dept. of Electrical &amp; Computer Engineering · University of Alberta
 selected_papers: true
 

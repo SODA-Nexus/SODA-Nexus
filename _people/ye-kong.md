@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Ye Kong
+description: Ye Kong is a former CSC Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Ye Kong
 role: Alumni
 role_group: alumni

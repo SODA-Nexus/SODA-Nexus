@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Gabriel Ventorim Silva
+description: Gabriel Ventorim Silva is a former UARE Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Gabriel Ventorim Silva
 role: Alumni
 role_group: alumni

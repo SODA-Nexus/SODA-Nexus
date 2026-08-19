@@ -1,5 +1,7 @@
 ---
 layout: soda_person
+title: Gustavo Jun Nagatomo
+description: Gustavo Jun Nagatomo is a former UARE Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
 name: Gustavo Jun Nagatomo
 role: Alumni
 role_group: alumni

@@ -1,6 +1,7 @@
 ---
 layout: cv
 permalink: /cv/
+sitemap: false
 title: CV
 nav: true
 nav_order: 5

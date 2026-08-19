@@ -2,6 +2,7 @@
 layout: soda_about
 permalink: /about/
 title: Software you can trust, built with AI you can trust
+description: "SODA Nexus Lab combines program analysis and AI research to improve software reliability. Learn our mission, history, and values."
 eyebrow: About the lab
 subtitle: SODA Nexus is a research lab in the Department of Electrical and Computer Engineering at the University of Alberta, focused on making software more reliable through the combination of program analysis and modern AI.
 
@@ -17,17 +18,17 @@ stats:
 
 history:
   - year: "2023"
-    headline: Lab founded
-    description: SODA Nexus is established within the ECE department to pursue AI-assisted software engineering research.
+    headline: "[PLACEHOLDER: event]"
+    description: "[PLACEHOLDER: one-sentence description]"
   - year: "2024"
-    headline: First graduate cohort
-    description: First MSc and PhD students join, launching work on automated fault localization and repository mining.
+    headline: "[PLACEHOLDER: event]"
+    description: "[PLACEHOLDER: one-sentence description]"
   - year: "2025"
-    headline: Industry collaborations begin
-    description: Partnerships formed around applying LLM-based debugging tools to production-scale codebases.
+    headline: "[PLACEHOLDER: event]"
+    description: "[PLACEHOLDER: one-sentence description]"
   - year: "2026"
-    headline: ICSE recognition
-    description: Lab research accepted at the ICSE Student Research Competition; TRAIL preprint released.
+    headline: "[PLACEHOLDER: event]"
+    description: "[PLACEHOLDER: one-sentence description]"
 
 values:
   - title: Rigor
