@@ -150,3 +150,11 @@ To see the full page exactly as a visitor would, run the site on your own comput
 6. When finished, close the terminal, or press Control and C together to stop it.
 
 If this feels unfamiliar, skip it. It is entirely optional, and a maintainer can check your change once it is submitted.
+
+## Getting your changes published
+
+An edit needs to reach the main branch of this repository before it appears on the live site. If you can edit files directly on GitHub, save your change on a new branch and open what GitHub calls a pull request, a request for someone to review and accept the change.
+
+Once a pull request is merged into the main branch, the live site rebuilds and republishes itself automatically within a few minutes. Nobody needs to run a manual rebuild.
+
+If you cannot open a pull request yourself, or would rather not, send your edit, or a description of what should change and where, to whoever maintains this website, and ask them to make or merge it for you. Once the change reaches the main branch, publishing happens on its own.
