@@ -25,3 +25,35 @@ Content lives in plain text files inside this repository, grouped into folders b
 Every file in these folders starts with a block between two lines that each read `---` on their own. That block is called front matter. Think of it as a small form: each line inside it is one labeled answer, written as `label: answer`. Everything below the second `---` is the part a visitor reads as ordinary text on the page.
 
 You will only ever need to change the answer side of a front matter line, not the label side, unless a section below tells you otherwise.
+
+## Editing news items
+
+Each news item is one file inside `_news`, for example `_news/announcement_1.md`.
+
+A news file looks like this:
+
+```
+---
+layout: post
+date: 2026-08-10 09:00:00-0600
+inline: true
+related_posts: false
+---
+
+The lab welcomes three new graduate students this fall.
+```
+
+Leave `layout`, `inline`, and `related_posts` as they are. The two parts you will change are:
+
+* `date`, which follows the pattern year, month, day, then a time and time zone. It controls the order items appear in, newest first.
+* The line of text below the second `---`, which is the announcement itself.
+
+### Adding a new news item
+
+1. Copy an existing file from `_news`.
+2. Give the copy a new file name, for example `_news/announcement_4.md`. The file name itself is never shown on the site, so any short and unused name works.
+3. Set `date` to when the announcement should appear as posted.
+4. Replace the sentence below the front matter with your announcement.
+5. Save your file, then see "Getting your changes published" below.
+
+New items appear automatically under "Latest news" on the home page and on the full news page. No other file needs to change.
