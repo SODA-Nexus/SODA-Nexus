@@ -57,3 +57,32 @@ Leave `layout`, `inline`, and `related_posts` as they are. The two parts you wil
 5. Save your file, then see "Getting your changes published" below.
 
 New items appear automatically under "Latest news" on the home page and on the full news page. No other file needs to change.
+
+## Editing team member bios
+
+Each team member has one file inside `_people`, named after them, for example `_people/abhishekh-jayaprakash.md`.
+
+Open that file to change what it says. The front matter block near the top holds structured details. The paragraph below the second `---` is the biography shown on that person's own page.
+
+The fields you are most likely to change are:
+
+* `name`, the person's full name
+* `role`, their title, for example "PhD Student"
+* `role_group`, which group they are listed under on the Team page. It must be exactly one of: `faculty`, `phd`, `msc`, `intern`, or `alumni`
+* `position`, the longer line shown under their name on their own page
+* `avatar_initials`, the two letters shown inside their profile picture circle
+* `avatar_gradient`, the background color behind those initials, written in CSS. The simplest way to set this is to copy the value from another profile whose color you like
+
+Some profiles also include `email`, `office`, `since`, a list of `socials` (links to sites such as GitHub), `education`, `awards`, or a short list of `publications` shown only on that person's own page. To add one of these to a profile that does not already have it, copy the pattern from a profile that does, using the same labels and layout.
+
+### Adding a new team member
+
+1. Copy an existing file from `_people`, ideally one for a person in a similar role.
+2. Name the new file after the person, using lowercase letters and hyphens, for example `_people/jane-smith.md`. This name becomes part of that person's web address, so avoid spaces and punctuation other than a hyphen.
+3. Update every front matter field to the new person's own details, making sure `role_group` matches their actual group.
+4. Replace the biography paragraph below the front matter.
+5. Save your file, then see "Getting your changes published" below.
+
+The person appears on the Team page automatically, grouped under the label matching their `role_group`. The Team page itself does not need to change.
+
+To remove someone from the active team list, either delete their file or change their `role_group` to `alumni`, whichever fits.
