@@ -86,3 +86,27 @@ Some profiles also include `email`, `office`, `since`, a list of `socials` (link
 The person appears on the Team page automatically, grouped under the label matching their `role_group`. The Team page itself does not need to change.
 
 To remove someone from the active team list, either delete their file or change their `role_group` to `alumni`, whichever fits.
+
+## Editing publications
+
+Each publication is one file inside `_publications`, for example `_publications/2026-far-loc.md`. These files hold only front matter and no separate page of their own; they feed the list on the Publications page.
+
+The fields are:
+
+* `title`, the paper's title
+* `venue`, where it was or will be published
+* `year`, which year group it appears under on the Publications page. Newer years are shown first
+* `order`, a number controlling where the paper sits among others from the same year. Give each paper its own number, with 1 shown first
+* `authors`, a list of names. If an author is also a lab member with a file in `_people`, add their `slug` too, matching that person's file name without the `.md` part, so their name links to their profile. If they are not a lab member, leave `slug` out and their name shows as plain text
+* `pdf_url`, a link to the paper. Use `"#"` as a stand in if there is no link yet
+* `abstract`, the short summary shown when a reader opens the entry
+* `keywords`, a list of short tags used by the filter buttons on the Publications page
+
+### Adding a new publication
+
+1. Copy an existing file from `_publications`.
+2. Name the new file something short and descriptive, for example `_publications/2027-my-new-paper.md`. The file name is never shown on the site.
+3. Fill in every field above for the new paper.
+4. Save your file, then see "Getting your changes published" below.
+
+The paper appears automatically in the correct year group on the Publications page, already searchable and filterable.
