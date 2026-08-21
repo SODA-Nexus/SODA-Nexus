@@ -4,6 +4,7 @@ These guides cover the `al-folio` v1.x starter and its pluginized runtime.
 
 ## User Guides
 
+- [Editing Guide](EDITING_GUIDE.md): a plain-language guide for content editors (no coding or Git experience required) covering news, team bios, publications, and lab history.
 - [Quick Start](QUICKSTART.md): create a site from the template and get it live quickly.
 - [Installing and Deploying](INSTALL.md): Docker, local setup, GitHub Pages, Netlify, and upgrade guidance.
 - [Customizing](CUSTOMIZE.md): content, CVs, publications, layouts, local overrides, and feature configuration.
