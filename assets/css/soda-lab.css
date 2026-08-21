@@ -131,6 +131,43 @@
   color: var(--soda-red);
 }
 
+.soda-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.soda-nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--soda-ink);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.soda-nav-toggle:focus-visible {
+  outline: 2px solid var(--soda-red);
+  outline-offset: 3px;
+}
+.soda-nav-open .soda-nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.soda-nav-open .soda-nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.soda-nav-open .soda-nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* FOOTER — background schema #3 (dark charcoal base, red icon) */
 .soda-footer {
   border-top: 1px solid var(--soda-line);
@@ -847,13 +884,42 @@ ul.soda-check li:before {
   margin-bottom: 14px;
 }
 
-@media (max-width: 900px) {
+/*
+ * Standardized responsive breakpoint (768px) — the single source of truth
+ * for the nav hamburger collapse and the content grids below. Previously
+ * these were split across 900px/840px/700px/720px, which meant a viewport
+ * could get the mobile nav (once that also standardizes here) while a
+ * grid above it was still rendering its multi-column desktop layout.
+ */
+@media (max-width: 768px) {
+  .soda-nav-toggle {
+    display: flex;
+  }
+  .soda-nav .soda-wrap {
+    flex-wrap: wrap;
+  }
+  .soda-nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    flex-basis: 100%;
+    padding-top: 16px;
+  }
+  .soda-nav-open ul {
+    display: flex;
+  }
+  .soda-nav ul li {
+    width: 100%;
+  }
+  .soda-nav ul a {
+    display: block;
+    padding: 10px 4px;
+  }
+
   .soda-team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-@media (max-width: 840px) {
   .soda-hero-grid,
   .soda-split,
   .soda-split-2,
@@ -865,6 +931,24 @@ ul.soda-check li:before {
   }
   .soda-grid-4 {
     grid-template-columns: 1fr 1fr;
+  }
+  .soda-pub {
+    flex-direction: column;
+  }
+  .soda-thumb {
+    width: 100%;
+    height: 110px;
+  }
+  .soda-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Narrow phones — the remaining two-column grids get one more step down. */
+@media (max-width: 480px) {
+  .soda-team-grid,
+  .soda-grid-4 {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1113,16 +1197,6 @@ ul.soda-check li:before {
   max-width: 75ch;
 }
 
-@media (max-width: 700px) {
-  .soda-pub {
-    flex-direction: column;
-  }
-  .soda-thumb {
-    width: 100%;
-    height: 110px;
-  }
-}
-
 /* JOIN PAGE */
 .soda-label {
   font-size: 12px;
@@ -1274,8 +1348,3 @@ ul.soda-check li:before {
   margin: 0;
 }
 
-@media (max-width: 720px) {
-  .soda-form-grid {
-    grid-template-columns: 1fr;
-  }
-}

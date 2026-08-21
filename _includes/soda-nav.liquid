@@ -5,7 +5,18 @@
       <div class="soda-mark">SN</div>
       <div class="soda-name">SODA Nexus</div>
     </a>
-    <ul>
+    <button
+      type="button"
+      class="soda-nav-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="soda-nav-links"
+    >
+      <span class="soda-nav-toggle-bar"></span>
+      <span class="soda-nav-toggle-bar"></span>
+      <span class="soda-nav-toggle-bar"></span>
+    </button>
+    <ul id="soda-nav-links">
       <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="soda-active"{% endif %}>Home</a></li>
       <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="soda-active"{% endif %}>About</a></li>
       <li><a href="{{ '/team/' | relative_url }}" {% if page.url == '/team/' or page.collection == 'people' %}class="soda-active"{% endif %}>Team</a></li>
@@ -16,3 +27,40 @@
     </ul>
   </div>
 </div>
+<script>
+  (function () {
+    var nav = document.querySelector(".soda-nav");
+    if (!nav) return;
+    var toggle = nav.querySelector(".soda-nav-toggle");
+    var links = document.getElementById("soda-nav-links");
+    if (!toggle || !links) return;
+
+    function setOpen(open) {
+      nav.classList.toggle("soda-nav-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(!nav.classList.contains("soda-nav-open"));
+    });
+
+    links.addEventListener("click", function (event) {
+      if (event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("soda-nav-open")) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 768 && nav.classList.contains("soda-nav-open")) {
+        setOpen(false);
+      }
+    });
+  })();
+</script>
