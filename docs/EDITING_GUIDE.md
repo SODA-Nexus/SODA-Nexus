@@ -129,3 +129,24 @@ To add an entry, copy one of these blocks, keep the same spacing, and fill in yo
 The same file also holds the lab's `stats` (the numbers near the top of the About page), `values`, `funders`, and `address`, each written as a list of small blocks in the same pattern. Edit these the same way: find the block you want to change, and edit the text after each label.
 
 The paragraphs below the front matter in `_pages/about-lab.md`, `_pages/index.md`, and similar files use plain HTML tags such as `<p>` for a paragraph and `<b>` for bold text, rather than Markdown. Edit that text in place, keeping the surrounding tags where they are.
+
+## Previewing your changes
+
+There are two ways to check an edit before it goes live.
+
+The simplest way needs no setup. Open the file on GitHub's website and start editing there. GitHub shows a Preview tab next to Edit for the plain text part of a file, so you can see how a paragraph will read. It will not show you the fully styled page, only the raw text.
+
+To see the full page exactly as a visitor would, run the site on your own computer:
+
+1. Install Docker Desktop and open it once so it is running in the background.
+2. Open a terminal inside your copy of this repository.
+3. Run:
+
+   ```
+   docker compose up
+   ```
+4. Once it finishes starting, open `http://localhost:8080/al-folio/` in your browser.
+5. The page updates automatically each time you save a change to a content file.
+6. When finished, close the terminal, or press Control and C together to stop it.
+
+If this feels unfamiliar, skip it. It is entirely optional, and a maintainer can check your change once it is submitted.
