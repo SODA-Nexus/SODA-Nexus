@@ -110,3 +110,22 @@ The fields are:
 4. Save your file, then see "Getting your changes published" below.
 
 The paper appears automatically in the correct year group on the Publications page, already searchable and filterable.
+
+## Editing lab history and other page text
+
+Some page wording is not a news item, a person, or a publication. It lives directly in front matter inside files in `_pages`, including the lab's mission, its history timeline, and wording on the Home, Team, and Join pages.
+
+The lab history timeline lives in `_pages/about-lab.md`, under `history`. Each entry looks like this:
+
+```
+history:
+  - year: "2023"
+    headline: "Lab founded"
+    description: "SODA Nexus opens its doors at the University of Alberta."
+```
+
+To add an entry, copy one of these blocks, keep the same spacing, and fill in your own `year`, `headline`, and `description`. To edit an existing entry, change the text after the label on the line you want to update.
+
+The same file also holds the lab's `stats` (the numbers near the top of the About page), `values`, `funders`, and `address`, each written as a list of small blocks in the same pattern. Edit these the same way: find the block you want to change, and edit the text after each label.
+
+The paragraphs below the front matter in `_pages/about-lab.md`, `_pages/index.md`, and similar files use plain HTML tags such as `<p>` for a paragraph and `<b>` for bold text, rather than Markdown. Edit that text in place, keeping the surrounding tags where they are.
