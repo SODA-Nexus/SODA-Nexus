@@ -1213,32 +1213,4 @@ ul.soda-check li:before {
   border: none;
   margin-bottom: 12px;
 }
-.soda-apply-intro {
-  margin: -8px 0 22px;
-}
-.soda-apply-panel {
-  border: 1px solid var(--soda-line);
-  border-radius: 14px;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  background: #fff;
-}
-.soda-apply-body {
-  padding: 32px;
-}
-.soda-apply-cta {
-  text-align: center;
-}
-.soda-fine-print {
-  font-size: 12px;
-  color: #a1a1aa;
-  max-width: 340px;
-  margin: 0;
-}
-.soda-apply-cta .soda-fine-print {
-  max-width: none;
-  margin: 14px auto 0;
-}
 
