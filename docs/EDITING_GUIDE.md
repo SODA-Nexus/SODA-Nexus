@@ -8,8 +8,8 @@ This file is different from CLAUDE.md, which holds rules for coding tools and au
 
 You do not need to install anything to make a small text change. All you need is:
 
-* A GitHub account with permission to edit this repository. Ask whoever manages the site if you are unsure whether you have this.
-* A web browser.
+- A GitHub account with permission to edit this repository. Ask whoever manages the site if you are unsure whether you have this.
+- A web browser.
 
 If you would like to see a full working copy of the site before your change goes live, you will also want Docker Desktop, a free program described later in "Previewing your changes."
 
@@ -17,10 +17,10 @@ If you would like to see a full working copy of the site before your change goes
 
 Content lives in plain text files inside this repository, grouped into folders by type. You will only ever need to open a few of these folders.
 
-* News items live in the `_news` folder. They appear under "Latest news" on the home page and in full on the news page.
-* Team member bios live in the `_people` folder. Each file covers one person and is shown on the Team page and on that person's own page.
-* Publications live in the `_publications` folder. They make up the list shown on the Publications page.
-* Lab history, mission text, and other page wording live in the `_pages` folder, inside files such as `about-lab.md`, `index.md`, `team.md`, and `join.md`.
+- News items live in the `_news` folder. They appear under "Latest news" on the home page and in full on the news page.
+- Team member bios live in the `_people` folder. Each file covers one person and is shown on the Team page and on that person's own page.
+- Publications live in the `_publications` folder. They make up the list shown on the Publications page.
+- Lab history, mission text, and other page wording live in the `_pages` folder, inside files such as `about-lab.md`, `index.md`, `team.md`, and `join.md`.
 
 Every file in these folders starts with a block between two lines that each read `---` on their own. That block is called front matter. Think of it as a small form: each line inside it is one labeled answer, written as `label: answer`. Everything below the second `---` is the part a visitor reads as ordinary text on the page.
 
@@ -45,8 +45,8 @@ The lab welcomes three new graduate students this fall.
 
 Leave `layout`, `inline`, and `related_posts` as they are. The two parts you will change are:
 
-* `date`, which follows the pattern year, month, day, then a time and time zone. It controls the order items appear in, newest first.
-* The line of text below the second `---`, which is the announcement itself.
+- `date`, which follows the pattern year, month, day, then a time and time zone. It controls the order items appear in, newest first.
+- The line of text below the second `---`, which is the announcement itself.
 
 ### Adding a new news item
 
@@ -66,12 +66,12 @@ Open that file to change what it says. The front matter block near the top holds
 
 The fields you are most likely to change are:
 
-* `name`, the person's full name
-* `role`, their title, for example "PhD Student"
-* `role_group`, which group they are listed under on the Team page. It must be exactly one of: `faculty`, `phd`, `msc`, `intern`, or `alumni`
-* `position`, the longer line shown under their name on their own page
-* `avatar_initials`, the two letters shown inside their profile picture circle
-* `avatar_gradient`, the background color behind those initials, written in CSS. The simplest way to set this is to copy the value from another profile whose color you like
+- `name`, the person's full name
+- `role`, their title, for example "PhD Student"
+- `role_group`, which group they are listed under on the Team page. It must be exactly one of: `faculty`, `phd`, `msc`, `intern`, or `alumni`
+- `position`, the longer line shown under their name on their own page
+- `avatar_initials`, the two letters shown inside their profile picture circle
+- `avatar_gradient`, the background color behind those initials, written in CSS. The simplest way to set this is to copy the value from another profile whose color you like
 
 Some profiles also include `email`, `office`, `since`, a list of `socials` (links to sites such as GitHub), `education`, `awards`, or a short list of `publications` shown only on that person's own page. To add one of these to a profile that does not already have it, copy the pattern from a profile that does, using the same labels and layout.
 
@@ -93,14 +93,14 @@ Each publication is one file inside `_publications`, for example `_publications/
 
 The fields are:
 
-* `title`, the paper's title
-* `venue`, where it was or will be published
-* `year`, which year group it appears under on the Publications page. Newer years are shown first
-* `order`, a number controlling where the paper sits among others from the same year. Give each paper its own number, with 1 shown first
-* `authors`, a list of names. If an author is also a lab member with a file in `_people`, add their `slug` too, matching that person's file name without the `.md` part, so their name links to their profile. If they are not a lab member, leave `slug` out and their name shows as plain text
-* `pdf_url`, a link to the paper. Use `"#"` as a stand in if there is no link yet
-* `abstract`, the short summary shown when a reader opens the entry
-* `keywords`, a list of short tags used by the filter buttons on the Publications page
+- `title`, the paper's title
+- `venue`, where it was or will be published
+- `year`, which year group it appears under on the Publications page. Newer years are shown first
+- `order`, a number controlling where the paper sits among others from the same year. Give each paper its own number, with 1 shown first
+- `authors`, a list of names. If an author is also a lab member with a file in `_people`, add their `slug` too, matching that person's file name without the `.md` part, so their name links to their profile. If they are not a lab member, leave `slug` out and their name shows as plain text
+- `pdf_url`, a link to the paper. Use `"#"` as a stand in if there is no link yet
+- `abstract`, the short summary shown when a reader opens the entry
+- `keywords`, a list of short tags used by the filter buttons on the Publications page
 
 ### Adding a new publication
 
@@ -145,6 +145,7 @@ To see the full page exactly as a visitor would, run the site on your own comput
    ```
    docker compose up
    ```
+
 4. Once it finishes starting, open `http://localhost:8080/al-folio/` in your browser.
 5. The page updates automatically each time you save a change to a content file.
 6. When finished, close the terminal, or press Control and C together to stop it.
