@@ -1,8 +1,12 @@
 ---
+# See docs/EDITING_GUIDE.md for the full guide.
 title: Mining Commit Histories for Recurring Defect Patterns
 venue: ASE 2025
+# year groups this paper on the Publications page, newest first
 year: 2025
+# order controls position within its year group; 1 shows first, give each paper its own number
 order: 1
+# add slug (matching a _people file name, no .md) to link a coauthor to their team profile; leave it out for outside authors
 authors:
   - name: Gustavo Jun Nagatomo
     slug: gustavo-jun-nagatomo
@@ -15,5 +19,6 @@ abstract: >-
   We mine commit histories across 40 large open-source repositories to identify recurring defect patterns tied to
   specific code change types. Our taxonomy of patterns is used to build a lightweight static checker that flags
   commits with elevated defect risk before merge.
+# keywords power the filter buttons on the Publications page
 keywords: [Repository Mining, Defect Prediction]
 ---
