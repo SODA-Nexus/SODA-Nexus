@@ -20,7 +20,10 @@
 .soda-page {
   color-scheme: light;
   margin: 0;
-  font-family: "Inter", -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
   color: var(--soda-ink);
   background: var(--soda-cream);
   line-height: 1.6;
@@ -277,8 +280,7 @@
 .soda-side-photo {
   height: 170px;
   background:
-    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 55%),
-    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 55%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
     linear-gradient(180deg, #bcd4ea, #8fa9c2);
   position: relative;
 }
@@ -805,8 +807,7 @@ ul.soda-check li:before {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 60%),
-    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 60%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
     linear-gradient(180deg, #bcd4ea, #8fa9c2);
 }
 .soda-team-photo .soda-cap {
@@ -850,8 +851,7 @@ ul.soda-check li:before {
   margin: 0 auto 14px;
   overflow: hidden;
   background:
-    linear-gradient(0deg, rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0) 60%),
-    repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+    linear-gradient(0deg, rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0) 60%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
     linear-gradient(180deg, #bcd4ea, #8fa9c2);
 }
 .soda-member .soda-role {
@@ -1214,4 +1214,3 @@ ul.soda-check li:before {
   border: none;
   margin-bottom: 12px;
 }
-

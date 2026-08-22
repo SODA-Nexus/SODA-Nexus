@@ -6,7 +6,7 @@
     {% include head.liquid %}
     {% include soda-fonts.liquid %}
     {% include soda-force-light.liquid %}
-    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}">
   </head>
   <body class="soda-page">
     {% include soda-nav.liquid %}
@@ -16,7 +16,7 @@
         <div>
           <p class="soda-eyebrow">{{ page.eyebrow }}</p>
           <h1>{{ page.title }}</h1>
-          <hr class="soda-rule" />
+          <hr class="soda-rule">
           {{ content }}
           <div class="soda-cta-row">
             {% for cta in page.cta %}
@@ -40,7 +40,10 @@
 
     <section class="soda-section">
       <div class="soda-wrap">
-        <div class="soda-section-head"><div class="soda-bar"></div><h2>What we work on</h2></div>
+        <div class="soda-section-head">
+          <div class="soda-bar"></div>
+          <h2>What we work on</h2>
+        </div>
         <div class="soda-grid-4">
           {% for area in page.research_areas %}
             <div class="soda-card">
@@ -56,19 +59,29 @@
     <section class="soda-section">
       <div class="soda-wrap soda-split">
         <div>
-          <div class="soda-section-head"><div class="soda-bar"></div><h2>Our approach</h2></div>
+          <div class="soda-section-head">
+            <div class="soda-bar"></div>
+            <h2>Our approach</h2>
+          </div>
           <ul class="soda-check">
             {% for item in page.approach %}
-              <li><b>{{ item.title }}</b> — {{ item.description }}</li>
+              <li>
+                <b>{{ item.title }}</b> — {{ item.description }}
+              </li>
             {% endfor %}
           </ul>
         </div>
         <div id="soda-work-with-us">
-          <div class="soda-section-head"><div class="soda-bar"></div><h2>Work with us</h2></div>
+          <div class="soda-section-head">
+            <div class="soda-bar"></div>
+            <h2>Work with us</h2>
+          </div>
           {% for tile in page.work_with_us %}
             <div class="soda-contact-tile">
               <div class="soda-icn">{{ tile.icon }}</div>
-              <p><b>{{ tile.title }}:</b> {{ tile.description }}</p>
+              <p>
+                <b>{{ tile.title }}:</b> {{ tile.description }}
+              </p>
             </div>
           {% endfor %}
         </div>
@@ -78,12 +91,18 @@
     <section class="soda-section" style="background: var(--soda-panel)">
       <div class="soda-wrap soda-split-2">
         <div>
-          <div class="soda-section-head"><div class="soda-bar"></div><h2>Latest news</h2></div>
+          <div class="soda-section-head">
+            <div class="soda-bar"></div>
+            <h2>Latest news</h2>
+          </div>
           {% include news.liquid limit=true %}
           <p style="margin-top: 14px"><a class="soda-view-all" href="{{ '/news/' | relative_url }}">View all news →</a></p>
         </div>
         <div>
-          <div class="soda-section-head"><div class="soda-bar"></div><h2>Featured publications</h2></div>
+          <div class="soda-section-head">
+            <div class="soda-bar"></div>
+            <h2>Featured publications</h2>
+          </div>
           {% include selected_papers.liquid %}
           <p style="margin-top: 14px">
             <a class="soda-view-all" href="{{ '/publications/' | relative_url }}">View all publications →</a>

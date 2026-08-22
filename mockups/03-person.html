@@ -1,149 +1,457 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Jordan Whitfield — SODA Nexus Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --red:#C8262A; --red-dark:#A31E22; --ink:#1A1A1A; --slate:#5B6B7C;
-    --line:#E7E5E1; --panel:#F7F6F3; --cream:#FFFFFF;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-  a{color:inherit;text-decoration:none;}
-  .nav{border-bottom:1px solid var(--line);padding:16px 0;}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .brand{display:flex;align-items:center;gap:12px;}
-  .brand .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:800;font-size:13px;}
-  .brand .name{font-weight:800;font-size:18px;}
-  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;}
-  .nav ul a.active{color:var(--red);}
-  .breadcrumb{padding:14px 0 0;font-size:12.5px;color:var(--slate);}
-  .breadcrumb span{color:var(--red);font-weight:700;}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jordan Whitfield — SODA Nexus Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #c8262a;
+        --red-dark: #a31e22;
+        --ink: #1a1a1a;
+        --slate: #5b6b7c;
+        --line: #e7e5e1;
+        --panel: #f7f6f3;
+        --cream: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .nav {
+        border-bottom: 1px solid var(--line);
+        padding: 16px 0;
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand .mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--red);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .brand .name {
+        font-weight: 800;
+        font-size: 18px;
+      }
+      .nav ul {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .nav ul a.active {
+        color: var(--red);
+      }
+      .breadcrumb {
+        padding: 14px 0 0;
+        font-size: 12.5px;
+        color: var(--slate);
+      }
+      .breadcrumb span {
+        color: var(--red);
+        font-weight: 700;
+      }
 
-  .profile{padding:28px 0 40px;display:grid;grid-template-columns:260px 1fr;gap:44px;border-bottom:1px solid var(--line);}
-  .avatar{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--red),#7a1215);color:#fff;display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:800;margin-bottom:18px;}
-  .side-box{border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:13px;margin-top:6px;}
-  .side-box .row{display:flex;gap:10px;margin-bottom:10px;}
-  .side-box .row:last-child{margin-bottom:0;}
-  .side-box .k{color:var(--slate);width:64px;flex:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
-  .side-box .v{font-size:13px;}
-  .side-box .v.link{color:var(--red);font-weight:700;}
-  .social-row{display:flex;gap:8px;margin-top:14px;}
-  .social-row a{width:32px;height:32px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:14px;border:1px solid var(--line);}
+      .profile {
+        padding: 28px 0 40px;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 44px;
+        border-bottom: 1px solid var(--line);
+      }
+      .avatar {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), #7a1215);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 52px;
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+      .side-box {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 18px;
+        font-size: 13px;
+        margin-top: 6px;
+      }
+      .side-box .row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .side-box .row:last-child {
+        margin-bottom: 0;
+      }
+      .side-box .k {
+        color: var(--slate);
+        width: 64px;
+        flex: none;
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .side-box .v {
+        font-size: 13px;
+      }
+      .side-box .v.link {
+        color: var(--red);
+        font-weight: 700;
+      }
+      .social-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .social-row a {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--panel);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        border: 1px solid var(--line);
+      }
 
-  .role{font-size:13px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px;}
-  h1{font-size:32px;margin:0 0 6px;font-weight:800;}
-  .position{font-size:15px;color:#333;margin:0 0 18px;}
-  .bio{font-size:14.5px;color:#333;max-width:70ch;margin:0 0 22px;}
-  .tag-row{display:flex;gap:8px;flex-wrap:wrap;}
-  .tag{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--slate);}
+      .role {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--red);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin: 0 0 6px;
+      }
+      h1 {
+        font-size: 32px;
+        margin: 0 0 6px;
+        font-weight: 800;
+      }
+      .position {
+        font-size: 15px;
+        color: #333;
+        margin: 0 0 18px;
+      }
+      .bio {
+        font-size: 14.5px;
+        color: #333;
+        max-width: 70ch;
+        margin: 0 0 22px;
+      }
+      .tag-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--slate);
+      }
 
-  .section{padding:40px 0;}
-  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-  .section-head .bar{width:4px;height:20px;background:var(--red);border-radius:2px;}
-  .section-head h2{font-size:19px;margin:0;font-weight:800;}
+      .section {
+        padding: 40px 0;
+      }
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .section-head .bar {
+        width: 4px;
+        height: 20px;
+        background: var(--red);
+        border-radius: 2px;
+      }
+      .section-head h2 {
+        font-size: 19px;
+        margin: 0;
+        font-weight: 800;
+      }
 
-  .edu-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
-  .edu-item:last-child{border-bottom:none;}
-  .edu-item .yrbox{width:78px;flex:none;font-size:12.5px;font-weight:800;color:var(--red);}
-  .edu-item h4{font-size:14.5px;margin:0 0 3px;font-weight:800;}
-  .edu-item p{font-size:13px;color:#4a4a4a;margin:0;}
+      .edu-item {
+        display: flex;
+        gap: 16px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .edu-item:last-child {
+        border-bottom: none;
+      }
+      .edu-item .yrbox {
+        width: 78px;
+        flex: none;
+        font-size: 12.5px;
+        font-weight: 800;
+        color: var(--red);
+      }
+      .edu-item h4 {
+        font-size: 14.5px;
+        margin: 0 0 3px;
+        font-weight: 800;
+      }
+      .edu-item p {
+        font-size: 13px;
+        color: #4a4a4a;
+        margin: 0;
+      }
 
-  .pub-card{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
-  .pub-card:last-child{border-bottom:none;}
-  .pub-thumb{width:96px;height:72px;border-radius:6px;background:linear-gradient(135deg,#eee,#ccc);flex:none;}
-  .pub-card h4{font-size:14px;margin:0 0 4px;font-weight:800;}
-  .pub-card .venue{font-size:12px;color:var(--red);font-weight:700;margin-bottom:4px;}
-  .pub-card p{font-size:12.5px;color:#4a4a4a;margin:0;}
+      .pub-card {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .pub-card:last-child {
+        border-bottom: none;
+      }
+      .pub-thumb {
+        width: 96px;
+        height: 72px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #eee, #ccc);
+        flex: none;
+      }
+      .pub-card h4 {
+        font-size: 14px;
+        margin: 0 0 4px;
+        font-weight: 800;
+      }
+      .pub-card .venue {
+        font-size: 12px;
+        color: var(--red);
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .pub-card p {
+        font-size: 12.5px;
+        color: #4a4a4a;
+        margin: 0;
+      }
 
-  .award-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
-  .award-item:last-child{border-bottom:none;}
-  .award-item .ic{width:32px;height:32px;border-radius:50%;background:#FDECEB;color:var(--red);display:flex;align-items:center;justify-content:center;flex:none;font-size:14px;}
-  .award-item .t{font-size:13.5px;font-weight:700;}
-  .award-item .d{font-size:12px;color:var(--slate);}
+      .award-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: flex-start;
+      }
+      .award-item:last-child {
+        border-bottom: none;
+      }
+      .award-item .ic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #fdeceb;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        font-size: 14px;
+      }
+      .award-item .t {
+        font-size: 13.5px;
+        font-weight: 700;
+      }
+      .award-item .d {
+        font-size: 12px;
+        color: var(--slate);
+      }
 
-  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:var(--slate);}
-  @media(max-width:840px){.profile{grid-template-columns:1fr;}}
-</style>
-</head>
-<body>
-
-<div class="nav"><div class="wrap">
-  <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
-  <ul>
-    <li><a href="01-home.html">Home</a></li>
-    <li><a href="02-about.html">About</a></li>
-    <li><a href="04-team.html">Team</a></li>
-    <li><a href="05-publications.html">Publications</a></li>
-    <li><a href="06-join.html">Join Us</a></li>
-  </ul>
-</div></div>
-
-<div class="wrap breadcrumb">People / <span>Jordan Whitfield</span></div>
-
-<div class="wrap profile">
-  <div>
-    <div class="avatar">JW</div>
-    <div class="side-box">
-      <div class="row"><div class="k">Email</div><div class="v link">j.whitfield@ualberta.ca</div></div>
-      <div class="row"><div class="k">Office</div><div class="v">ECERF W6-071</div></div>
-      <div class="row"><div class="k">Since</div><div class="v">2024</div></div>
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px 0;
+        text-align: center;
+        font-size: 12.5px;
+        color: var(--slate);
+      }
+      @media (max-width: 840px) {
+        .profile {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="wrap">
+        <div class="brand">
+          <div class="mark">SN</div>
+          <div class="name">SODA Nexus</div>
+        </div>
+        <ul>
+          <li><a href="01-home.html">Home</a></li>
+          <li><a href="02-about.html">About</a></li>
+          <li><a href="04-team.html">Team</a></li>
+          <li><a href="05-publications.html">Publications</a></li>
+          <li><a href="06-join.html">Join Us</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="social-row">
-      <a>in</a><a>gs</a><a>gh</a><a>tw</a>
+
+    <div class="wrap breadcrumb">People / <span>Jordan Whitfield</span></div>
+
+    <div class="wrap profile">
+      <div>
+        <div class="avatar">JW</div>
+        <div class="side-box">
+          <div class="row">
+            <div class="k">Email</div>
+            <div class="v link">j.whitfield@ualberta.ca</div>
+          </div>
+          <div class="row">
+            <div class="k">Office</div>
+            <div class="v">ECERF W6-071</div>
+          </div>
+          <div class="row">
+            <div class="k">Since</div>
+            <div class="v">2024</div>
+          </div>
+        </div>
+        <div class="social-row"><a>in</a><a>gs</a><a>gh</a><a>tw</a></div>
+      </div>
+      <div>
+        <p class="role">PhD Student</p>
+        <h1>Jordan Whitfield</h1>
+        <p class="position">PhD Candidate · SODA Nexus Lab · Dept. of Electrical &amp; Computer Engineering, University of Alberta</p>
+        <p class="bio">
+          Jordan's research focuses on retrieval-augmented techniques for automated fault localization, with an emphasis on making LLM-based debugging
+          tools explainable to the developers who rely on them. Before joining SODA Nexus, Jordan worked as a backend engineer specializing in
+          large-scale distributed systems.
+        </p>
+        <div class="tag-row">
+          <div class="tag">Fault Localization</div>
+          <div class="tag">LLM Agents</div>
+          <div class="tag">Program Repair</div>
+          <div class="tag">Mining Software Repositories</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <p class="role">PhD Student</p>
-    <h1>Jordan Whitfield</h1>
-    <p class="position">PhD Candidate · SODA Nexus Lab · Dept. of Electrical &amp; Computer Engineering, University of Alberta</p>
-    <p class="bio">Jordan's research focuses on retrieval-augmented techniques for automated fault localization, with an emphasis on making LLM-based debugging tools explainable to the developers who rely on them. Before joining SODA Nexus, Jordan worked as a backend engineer specializing in large-scale distributed systems.</p>
-    <div class="tag-row">
-      <div class="tag">Fault Localization</div>
-      <div class="tag">LLM Agents</div>
-      <div class="tag">Program Repair</div>
-      <div class="tag">Mining Software Repositories</div>
-    </div>
-  </div>
-</div>
 
-<section class="section"><div class="wrap">
-  <div class="section-head"><div class="bar"></div><h2>Education</h2></div>
-  <div class="edu-item"><div class="yrbox">2024 – present</div><div><h4>PhD in Software Engineering</h4><p>University of Alberta, advised by [Supervisor Name]</p></div></div>
-  <div class="edu-item"><div class="yrbox">2020 – 2024</div><div><h4>BSc in Computer Engineering</h4><p>University of Alberta, Great Distinction</p></div></div>
-</div></section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="bar"></div>
+          <h2>Education</h2>
+        </div>
+        <div class="edu-item">
+          <div class="yrbox">2024 – present</div>
+          <div>
+            <h4>PhD in Software Engineering</h4>
+            <p>University of Alberta, advised by [Supervisor Name]</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="yrbox">2020 – 2024</div>
+          <div>
+            <h4>BSc in Computer Engineering</h4>
+            <p>University of Alberta, Great Distinction</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section" style="background:var(--panel);"><div class="wrap">
-  <div class="section-head"><div class="bar"></div><h2>Selected publications</h2></div>
-  <div class="pub-card">
-    <div class="pub-thumb"></div>
-    <div>
-      <h4>FaR-Loc: Functionality-Aware Fault Localizations via Retrieval-Augmented Generation</h4>
-      <div class="venue">IEEE Transactions on Software Engineering, 2026</div>
-      <p>A retrieval-augmented approach that leverages functionality information to localize defects more accurately and efficiently.</p>
-    </div>
-  </div>
-  <div class="pub-card">
-    <div class="pub-thumb"></div>
-    <div>
-      <h4>TRAIL: Template-preserving Rare-event Augmentation for Log-based Anomaly Detection</h4>
-      <div class="venue">Preprint, 2026</div>
-      <p>A data augmentation technique for improving detection of rare failure patterns in system logs.</p>
-    </div>
-  </div>
-</div></section>
+    <section class="section" style="background: var(--panel)">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="bar"></div>
+          <h2>Selected publications</h2>
+        </div>
+        <div class="pub-card">
+          <div class="pub-thumb"></div>
+          <div>
+            <h4>FaR-Loc: Functionality-Aware Fault Localizations via Retrieval-Augmented Generation</h4>
+            <div class="venue">IEEE Transactions on Software Engineering, 2026</div>
+            <p>A retrieval-augmented approach that leverages functionality information to localize defects more accurately and efficiently.</p>
+          </div>
+        </div>
+        <div class="pub-card">
+          <div class="pub-thumb"></div>
+          <div>
+            <h4>TRAIL: Template-preserving Rare-event Augmentation for Log-based Anomaly Detection</h4>
+            <div class="venue">Preprint, 2026</div>
+            <p>A data augmentation technique for improving detection of rare failure patterns in system logs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section"><div class="wrap">
-  <div class="section-head"><div class="bar"></div><h2>Awards &amp; honors</h2></div>
-  <div class="award-item"><div class="ic">🏆</div><div><div class="t">ICSE 2026 Student Research Competition — Finalist</div><div class="d">International Conference on Software Engineering</div></div></div>
-  <div class="award-item"><div class="ic">🎓</div><div><div class="t">Alberta Graduate Excellence Scholarship</div><div class="d">2024 – 2026</div></div></div>
-</div></section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="bar"></div>
+          <h2>Awards &amp; honors</h2>
+        </div>
+        <div class="award-item">
+          <div class="ic">🏆</div>
+          <div>
+            <div class="t">ICSE 2026 Student Research Competition — Finalist</div>
+            <div class="d">International Conference on Software Engineering</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="ic">🎓</div>
+          <div>
+            <div class="t">Alberta Graduate Excellence Scholarship</div>
+            <div class="d">2024 – 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer>© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</footer>
-
-</body>
+    <footer>© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</footer>
+  </body>
 </html>

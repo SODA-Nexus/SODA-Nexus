@@ -74,7 +74,7 @@ for (const forbiddenPath of ["_includes", "_layouts", "_sass", "_scripts", "asse
   if (OVERRIDABLE_PATHS.has(forbiddenPath)) {
     if (!overridesManifestExists) {
       failures.push(
-        `\`${forbiddenPath}\` exists but is not acknowledged in \`.al-folio-overrides.yml\`; run \`bundle exec al-folio upgrade overrides audit\` and commit the manifest.`,
+        `\`${forbiddenPath}\` exists but is not acknowledged in \`.al-folio-overrides.yml\`; run \`bundle exec al-folio upgrade overrides audit\` and commit the manifest.`
       );
     }
     continue; // tracked local override — legal per docs/ARCHITECTURE.md#local-overrides-your-site-vs-this-repo

@@ -1,216 +1,619 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>SODA Nexus Lab — Home</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --red:#C8262A;
-    --red-dark:#A31E22;
-    --ink:#1A1A1A;
-    --slate:#5B6B7C;
-    --line:#E7E5E1;
-    --panel:#F7F6F3;
-    --cream:#FFFFFF;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:'Inter',-apple-system,sans-serif;
-    color:var(--ink);
-    background:var(--cream);
-    line-height:1.55;
-  }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-  a{color:inherit;text-decoration:none;}
+  <head>
+    <meta charset="UTF-8" />
+    <title>SODA Nexus Lab — Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #c8262a;
+        --red-dark: #a31e22;
+        --ink: #1a1a1a;
+        --slate: #5b6b7c;
+        --line: #e7e5e1;
+        --panel: #f7f6f3;
+        --cream: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-  /* BUG PATTERN (shared drift layer, from 12-bugicon-dense-tilted-3color.html) */
-  .bug-drift{position:absolute;top:-84px;right:-84px;bottom:-84px;left:-84px;will-change:transform;animation:bug-drift 68s linear infinite;pointer-events:none;z-index:0;}
-  @keyframes bug-drift{0%{transform:translate(0,0);}100%{transform:translate(42px,-56px);}}
-  @media (prefers-reduced-motion:reduce){.bug-drift{animation:none;}}
-  .bug-mask{
-    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
-    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
-    mask-repeat:repeat; -webkit-mask-repeat:repeat;
-    mask-size:42px 56px; -webkit-mask-size:42px 56px;
-    width:100%; height:100%;
-  }
+      /* BUG PATTERN (shared drift layer, from 12-bugicon-dense-tilted-3color.html) */
+      .bug-drift {
+        position: absolute;
+        top: -84px;
+        right: -84px;
+        bottom: -84px;
+        left: -84px;
+        will-change: transform;
+        animation: bug-drift 68s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+      @keyframes bug-drift {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(42px, -56px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bug-drift {
+          animation: none;
+        }
+      }
+      .bug-mask {
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='96' viewBox='0 0 72 96'%3E%3Cg transform='translate(14.678,26.972) scale(0.6889) rotate(45,26,29.5)'%3E%3Cpath d='M42.7697 19.7669L25.6759 10.0828L8.58208 19.7669M42.7697 19.7669V39.9793M42.7697 19.7669L25.6759 27.8566M42.7697 19.7669L49.769 16.0828V1.58276M8.58208 39.9793L25.6759 49.5828L42.7697 39.9793M42.7697 39.9793L49.769 44.6455V57.3897M25.6759 49.5828V27.8566M8.58208 39.9793V19.7669M8.58208 39.9793L1.58276 44.6455V57.3897M8.58208 19.7669L25.6759 27.8566M8.58208 19.7669L1.58276 16.0828V1.58276M18.769 12.3608L15.5697 8.89863V2.98967M32.5828 12.3608L35.7821 8.89863V2.98967' fill='none' stroke='%23000' stroke-width='3.16552' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+        mask-repeat: repeat;
+        -webkit-mask-repeat: repeat;
+        mask-size: 42px 56px;
+        -webkit-mask-size: 42px 56px;
+        width: 100%;
+        height: 100%;
+      }
 
-  /* NAV — background schema #2 (white base, subtle black icon) */
-  .nav{border-bottom:1px solid var(--line);padding:16px 0;position:relative;overflow:hidden;background:#ffffff;}
-  .nav .bug-drift .bug-mask{background-color:rgba(22,22,22,.16);}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
-  .brand{display:flex;align-items:center;gap:12px;}
-  .brand .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:800;font-size:13px;}
-  .brand .name{font-weight:800;font-size:18px;letter-spacing:.2px;}
-  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;color:var(--ink);}
-  .nav ul a:hover{color:var(--red);}
+      /* NAV — background schema #2 (white base, subtle black icon) */
+      .nav {
+        border-bottom: 1px solid var(--line);
+        padding: 16px 0;
+        position: relative;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      .nav .bug-drift .bug-mask {
+        background-color: rgba(22, 22, 22, 0.16);
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand .mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--red);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .brand .name {
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+      .nav ul {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .nav ul a:hover {
+        color: var(--red);
+      }
 
-  /* HERO */
-  .hero{padding:64px 0 48px;}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;}
-  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:0 0 10px;}
-  h1{font-size:38px;line-height:1.18;margin:0 0 4px;font-weight:800;}
-  .rule{width:56px;height:4px;background:var(--red);margin:18px 0;border:none;}
-  .lead{font-size:15.5px;color:#333;margin:0 0 14px;max-width:52ch;}
-  .lead b{color:var(--ink);}
-  .cta-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
-  .btn{padding:11px 18px;border-radius:6px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--red);}
-  .btn.solid{background:var(--red);color:#fff;}
-  .btn.solid:hover{background:var(--red-dark);}
-  .btn.ghost{color:var(--red);background:#fff;}
-  .btn.ghost:hover{background:#FDF0EF;}
+      /* HERO */
+      .hero {
+        padding: 64px 0 48px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .eyebrow {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--slate);
+        margin: 0 0 10px;
+      }
+      h1 {
+        font-size: 38px;
+        line-height: 1.18;
+        margin: 0 0 4px;
+        font-weight: 800;
+      }
+      .rule {
+        width: 56px;
+        height: 4px;
+        background: var(--red);
+        margin: 18px 0;
+        border: none;
+      }
+      .lead {
+        font-size: 15.5px;
+        color: #333;
+        margin: 0 0 14px;
+        max-width: 52ch;
+      }
+      .lead b {
+        color: var(--ink);
+      }
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 22px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 11px 18px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1.5px solid var(--red);
+      }
+      .btn.solid {
+        background: var(--red);
+        color: #fff;
+      }
+      .btn.solid:hover {
+        background: var(--red-dark);
+      }
+      .btn.ghost {
+        color: var(--red);
+        background: #fff;
+      }
+      .btn.ghost:hover {
+        background: #fdf0ef;
+      }
 
-  .side-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;}
-  .side-photo{height:170px;background:
-      linear-gradient(0deg, rgba(26,26,26,.55), rgba(26,26,26,0) 55%),
-      repeating-linear-gradient(90deg,#8a99a8 0 3px, #99a7b5 3px 6px),
-      linear-gradient(180deg,#bcd4ea,#8fa9c2);
-    position:relative;
-  }
-  .side-info{padding:18px 20px;font-size:13.5px;}
-  .side-info .row{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
-  .side-info .row:last-child{margin-bottom:0;}
-  .side-info .dot{width:18px;height:18px;border-radius:50%;background:var(--red);flex:none;margin-top:2px;}
-  .side-info .link{color:var(--red);font-weight:700;}
+      .side-card {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .side-photo {
+        height: 170px;
+        background:
+          linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 55%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
+          linear-gradient(180deg, #bcd4ea, #8fa9c2);
+        position: relative;
+      }
+      .side-info {
+        padding: 18px 20px;
+        font-size: 13.5px;
+      }
+      .side-info .row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+      .side-info .row:last-child {
+        margin-bottom: 0;
+      }
+      .side-info .dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--red);
+        flex: none;
+        margin-top: 2px;
+      }
+      .side-info .link {
+        color: var(--red);
+        font-weight: 700;
+      }
 
-  /* AREAS */
-  .section{padding:44px 0;}
-  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
-  .section-head .bar{width:4px;height:20px;background:var(--red);border-radius:2px;}
-  .section-head h2{font-size:21px;margin:0;font-weight:800;}
-  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  .card{border:1px solid var(--line);border-radius:10px;padding:22px 18px;background:#fff;text-align:center;}
-  .card .icon{width:52px;height:52px;border-radius:50%;background:var(--panel);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--red);}
-  .card h3{font-size:15px;margin:0 0 8px;font-weight:800;}
-  .card p{font-size:13px;color:#4a4a4a;margin:0;}
+      /* AREAS */
+      .section {
+        padding: 44px 0;
+      }
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+      .section-head .bar {
+        width: 4px;
+        height: 20px;
+        background: var(--red);
+        border-radius: 2px;
+      }
+      .section-head h2 {
+        font-size: 21px;
+        margin: 0;
+        font-weight: 800;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px 18px;
+        background: #fff;
+        text-align: center;
+      }
+      .card .icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--panel);
+        margin: 0 auto 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--red);
+      }
+      .card h3 {
+        font-size: 15px;
+        margin: 0 0 8px;
+        font-weight: 800;
+      }
+      .card p {
+        font-size: 13px;
+        color: #4a4a4a;
+        margin: 0;
+      }
 
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-  ul.check{list-style:none;margin:0;padding:0;}
-  ul.check li{display:flex;gap:10px;margin-bottom:12px;font-size:14px;}
-  ul.check li:before{content:"✓";color:var(--red);font-weight:800;}
-  .contact-tile{display:flex;gap:14px;margin-bottom:16px;}
-  .contact-tile .icn{width:40px;height:40px;border-radius:50%;background:#FDECEB;color:var(--red);display:flex;align-items:center;justify-content:center;flex:none;font-size:16px;}
-  .contact-tile p{margin:2px 0 0;font-size:13.5px;color:#444;}
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      ul.check {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul.check li {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+      ul.check li:before {
+        content: "✓";
+        color: var(--red);
+        font-weight: 800;
+      }
+      .contact-tile {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .contact-tile .icn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fdeceb;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        font-size: 16px;
+      }
+      .contact-tile p {
+        margin: 2px 0 0;
+        font-size: 13.5px;
+        color: #444;
+      }
 
-  .split-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-  .list-item{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
-  .list-item:last-child{border-bottom:none;}
-  .list-item .tag{width:34px;height:34px;border-radius:8px;background:var(--panel);flex:none;}
-  .list-item .t{font-size:13.5px;font-weight:700;}
-  .list-item .d{font-size:12px;color:var(--slate);margin-top:3px;}
-  .view-all{font-size:12.5px;font-weight:700;color:var(--red);}
+      .split-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .list-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .list-item:last-child {
+        border-bottom: none;
+      }
+      .list-item .tag {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: var(--panel);
+        flex: none;
+      }
+      .list-item .t {
+        font-size: 13.5px;
+        font-weight: 700;
+      }
+      .list-item .d {
+        font-size: 12px;
+        color: var(--slate);
+        margin-top: 3px;
+      }
+      .view-all {
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--red);
+      }
 
-  .pub-card{display:flex;gap:16px;}
-  .pub-thumb{width:110px;height:82px;border-radius:6px;background:linear-gradient(135deg,#eee,#ccc);flex:none;}
-  .pub-card h4{font-size:14px;margin:0 0 4px;font-weight:800;}
-  .pub-card .venue{font-size:12px;color:var(--red);font-weight:700;margin-bottom:6px;}
-  .pub-card p{font-size:12.5px;color:#4a4a4a;margin:0;}
+      .pub-card {
+        display: flex;
+        gap: 16px;
+      }
+      .pub-thumb {
+        width: 110px;
+        height: 82px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #eee, #ccc);
+        flex: none;
+      }
+      .pub-card h4 {
+        font-size: 14px;
+        margin: 0 0 4px;
+        font-weight: 800;
+      }
+      .pub-card .venue {
+        font-size: 12px;
+        color: var(--red);
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .pub-card p {
+        font-size: 12.5px;
+        color: #4a4a4a;
+        margin: 0;
+      }
 
-  /* FOOTER — background schema #3 (dark charcoal base, red icon) */
-  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:12.5px;color:#cfcfcf;position:relative;overflow:hidden;background:#1c1c1c;}
-  footer .bug-drift .bug-mask{background-color:rgba(230,45,35,.55);}
-  footer .foot-text{position:relative;z-index:1;}
+      /* FOOTER — background schema #3 (dark charcoal base, red icon) */
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px 0;
+        text-align: center;
+        font-size: 12.5px;
+        color: #cfcfcf;
+        position: relative;
+        overflow: hidden;
+        background: #1c1c1c;
+      }
+      footer .bug-drift .bug-mask {
+        background-color: rgba(230, 45, 35, 0.55);
+      }
+      footer .foot-text {
+        position: relative;
+        z-index: 1;
+      }
 
-  @media(max-width:840px){
-    .hero-grid,.split,.split-2{grid-template-columns:1fr;}
-    .grid-4{grid-template-columns:1fr 1fr;}
-  }
-</style>
-</head>
-<body>
-
-<div class="nav">
-  <div class="bug-drift"><div class="bug-mask"></div></div>
-  <div class="wrap">
-  <div class="brand"><div class="mark">SN</div><div class="name">SODA Nexus</div></div>
-  <ul>
-    <li><a href="01-home.html">Home</a></li>
-    <li><a href="02-about.html">About</a></li>
-    <li><a href="04-team.html">Team</a></li>
-    <li><a href="05-publications.html">Publications</a></li>
-    <li><a href="06-join.html">Join Us</a></li>
-  </ul>
-</div></div>
-
-<section class="hero"><div class="wrap hero-grid">
-  <div>
-    <p class="eyebrow">Dept. of Electrical &amp; Computer Engineering · University of Alberta</p>
-    <h1>Building intelligent techniques for more reliable software</h1>
-    <hr class="rule">
-    <p class="lead">The <b>SODA (SOftware Debugging and Analysis) Nexus Lab</b> develops AI-assisted software engineering techniques that help developers understand, test, debug, and improve complex software systems.</p>
-    <p class="lead">Our research brings together large language models, program analysis, software testing, and mining software repositories to address practical challenges in software quality assurance.</p>
-    <div class="cta-row">
-      <a class="btn solid" href="04-team.html">👥 Meet the Team</a>
-      <a class="btn ghost" href="02-about.html">🔬 Our Research</a>
-      <a class="btn ghost" href="06-join.html">🎓 Join the Lab</a>
-    </div>
-  </div>
-  <div class="side-card">
-    <div class="side-photo"></div>
-    <div class="side-info">
-      <div class="row"><div class="dot"></div><div>ECERF W6-073<br>University of Alberta<br>Edmonton, Alberta, Canada</div></div>
-      <div class="row"><div class="dot"></div><div class="link">soda.nexus.lab@ualberta.ca</div></div>
-      <div class="row"><div class="dot"></div><div class="link">sodanexus-lab.github.io</div></div>
-    </div>
-  </div>
-</div></section>
-
-<section class="section"><div class="wrap">
-  <div class="section-head"><div class="bar"></div><h2>What we work on</h2></div>
-  <div class="grid-4">
-    <div class="card"><div class="icon">🧠</div><h3>AI for Software Engineering</h3><p>How large language models and intelligent agents can support software development while improving correctness and trustworthiness.</p></div>
-    <div class="card"><div class="icon">🐞</div><h3>Automated Debugging &amp; Testing</h3><p>Techniques for fault localization, automated repair, test generation, and program analysis.</p></div>
-    <div class="card"><div class="icon">🗄️</div><h3>Mining Software Repositories</h3><p>Analyzing code, commits, issues, and execution data to uncover insights for better engineering decisions.</p></div>
-    <div class="card"><div class="icon">⌨️</div><h3>Intelligent Software Operations</h3><p>Investigating logs, traces, and runtime data to detect, diagnose, and explain failures in complex systems.</p></div>
-  </div>
-</div></section>
-
-<section class="section"><div class="wrap split">
-  <div>
-    <div class="section-head"><div class="bar"></div><h2>Our approach</h2></div>
-    <ul class="check">
-      <li><b>Practical</b> — designed around real developer and industry needs</li>
-      <li><b>Evidence-driven</b> — evaluated using realistic systems and defects</li>
-      <li><b>Trustworthy</b> — focused on reliability, explainability, and quality</li>
-      <li><b>Collaborative</b> — developed with academic and industry partners</li>
-    </ul>
-  </div>
-  <div>
-    <div class="section-head"><div class="bar"></div><h2>Work with us</h2></div>
-    <div class="contact-tile"><div class="icn">🎓</div><p><b>Students:</b> we welcome inquiries from prospective PhD, MSc, and undergraduate research students.</p></div>
-    <div class="contact-tile"><div class="icn">🤝</div><p><b>Collaborators:</b> we're interested in partnerships at the intersection of software engineering and AI.</p></div>
-  </div>
-</div></section>
-
-<section class="section" style="background:var(--panel);"><div class="wrap split-2">
-  <div>
-    <div class="section-head"><div class="bar"></div><h2>Latest news</h2></div>
-    <div class="list-item"><div style="display:flex;gap:12px;"><div class="tag"></div><div><div class="t">Our paper accepted at ICSE 2026 Student Research Competition!</div><div class="d">July 8, 2026</div></div></div></div>
-    <div class="list-item"><div style="display:flex;gap:12px;"><div class="tag"></div><div><div class="t">Welcome new MSc students to the lab!</div><div class="d">July 2, 2026</div></div></div></div>
-    <div class="list-item"><div style="display:flex;gap:12px;"><div class="tag"></div><div><div class="t">New preprint: TRAIL — Template-preserving Rare-event Augmentation</div><div class="d">June 23, 2026</div></div></div></div>
-    <p style="margin-top:14px;"><span class="view-all">View all news →</span></p>
-  </div>
-  <div>
-    <div class="section-head"><div class="bar"></div><h2>Featured publications</h2></div>
-    <div class="pub-card">
-      <div class="pub-thumb"></div>
-      <div>
-        <h4>FaR-Loc: Functionality-Aware Fault Localizations via Retrieval-Augmented Generation</h4>
-        <div class="venue">IEEE Transactions on Software Engineering, 2026</div>
-        <p>A retrieval-augmented approach that leverages functionality information to localize defects more accurately and efficiently.</p>
+      @media (max-width: 840px) {
+        .hero-grid,
+        .split,
+        .split-2 {
+          grid-template-columns: 1fr;
+        }
+        .grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="bug-drift"><div class="bug-mask"></div></div>
+      <div class="wrap">
+        <div class="brand">
+          <div class="mark">SN</div>
+          <div class="name">SODA Nexus</div>
+        </div>
+        <ul>
+          <li><a href="01-home.html">Home</a></li>
+          <li><a href="02-about.html">About</a></li>
+          <li><a href="04-team.html">Team</a></li>
+          <li><a href="05-publications.html">Publications</a></li>
+          <li><a href="06-join.html">Join Us</a></li>
+        </ul>
       </div>
     </div>
-    <p style="margin-top:14px;"><span class="view-all">View all publications →</span></p>
-  </div>
-</div></section>
 
-<footer>
-  <div class="bug-drift"><div class="bug-mask"></div></div>
-  <span class="foot-text">© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</span>
-</footer>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Dept. of Electrical &amp; Computer Engineering · University of Alberta</p>
+          <h1>Building intelligent techniques for more reliable software</h1>
+          <hr class="rule" />
+          <p class="lead">
+            The <b>SODA (SOftware Debugging and Analysis) Nexus Lab</b> develops AI-assisted software engineering techniques that help developers
+            understand, test, debug, and improve complex software systems.
+          </p>
+          <p class="lead">
+            Our research brings together large language models, program analysis, software testing, and mining software repositories to address
+            practical challenges in software quality assurance.
+          </p>
+          <div class="cta-row">
+            <a class="btn solid" href="04-team.html">👥 Meet the Team</a>
+            <a class="btn ghost" href="02-about.html">🔬 Our Research</a>
+            <a class="btn ghost" href="06-join.html">🎓 Join the Lab</a>
+          </div>
+        </div>
+        <div class="side-card">
+          <div class="side-photo"></div>
+          <div class="side-info">
+            <div class="row">
+              <div class="dot"></div>
+              <div>ECERF W6-073<br />University of Alberta<br />Edmonton, Alberta, Canada</div>
+            </div>
+            <div class="row">
+              <div class="dot"></div>
+              <div class="link">soda.nexus.lab@ualberta.ca</div>
+            </div>
+            <div class="row">
+              <div class="dot"></div>
+              <div class="link">sodanexus-lab.github.io</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="bar"></div>
+          <h2>What we work on</h2>
+        </div>
+        <div class="grid-4">
+          <div class="card">
+            <div class="icon">🧠</div>
+            <h3>AI for Software Engineering</h3>
+            <p>How large language models and intelligent agents can support software development while improving correctness and trustworthiness.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🐞</div>
+            <h3>Automated Debugging &amp; Testing</h3>
+            <p>Techniques for fault localization, automated repair, test generation, and program analysis.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🗄️</div>
+            <h3>Mining Software Repositories</h3>
+            <p>Analyzing code, commits, issues, and execution data to uncover insights for better engineering decisions.</p>
+          </div>
+          <div class="card">
+            <div class="icon">⌨️</div>
+            <h3>Intelligent Software Operations</h3>
+            <p>Investigating logs, traces, and runtime data to detect, diagnose, and explain failures in complex systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <div class="section-head">
+            <div class="bar"></div>
+            <h2>Our approach</h2>
+          </div>
+          <ul class="check">
+            <li><b>Practical</b> — designed around real developer and industry needs</li>
+            <li><b>Evidence-driven</b> — evaluated using realistic systems and defects</li>
+            <li><b>Trustworthy</b> — focused on reliability, explainability, and quality</li>
+            <li><b>Collaborative</b> — developed with academic and industry partners</li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-head">
+            <div class="bar"></div>
+            <h2>Work with us</h2>
+          </div>
+          <div class="contact-tile">
+            <div class="icn">🎓</div>
+            <p><b>Students:</b> we welcome inquiries from prospective PhD, MSc, and undergraduate research students.</p>
+          </div>
+          <div class="contact-tile">
+            <div class="icn">🤝</div>
+            <p><b>Collaborators:</b> we're interested in partnerships at the intersection of software engineering and AI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--panel)">
+      <div class="wrap split-2">
+        <div>
+          <div class="section-head">
+            <div class="bar"></div>
+            <h2>Latest news</h2>
+          </div>
+          <div class="list-item">
+            <div style="display: flex; gap: 12px">
+              <div class="tag"></div>
+              <div>
+                <div class="t">Our paper accepted at ICSE 2026 Student Research Competition!</div>
+                <div class="d">July 8, 2026</div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div style="display: flex; gap: 12px">
+              <div class="tag"></div>
+              <div>
+                <div class="t">Welcome new MSc students to the lab!</div>
+                <div class="d">July 2, 2026</div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div style="display: flex; gap: 12px">
+              <div class="tag"></div>
+              <div>
+                <div class="t">New preprint: TRAIL — Template-preserving Rare-event Augmentation</div>
+                <div class="d">June 23, 2026</div>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top: 14px"><span class="view-all">View all news →</span></p>
+        </div>
+        <div>
+          <div class="section-head">
+            <div class="bar"></div>
+            <h2>Featured publications</h2>
+          </div>
+          <div class="pub-card">
+            <div class="pub-thumb"></div>
+            <div>
+              <h4>FaR-Loc: Functionality-Aware Fault Localizations via Retrieval-Augmented Generation</h4>
+              <div class="venue">IEEE Transactions on Software Engineering, 2026</div>
+              <p>A retrieval-augmented approach that leverages functionality information to localize defects more accurately and efficiently.</p>
+            </div>
+          </div>
+          <p style="margin-top: 14px"><span class="view-all">View all publications →</span></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="bug-drift"><div class="bug-mask"></div></div>
+      <span class="foot-text">© 2026 SODA Nexus Lab · Department of Electrical &amp; Computer Engineering · University of Alberta</span>
+    </footer>
+  </body>
 </html>

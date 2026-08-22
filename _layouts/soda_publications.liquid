@@ -6,7 +6,7 @@
     {% include head.liquid %}
     {% include soda-fonts.liquid %}
     {% include soda-force-light.liquid %}
-    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}">
   </head>
   <body class="soda-page">
     {% include soda-nav.liquid %}
@@ -15,7 +15,7 @@
       <div class="soda-wrap">
         <p class="soda-eyebrow">{{ page.eyebrow }}</p>
         <h1>{{ page.title }}</h1>
-        <hr class="soda-rule" />
+        <hr class="soda-rule">
         <p class="soda-sub">{{ page.subtitle }}</p>
       </div>
     </div>
@@ -40,7 +40,7 @@
               class="soda-search-input"
               placeholder="Search publications by title, author, or venue…"
               autocomplete="off"
-            />
+            >
           </div>
           <p class="soda-empty-state soda-no-results" id="soda-no-results" hidden>No publications match your search.</p>
         {% endif %}
@@ -50,7 +50,9 @@
           <div class="soda-year-block" data-year-block>
             <div class="soda-year-head">
               <div class="soda-num">{{ year }}</div>
-              <div class="soda-count" data-year-count>{{ pubs.size }} paper{% unless pubs.size == 1 %}s{% endunless %}</div>
+              <div class="soda-count" data-year-count>
+                {{ pubs.size }} paper{% unless pubs.size == 1 %}s{% endunless %}
+              </div>
               <div class="soda-rule2"></div>
             </div>
 
@@ -77,7 +79,9 @@
                         <a href="{{ '/people/' | append: author.slug | append: '/' | relative_url }}">{{ author.name }}</a>
                       {% else %}
                         <span class="soda-ext">{{ author.name }}</span>
-                      {% endif %}{% unless forloop.last %},
+                      {% endif -%}
+                      {%- unless forloop.last -%}
+                        ,
                       {% endunless %}
                     {% endfor %}
                   </div>
@@ -99,10 +103,10 @@
     {% if site.publications.size > 0 %}
       <script>
         (function () {
-          var searchInput = document.getElementById("soda-pub-search-input");
-          var kwButtons = Array.prototype.slice.call(document.querySelectorAll(".soda-kw-btn"));
-          var yearBlocks = Array.prototype.slice.call(document.querySelectorAll("[data-year-block]"));
-          var noResults = document.getElementById("soda-no-results");
+          var searchInput = document.getElementById('soda-pub-search-input');
+          var kwButtons = Array.prototype.slice.call(document.querySelectorAll('.soda-kw-btn'));
+          var yearBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-year-block]'));
+          var noResults = document.getElementById('soda-no-results');
           var activeKeyword = null;
 
           function pubText(pub) {
@@ -110,7 +114,7 @@
           }
 
           function pubKeywords(pub) {
-            return (pub.getAttribute("data-kw") || "").split("|");
+            return (pub.getAttribute('data-kw') || '').split('|');
           }
 
           function applyFilters() {
@@ -119,23 +123,23 @@
 
             yearBlocks.forEach(function (block) {
               var visibleInYear = 0;
-              var blockPubs = Array.prototype.slice.call(block.querySelectorAll("[data-pub]"));
+              var blockPubs = Array.prototype.slice.call(block.querySelectorAll('[data-pub]'));
 
               blockPubs.forEach(function (pub) {
-                var matchesQuery = query === "" || pubText(pub).indexOf(query) !== -1;
+                var matchesQuery = query === '' || pubText(pub).indexOf(query) !== -1;
                 var matchesKeyword = activeKeyword === null || pubKeywords(pub).indexOf(activeKeyword) !== -1;
                 var visible = matchesQuery && matchesKeyword;
 
-                pub.style.display = visible ? "" : "none";
+                pub.style.display = visible ? '' : 'none';
                 if (visible) {
                   visibleInYear += 1;
                 }
               });
 
               block.hidden = visibleInYear === 0;
-              var countEl = block.querySelector("[data-year-count]");
+              var countEl = block.querySelector('[data-year-count]');
               if (countEl) {
-                countEl.textContent = visibleInYear + " paper" + (visibleInYear === 1 ? "" : "s");
+                countEl.textContent = visibleInYear + ' paper' + (visibleInYear === 1 ? '' : 's');
               }
               visibleTotal += visibleInYear;
             });
@@ -143,20 +147,20 @@
             noResults.hidden = visibleTotal !== 0;
           }
 
-          searchInput.addEventListener("input", applyFilters);
+          searchInput.addEventListener('input', applyFilters);
 
           kwButtons.forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var kw = btn.getAttribute("data-kw");
+            btn.addEventListener('click', function () {
+              var kw = btn.getAttribute('data-kw');
               if (activeKeyword === kw) {
                 activeKeyword = null;
-                btn.classList.remove("soda-kw-active");
+                btn.classList.remove('soda-kw-active');
               } else {
                 activeKeyword = kw;
                 kwButtons.forEach(function (b) {
-                  b.classList.remove("soda-kw-active");
+                  b.classList.remove('soda-kw-active');
                 });
-                btn.classList.add("soda-kw-active");
+                btn.classList.add('soda-kw-active');
               }
               applyFilters();
             });
