@@ -1207,6 +1207,7 @@ ul.soda-check li:before {
   text-align: left;
 }
 .soda-track-tag {
+  display: inline-block;
   border-radius: 5px;
   background: #fdecec;
   color: var(--soda-red-dark);
