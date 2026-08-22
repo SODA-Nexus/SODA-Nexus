@@ -37,55 +37,13 @@
 
     <section class="soda-section">
       <div class="soda-wrap">
-        <div class="soda-section-head"><div class="soda-bar"></div><h2>Application form</h2></div>
-        <p class="soda-sub soda-apply-intro">Fields for name, email, program of interest, a short note, and an optional resume upload.</p>
+        <div class="soda-section-head"><div class="soda-bar"></div><h2>How to apply</h2></div>
+        <p class="soda-sub soda-apply-intro">Email us a short note about your background, research interests, and why you want to join the lab. Attach a resume or CV if you have one.</p>
 
         <div class="soda-apply-panel">
-          <div class="soda-apply-note">{{ page.form_note }}</div>
-          <div class="soda-apply-body">
-            <form action="{{ page.form_action }}" method="POST" enctype="multipart/form-data">
-              <div class="soda-form-grid">
-                <div class="soda-field">
-                  <label for="name">Full name</label>
-                  <input type="text" id="name" name="name" placeholder="Jane Doe" required />
-                </div>
-                <div class="soda-field">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" placeholder="jane@ualberta.ca" required />
-                </div>
-                <div class="soda-field soda-field-full">
-                  <label for="track">I'm interested in</label>
-                  <select id="track" name="track">
-                    <option>PhD program</option>
-                    <option>MSc program</option>
-                    <option>Undergraduate research</option>
-                    <option>Collaboration / industry partnership</option>
-                    <option>Something else</option>
-                  </select>
-                </div>
-                <div class="soda-field soda-field-full">
-                  <label for="message">Tell us about yourself <span class="soda-hint">— background, interests, why this lab</span></label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="A few sentences about your research interests and relevant experience..."
-                  ></textarea>
-                </div>
-                <div class="soda-field soda-field-full">
-                  <label for="resume">Resume / CV <span class="soda-hint">— PDF preferred, optional</span></label>
-                  <label class="soda-file-drop" for="resume">
-                    <div class="soda-file-icon">↑</div>
-                    <p>Click to upload, or drag a file here</p>
-                    <p class="soda-file-sub">PDF, DOC — up to 5MB</p>
-                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
-                  </label>
-                </div>
-              </div>
-              <div class="soda-submit-row">
-                <p class="soda-fine-print">We read every application and typically respond within two weeks.</p>
-                <button type="submit" class="soda-btn soda-solid">Send application</button>
-              </div>
-            </form>
+          <div class="soda-apply-body soda-apply-cta">
+            <a class="soda-btn soda-solid" href="mailto:{{ page.contact_email }}">Email {{ page.contact_email }}</a>
+            <p class="soda-fine-print">We read every message and typically respond within two weeks.</p>
           </div>
         </div>
       </div>
