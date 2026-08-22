@@ -92,3 +92,17 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
+          # GitHub Advanced Security (required to upload results to the
+          # Security tab) is not enabled on this repository, so uploading
+          # would fail with "Advanced Security must be enabled for this
+          # repository to use code scanning." Skip the upload and publish
+          # the SARIF as a workflow artifact instead.
+          upload: false
+          output: sarif-results
+
+      - name: Upload CodeQL SARIF results
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeql-${{ matrix.language }}-sarif
+          path: sarif-results
+          retention-days: 7
