@@ -1,4 +1,5 @@
 ---
+# See docs/EDITING_GUIDE.md for the full guide.
 layout: soda_home
 permalink: /
 title: Building intelligent techniques for more reliable software
@@ -6,6 +7,7 @@ description: "Research lab at the University of Alberta building AI-assisted tec
 eyebrow: Dept. of Electrical &amp; Computer Engineering · University of Alberta
 selected_papers: true
 
+# cta is the row of buttons under the hero text; url should match one of the site's page addresses
 cta:
   - label: 👥 Meet the Team
     url: /team/
@@ -17,11 +19,13 @@ cta:
     url: /join/
     style: soda-ghost
 
+# side_info is the small contact card next to the hero text; each line can include HTML tags
 side_info:
   - "ECERF W6-073<br>University of Alberta<br>Edmonton, Alberta, Canada"
   - '<span class="soda-link">soda.nexus.lab@ualberta.ca</span>'
   - '<span class="soda-link">sodanexus-lab.github.io</span>'
 
+# research_areas are the four cards in the research section
 research_areas:
   - icon: 🧠
     title: AI for Software Engineering
@@ -36,6 +40,7 @@ research_areas:
     title: Intelligent Software Operations
     description: Investigating logs, traces, and runtime data to detect, diagnose, and explain failures in complex systems.
 
+# approach are the four short traits shown in the approach section
 approach:
   - title: Practical
     description: designed around real developer and industry needs
@@ -46,6 +51,7 @@ approach:
   - title: Collaborative
     description: developed with academic and industry partners
 
+# work_with_us are the two cards inviting students and collaborators to reach out
 work_with_us:
   - icon: 🎓
     title: Students
