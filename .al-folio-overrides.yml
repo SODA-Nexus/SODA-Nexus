@@ -1,0 +1,17 @@
+# Acknowledgement manifest for `_includes/`, `_layouts/` in this site.
+#
+# `al-folio upgrade overrides audit` only tracks files that shadow an
+# installed plugin gem's file by the same relative path. Every file in
+# `_includes/soda-*.liquid` and `_layouts/soda_*.liquid` is a net-new,
+# site-specific file with no gem-owned counterpart, so the audit finds
+# nothing to record under `overrides:` below — this file exists solely
+# to satisfy `test/style_contract.js`'s presence check, per the
+# documented gap in docs/ARCHITECTURE.md under
+# "local overrides: your site vs. this repo".
+#
+# If a future file under `_includes/` or `_layouts/` does shadow a
+# plugin-owned path, run `bundle exec al-folio upgrade overrides accept
+# <path>` and it will populate `overrides:` below.
+---
+version: 1
+overrides: {}
