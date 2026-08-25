@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 layout: soda_person
 title: Zhaoqi (Zoki) Gu
 description: Zhaoqi (Zoki) Gu is an MSc student at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
@@ -9,7 +9,7 @@ role: MSc Student
 role_group: msc
 avatar_initials: ZG
 # avatar_gradient sets the background behind the initials; copy a value from another profile if unsure
-avatar_gradient: linear-gradient(135deg, #8a5ca8, #5c3a75)
+avatar_gradient: "linear-gradient(135deg, #8a5ca8, #5c3a75)"
 position: MSc Student · SODA Nexus Lab · Dept. of Electrical &amp; Computer Engineering, University of Alberta
 ---
 

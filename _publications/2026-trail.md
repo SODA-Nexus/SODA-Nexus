@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: "TRAIL: Template-Preserving Rare-Event Augmentation for Log-Based Anomaly Detection"
 venue: Preprint, 2026
 # year groups this paper on the Publications page, newest first
@@ -13,6 +13,8 @@ authors:
   - name: Ahnaful Hoque
     slug: ahnaful-hoque
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2026-trail.png
 abstract: >-
   Rare failure events are underrepresented in system logs, making them difficult for anomaly detectors to learn.
   TRAIL generates synthetic rare-event log sequences that preserve the structural templates of real logs, improving

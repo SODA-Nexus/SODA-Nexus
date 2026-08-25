@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: Mining Commit Histories for Recurring Defect Patterns
 venue: ASE 2025
 # year groups this paper on the Publications page, newest first
@@ -15,6 +15,8 @@ authors:
   - name: Jaskeerat Singh
     slug: jaskeerat-singh
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2025-commit-mining.png
 abstract: >-
   We mine commit histories across 40 large open-source repositories to identify recurring defect patterns tied to
   specific code change types. Our taxonomy of patterns is used to build a lightweight static checker that flags

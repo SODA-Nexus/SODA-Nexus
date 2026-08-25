@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: Cross-Project Fault Localization with Transfer Learning
 venue: MSR 2025
 # year groups this paper on the Publications page, newest first
@@ -13,6 +13,8 @@ authors:
   - name: An Ran Chen
     slug: an-ran-chen
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2025-cross-project-fl.png
 abstract: >-
   Fault localization models trained on one project often generalize poorly to another. We study transfer learning
   strategies that adapt a fault localization model trained on well-resourced projects to new, low-resource

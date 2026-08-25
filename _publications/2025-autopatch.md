@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: "AutoPatch: Learning Repair Templates from Historical Bug Fixes"
 venue: ISSTA 2025
 # year groups this paper on the Publications page, newest first
@@ -13,6 +13,8 @@ authors:
   - name: Gustavo Jun Nagatomo
     slug: gustavo-jun-nagatomo
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2025-autopatch.png
 abstract: >-
   We mine historical bug-fix commits to learn reusable repair templates, then rank candidate patches for new defects
   by similarity to these templates. AutoPatch produces plausible fixes for 61% of evaluated Defects4J bugs, matching

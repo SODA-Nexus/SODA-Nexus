@@ -1,6 +1,10 @@
 {% assign person = include.person %}
 <a class="soda-member" href="{{ person.url | relative_url }}">
-  <div class="soda-avatar"></div>
+  <div class="soda-avatar">
+    {% if person.avatar_image %}
+      <img src="{{ person.avatar_image | relative_url }}" alt="{{ person.name }}" loading="lazy">
+    {% endif %}
+  </div>
   <p class="soda-role">{{ person.role }}</p>
   <h3>{{ person.name }}</h3>
   {% if person.blurb %}

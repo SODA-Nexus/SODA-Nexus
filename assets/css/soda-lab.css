@@ -483,8 +483,15 @@ ul.soda-check li:before {
   width: 110px;
   height: 82px;
   border-radius: 6px;
+  overflow: hidden;
   background: linear-gradient(135deg, #eee, #ccc);
   flex: none;
+}
+.soda-pub-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .soda-pub-card h4 {
   font-size: 14px;
@@ -651,6 +658,7 @@ ul.soda-check li:before {
   width: 180px;
   height: 180px;
   border-radius: 50%;
+  overflow: hidden;
   color: #fff;
   display: flex;
   align-items: center;
@@ -658,6 +666,12 @@ ul.soda-check li:before {
   font-size: 52px;
   font-weight: 800;
   margin-bottom: 18px;
+}
+.soda-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .soda-side-box {
   border: 1px solid var(--soda-line);
@@ -810,10 +824,18 @@ ul.soda-check li:before {
     linear-gradient(0deg, rgba(26, 26, 26, 0.55), rgba(26, 26, 26, 0) 60%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
     linear-gradient(180deg, #bcd4ea, #8fa9c2);
 }
+.soda-team-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .soda-team-photo .soda-cap {
   position: absolute;
   left: 20px;
   bottom: 16px;
+  z-index: 1;
   color: #fff;
   font-size: 13px;
   font-weight: 700;
@@ -1062,6 +1084,23 @@ ul.soda-check li:before {
     6px 6px 0 1px var(--soda-line);
   padding: 12px 10px;
   position: relative;
+  overflow: hidden;
+}
+.soda-thumb-photo {
+  padding: 0;
+}
+.soda-thumb-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.soda-thumb-photo .soda-tag {
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px 6px;
+  border-radius: 3px;
 }
 .soda-thumb .soda-tl1 {
   height: 6px;

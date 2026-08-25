@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: "FaR-Loc: Functionality-Aware Fault Localization via Retrieval-Augmented Generation"
 venue: IEEE Transactions on Software Engineering, 2026
 # year groups this paper on the Publications page, newest first
@@ -15,6 +15,8 @@ authors:
   - name: Abhishekh Jayaprakash
     slug: abhishekh-jayaprakash
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2026-far-loc.png
 abstract: >-
   We introduce a retrieval-augmented approach that leverages functionality information to localize software defects
   more accurately and efficiently. By retrieving semantically related code fragments and grounding a language

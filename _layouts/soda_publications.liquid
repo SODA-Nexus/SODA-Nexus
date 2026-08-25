@@ -58,16 +58,20 @@
 
             {% for pub in pubs %}
               <div class="soda-pub" data-pub data-kw="{{ pub.keywords | join: '|' }}">
-                <div class="soda-thumb">
-                  <div class="soda-tl1"></div>
-                  <div class="soda-tl2"></div>
-                  <div class="soda-ln"></div>
-                  <div class="soda-ln"></div>
-                  <div class="soda-ln"></div>
-                  <div class="soda-ln"></div>
-                  <div class="soda-ln soda-colbreak"></div>
-                  <div class="soda-ln"></div>
-                  <div class="soda-ln"></div>
+                <div class="soda-thumb{% if pub.image %} soda-thumb-photo{% endif %}">
+                  {% if pub.image %}
+                    <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy">
+                  {% else %}
+                    <div class="soda-tl1"></div>
+                    <div class="soda-tl2"></div>
+                    <div class="soda-ln"></div>
+                    <div class="soda-ln"></div>
+                    <div class="soda-ln"></div>
+                    <div class="soda-ln"></div>
+                    <div class="soda-ln soda-colbreak"></div>
+                    <div class="soda-ln"></div>
+                    <div class="soda-ln"></div>
+                  {% endif %}
                   <div class="soda-tag">PDF</div>
                 </div>
                 <div class="soda-pub-body">

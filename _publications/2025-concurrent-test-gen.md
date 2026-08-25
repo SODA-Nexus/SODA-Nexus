@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: LLM-Guided Test Generation for Concurrent Systems
 venue: FSE 2025
 # year groups this paper on the Publications page, newest first
@@ -15,6 +15,8 @@ authors:
   - name: Ahnaful Hoque
     slug: ahnaful-hoque
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2025-concurrent-test-gen.png
 abstract: >-
   Testing concurrent systems requires exercising rare thread interleavings that are hard to construct by hand. We use
   large language models to synthesize targeted test schedules guided by static race-detection hints, uncovering 15

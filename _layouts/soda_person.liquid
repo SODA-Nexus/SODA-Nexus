@@ -17,7 +17,13 @@
 
     <div class="soda-wrap soda-profile">
       <div>
-        <div class="soda-avatar" style="background: {{ page.avatar_gradient }};">{{ page.avatar_initials }}</div>
+        <div class="soda-avatar" {% unless page.avatar_image %}style="background: {{ page.avatar_gradient }};"{% endunless %}>
+          {% if page.avatar_image %}
+            <img src="{{ page.avatar_image | relative_url }}" alt="{{ page.name }}" loading="lazy">
+          {% else %}
+            {{ page.avatar_initials }}
+          {% endif %}
+        </div>
         <div class="soda-side-box">
           {% if page.email %}
             <div class="soda-row">

@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: "Log2Vec: Contextual Embeddings for Structured Log Parsing"
 venue: ASE 2024
 # year groups this paper on the Publications page, newest first
@@ -13,6 +13,8 @@ authors:
   - name: Jaskeerat Singh
     slug: jaskeerat-singh
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2024-log2vec.png
 abstract: >-
   We propose contextual log-line embeddings that capture both token-level and template-level structure, improving
   downstream log parsing accuracy on noisy production logs. Log2Vec outperforms prior parsing methods on eight public

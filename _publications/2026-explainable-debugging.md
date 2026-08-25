@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 title: Explainable Retrieval-Augmented Debugging for Large Codebases
 venue: ICSE 2026 Student Research Competition
 # year groups this paper on the Publications page, newest first
@@ -15,6 +15,8 @@ authors:
   - name: Ahnaful Hoque
     slug: ahnaful-hoque
 pdf_url: "#"
+# image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
+image: /assets/img/publications/2026-explainable-debugging.png
 abstract: >-
   We present a debugging assistant that pairs retrieval-augmented generation with structured explanations, letting
   developers inspect why a suggested fix location was chosen. A user study with 24 developers shows faster triage

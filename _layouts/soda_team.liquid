@@ -18,6 +18,9 @@
         <hr class="soda-rule">
         <p class="soda-sub">{{ page.subtitle }}</p>
         <div class="soda-team-photo">
+          {% if page.photo %}
+            <img src="{{ page.photo | relative_url }}" alt="{{ page.photo_caption }}" loading="lazy">
+          {% endif %}
           <div class="soda-cap">{{ page.photo_caption }}</div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 layout: soda_person
 title: Gustavo Jun Nagatomo
 description: Gustavo Jun Nagatomo is a former UARE Research Intern at the SODA Nexus Lab, Department of Electrical & Computer Engineering, University of Alberta.
@@ -9,7 +9,9 @@ role: Alumni
 role_group: alumni
 avatar_initials: GN
 # avatar_gradient sets the background behind the initials; copy a value from another profile if unsure
-avatar_gradient: linear-gradient(135deg, #8a94a3, #5f6774)
+avatar_gradient: "linear-gradient(135deg, #8a94a3, #5f6774)"
+# avatar_image is optional — set it to a path under assets/img/people/ to show a photo instead of initials; delete the line to go back to initials
+avatar_image: /assets/img/people/gustavo-jun-nagatomo.png
 position: Former UARE Research Intern · SODA Nexus Lab
 blurb: Former UARE Research Intern
 ---
