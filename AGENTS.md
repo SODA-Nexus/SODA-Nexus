@@ -11,17 +11,16 @@ Find your change on the left; edit only what is on the right.
 | Your change                                                                                                              | Goes in                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | Dependency pin, plugin activation, feature flag                                                                          | this repo: `Gemfile` **and** `_config.yml` (both — see below)                                                 |
-| Example/demo content, bibliography, data files                                                                           | this repo: `_pages`, `_posts`, `_projects`, `_news`, `_teachings`, `_books`, `_data`                          |
-| Documentation                                                                                                            | this repo: `docs/` (long-form) or this file (agent rules)                                                     |
+| Lab content (news, team, publications)                                                                                   | this repo: `_pages`, `_posts`, `_news`, `_people`, `_publications`, `_data`                                   |
+| Documentation                                                                                                            | this repo: `docs/` (technical/agent) or `Documentation_for_humans/` (content-editor guides)                   |
 | Cross-plugin integration test, visual parity test                                                                        | this repo: `test/integration_*.sh`, `test/visual/`                                                            |
-| Plugin catalog metadata                                                                                                  | this repo: `_data/featured_plugins.yml`                                                                       |
 | A layout, include, or Sass partial                                                                                       | the owning gem — start with `al_folio_core`                                                                   |
 | A Liquid tag or filter, or what a tag renders                                                                            | the gem that registers it — see the [delegation table](docs/ARCHITECTURE.md#wrapper-to-tag-to-gem-delegation) |
-| Feature behavior (search, math, charts, comments, cookies, icons, CV, distill, analytics, images, newsletter, citations) | that feature's gem — see [`docs/BOUNDARIES.md`](docs/BOUNDARIES.md)                                           |
+| Feature behavior (search, math, charts, comments, cookies, icons, CV, distill, analytics, images, newsletter, citations) | that feature's gem — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md#area-to-gem-ownership)                 |
 | Component/unit test for gem-owned behavior                                                                               | the owning gem, not here                                                                                      |
 | A feature with no existing owner                                                                                         | open a plugin proposal issue first, then a standalone plugin repo                                             |
 
-[`docs/BOUNDARIES.md`](docs/BOUNDARIES.md) is the authoritative area-to-gem table. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) explains how the pieces connect.
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) is the authoritative reference for how the pieces connect and who owns what.
 
 ## Stop sign
 
@@ -82,10 +81,10 @@ All seven `test/integration_*.sh` scripts are gated by `unit-tests.yml`; run the
 
 ## Further reading
 
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — how the starter and gems fit together, silent failure modes, the v1 config contract, local overrides.
-- [`docs/BOUNDARIES.md`](docs/BOUNDARIES.md) — authoritative area-to-gem ownership table and PR triage playbook.
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — how the starter and gems fit together, silent failure modes, the v1 config contract, local overrides, and the authoritative area-to-gem ownership table and PR triage playbook.
 - [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) — contributor workflow and agent tooling.
-- [`docs/README.md`](docs/README.md) — index of all user and maintainer guides.
+- [`docs/README.md`](docs/README.md) — index of docs/ and Documentation_for_humans/.
+- [`Documentation_for_humans/EDITING_GUIDE.md`](Documentation_for_humans/EDITING_GUIDE.md) — content-editor guide (news, team, publications, page text) — hand this to a non-technical user instead of this file.
 - `.agents/skills/al-folio-bootstrap/SKILL.md` — new-site setup workflow.
 - `.agents/skills/al-folio-v1-migration/SKILL.md` — customized-fork migration and override drift auditing.
 - `.codex/skills` and `.claude/skills` are symlinks to `.agents/skills` for agent-specific discovery.

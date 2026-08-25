@@ -4,7 +4,7 @@ Use this skill when a user asks an agent to create, configure, or personalize a 
 
 ## Workflow
 
-1. Read `AGENTS.md` and `docs/BOUNDARIES.md` before editing.
+1. Read `AGENTS.md` and `docs/ARCHITECTURE.md` before editing.
 2. Keep the starter small: customize `_config.yml`, `_data`, content collections, and site assets first.
 3. Leave runtime behavior in plugin repos. Do not copy plugin-owned layouts, includes, Sass, JavaScript, or assets into the starter unless the user intentionally wants a local override.
 4. For local visual/content customization, prefer:

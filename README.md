@@ -43,8 +43,6 @@ When creating your own website with al-folio, you have two options:
 2. When pushing changes, always verify you're pushing to **your own repository**, not the main al-folio repository
 3. Never create pull requests to `alshedivat/al-folio` unless you're intentionally contributing improvements that benefit all users
 
-For quick setup, see [docs/QUICKSTART.md](docs/QUICKSTART.md).
-
 Want to learn more about Jekyll? Check out [this tutorial](https://www.taniarascia.com/make-a-static-website-with-jekyll/). Why Jekyll? Read [Andrej Karpathy's blog post](https://karpathy.github.io/2014/07/01/switching-to-jekyll/)! Why write a blog? Read [Rachel Thomas blog post](https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045).
 
 ## Table Of Contents
@@ -83,22 +81,20 @@ Want to learn more about Jekyll? Check out [this tutorial](https://www.taniarasc
 
 ## Installing and Deploying
 
-For installation and deployment details please refer to [docs/INSTALL.md](docs/INSTALL.md).
+Docker workflow, local dev, and deployment are covered in [CLAUDE.md](CLAUDE.md#docker-serving-model-v1-specific).
 
 ## Customizing
 
-For customization details please refer to [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md).
+For content edits, see [Documentation_for_humans/EDITING_GUIDE.md](Documentation_for_humans/EDITING_GUIDE.md). For plugin/gem-level customization, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Plugin Ecosystem
 
 `al-folio` is a thin starter in `v1.x`. Runtime features are plugin-owned and published as Ruby gems.
 
-- Ownership boundaries: [docs/BOUNDARIES.md](docs/BOUNDARIES.md)
-- Plugin catalog metadata: [`_data/featured_plugins.yml`](_data/featured_plugins.yml)
-- Rendered plugin catalog: [alshedivat.github.io/al-folio/plugins/](https://alshedivat.github.io/al-folio/plugins/)
-- Plugin catalog page source: [`_pages/plugins.md`](_pages/plugins.md)
+- Ownership boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#area-to-gem-ownership)
+- Rendered plugin catalog (upstream al-folio demo site): [alshedivat.github.io/al-folio/plugins/](https://alshedivat.github.io/al-folio/plugins/)
 
-The catalog page is deliberately kept out of the navbar (`nav: false`) so the demo site's chrome stays unchanged; reach it through the links above.
+This fork does not carry a local plugin catalog page; it was unused starter demo content and has been removed.
 
 Naming convention:
 
@@ -122,7 +118,7 @@ The bundled v1 plugin repos are:
 
 ## Using AI Agents
 
-`al-folio` v1.x is designed for agent-assisted setup and migration. Agents should read [AGENTS.md](AGENTS.md) first, then use [docs/BOUNDARIES.md](docs/BOUNDARIES.md) to route changes to the starter or the owning plugin repo.
+`al-folio` v1.x is designed for agent-assisted setup and migration. Agents should read [AGENTS.md](AGENTS.md) first, then use [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#area-to-gem-ownership) to route changes to the starter or the owning plugin repo.
 
 For existing customized forks, the recommended migration path is to ask an agent to use the [al-folio v1 migration skill](.agents/skills/al-folio-v1-migration/SKILL.md). The skill walks through creating a disposable migration branch, bringing site-owned content/config/data onto the v1 starter contract, running `al_folio_upgrade`, auditing local overrides, and validating the build. This is preferred over a manual file-by-file upgrade because v1 runtime ownership moved into plugins and local overrides need explicit drift tracking.
 
@@ -152,39 +148,35 @@ Copilot should follow [.github/copilot-instructions.md](.github/copilot-instruct
 
 Comprehensive guides for all aspects of your al-folio website:
 
-- **[Documentation index](docs/README.md)** – All user, maintainer, and migration guides
-- **[Quick Start](docs/QUICKSTART.md)** – Get running in 5 minutes
-- **[Installation & Deployment](docs/INSTALL.md)** – Set up your site on GitHub Pages or other platforms
-- **[Customization Guide](docs/CUSTOMIZE.md)** – Personalize your website (CVs, publications, themes, etc.)
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** – Fix common issues (deployment, build, styling, content)
-- **[FAQ](docs/FAQ.md)** – Frequently asked questions and solutions
-- **[Analytics](docs/ANALYTICS.md)** – Add website analytics and visitor tracking
-- **[SEO Guide](docs/SEO.md)** – Optimize for search engines and improve discoverability
-- **[Plugin Catalog](https://alshedivat.github.io/al-folio/plugins/)** – Featured and bundled plugin metadata ([page source](_pages/plugins.md))
+- **[Documentation index](docs/README.md)** – points into both `docs/` (technical/agent reference) and `Documentation_for_humans/` (content-editor guides)
+- **[Editing Guide](Documentation_for_humans/EDITING_GUIDE.md)** – add/modify/remove reference for news, team bios, publications, and page text
+- **[Architecture](docs/ARCHITECTURE.md)** – how the starter and plugin gems fit together, silent failure modes, and the area-to-gem ownership table
+- **[Contributing](docs/CONTRIBUTING.md)** – PR routing, validation commands, agent tooling
+- **[Plugin Catalog](https://alshedivat.github.io/al-folio/plugins/)** – Featured and bundled plugin metadata (upstream al-folio demo site; this fork does not carry a local copy of the page)
 
 ## Features
 
-Everything below ships with the starter. Rows marked **setup** render nothing until you supply a key, ID or credential — bundling a plugin is not the same as switching the feature on. Each feature is owned by a versioned plugin — see [`docs/BOUNDARIES.md`](docs/BOUNDARIES.md) for the full ownership table, and [Plugin Ecosystem](#plugin-ecosystem) for how to add or remove one.
+Everything below ships with the starter. Rows marked **setup** render nothing until you supply a key, ID or credential — bundling a plugin is not the same as switching the feature on. Each feature is owned by a versioned plugin — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md#area-to-gem-ownership) for the full ownership table, and [Plugin Ecosystem](#plugin-ecosystem) for how to add or remove one.
 
-| Feature                                                                         | Plugin                           | Configure                                                                           |
-| ------------------------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------- |
-| Pages, layouts, navigation, light/dark mode, theming                            | `al_folio_core`                  | [Changing theme color](docs/CUSTOMIZE.md#changing-theme-color)                      |
-| Publications from BibTeX                                                        | `al_folio_core` + jekyll-scholar | [Adding a new publication](docs/CUSTOMIZE.md#adding-a-new-publication)              |
-| CV from RenderCV or JSONResume                                                  | `al_folio_cv`                    | [Modifying the CV information](docs/CUSTOMIZE.md#modifying-the-cv-information)      |
-| Distill-style posts                                                             | `al_folio_distill`               | [the example post](https://alshedivat.github.io/al-folio/blog/2021/distill/)        |
-| Math, TikZ diagrams                                                             | `al_math`                        | [the math post](https://alshedivat.github.io/al-folio/blog/2015/math/)              |
-| Charts, mermaid, plotly                                                         | `al_charts`                      | [the charts post](https://alshedivat.github.io/al-folio/blog/2025/plotly/)          |
-| Image zoom, galleries, sliders, lightbox                                        | `al_img_tools`                   | [the images post](https://alshedivat.github.io/al-folio/blog/2024/advanced-images/) |
-| Full-text search (<kbd>ctrl</kbd> <kbd>k</kbd>)                                 | `al_search`                      | `search_enabled` in [\_config.yml](_config.yml)                                     |
-| Comments (Giscus or Disqus) — **setup**                                         | `al_comments`                    | `giscus:` in [\_config.yml](_config.yml)                                            |
-| Analytics — Google, Cronitor, Pirsch, Openpanel, Cloudflare, Simple — **setup** | `al_analytics`                   | [docs/ANALYTICS.md](docs/ANALYTICS.md)                                              |
-| GDPR cookie consent, gating analytics until opt-in — **setup**                  | `al_cookie`                      | [GDPR Cookie Consent Dialog](docs/CUSTOMIZE.md#gdpr-cookie-consent-dialog)          |
-| Newsletter signup — **setup**                                                   | `al_newsletter`                  | `newsletter:` in [\_config.yml](_config.yml)                                        |
-| Citation counts, altmetric/dimensions badges                                    | `al_citations`                   | [Adding a new publication](docs/CUSTOMIZE.md#adding-a-new-publication)              |
-| FontAwesome, Academicons, scholar icons                                         | `al_icons`                       | `third_party_libraries` in [\_config.yml](_config.yml)                              |
-| Posts syndicated from Medium and other feeds                                    | `al_ext_posts`                   | `external_sources:` in [\_config.yml](_config.yml)                                  |
-| Legacy Bootstrap markup (opt-in, removed in v2.0)                               | `al_folio_bootstrap_compat`      | `al_folio.compat.bootstrap` in [\_config.yml](_config.yml)                          |
-| Upgrade audits and codemods                                                     | `al_folio_upgrade`               | `bundle exec al-folio upgrade audit`                                                |
+| Feature                                                                         | Plugin                           | Configure                                                                                                               |
+| ------------------------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Pages, layouts, navigation, light/dark mode, theming                            | `al_folio_core`                  | Sass tokens owned by the gem                                                                                            |
+| Publications from BibTeX                                                        | `al_folio_core` + jekyll-scholar | not used by this fork — see `_publications/` and [the Editing Guide](Documentation_for_humans/EDITING_GUIDE.md) instead |
+| CV from RenderCV or JSONResume                                                  | `al_folio_cv`                    | not used by this fork                                                                                                   |
+| Distill-style posts                                                             | `al_folio_distill`               | [the example post](https://alshedivat.github.io/al-folio/blog/2021/distill/)                                            |
+| Math, TikZ diagrams                                                             | `al_math`                        | [the math post](https://alshedivat.github.io/al-folio/blog/2015/math/)                                                  |
+| Charts, mermaid, plotly                                                         | `al_charts`                      | [the charts post](https://alshedivat.github.io/al-folio/blog/2025/plotly/)                                              |
+| Image zoom, galleries, sliders, lightbox                                        | `al_img_tools`                   | [the images post](https://alshedivat.github.io/al-folio/blog/2024/advanced-images/)                                     |
+| Full-text search (<kbd>ctrl</kbd> <kbd>k</kbd>)                                 | `al_search`                      | `search_enabled` in [\_config.yml](_config.yml)                                                                         |
+| Comments (Giscus or Disqus) — **setup**                                         | `al_comments`                    | `giscus:` in [\_config.yml](_config.yml)                                                                                |
+| Analytics — Google, Cronitor, Pirsch, Openpanel, Cloudflare, Simple — **setup** | `al_analytics`                   | `analytics:` in [\_config.yml](_config.yml) — not configured on this site                                               |
+| GDPR cookie consent, gating analytics until opt-in — **setup**                  | `al_cookie`                      | `enable_cookie_consent` in [\_config.yml](_config.yml) — off on this site                                               |
+| Newsletter signup — **setup**                                                   | `al_newsletter`                  | `newsletter:` in [\_config.yml](_config.yml)                                                                            |
+| Citation counts, altmetric/dimensions badges                                    | `al_citations`                   | not used by this fork                                                                                                   |
+| FontAwesome, Academicons, scholar icons                                         | `al_icons`                       | `third_party_libraries` in [\_config.yml](_config.yml)                                                                  |
+| Posts syndicated from Medium and other feeds                                    | `al_ext_posts`                   | `external_sources:` in [\_config.yml](_config.yml)                                                                      |
+| Legacy Bootstrap markup (opt-in, removed in v2.0)                               | `al_folio_bootstrap_compat`      | `al_folio.compat.bootstrap` in [\_config.yml](_config.yml)                                                              |
+| Upgrade audits and codemods                                                     | `al_folio_upgrade`               | `bundle exec al-folio upgrade audit`                                                                                    |
 
 Also included: Open Graph and schema.org previews, an Atom feed at `/feed.xml`, related posts, tabbed content, typograms, responsive image generation, and a Google Scholar citation-refresh workflow.
 
@@ -212,7 +204,7 @@ Publications are generated from your BibTeX bibliography, the CV from a single `
   <a href="https://alshedivat.github.io/al-folio/people/"><img src="readme_preview/people.png" width=400></a>
 </p>
 
-Projects are one of four Jekyll `collections` the starter ships (`news`, `projects`, `books`, `teachings`). You can add your own for courses, talks, or anything else — see [Adding Collections](docs/CUSTOMIZE.md#adding-collections).
+This fork keeps three lab-content collections: `news`, `people`, and `publications` — see [the Editing Guide](Documentation_for_humans/EDITING_GUIDE.md) for how to add to them. The `projects`/`books`/`teachings` collections that ship with the upstream starter were unused demo content and have been removed here.
 
 ---
 
@@ -233,19 +225,11 @@ Posts support the [distill.pub](https://distill.pub/) layout, MathJax and TikZ, 
 
 ### GitHub repositories and stats
 
-The `/repositories/` page renders repository and profile cards via [github-stats-extended](https://github.com/stats-organization/github-stats-extended). Profile trophies via [github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) are supported but **off by default**, because that project's free public instance is currently disabled — see [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md#why-trophies-are-off-by-default) to self-host and re-enable.
-
-<p align="center">
-  <a href="https://alshedivat.github.io/al-folio/repositories/"><img src="readme_preview/repositories.png" width="75%"></a>
-</p>
-
-Configure which repositories and profiles appear under [Modifying the user and repository information](docs/CUSTOMIZE.md#modifying-the-user-and-repository-information).
+This fork does not use the `/repositories/` page — it was unused demo content and has been removed. Upstream, it renders repository and profile cards via [github-stats-extended](https://github.com/stats-organization/github-stats-extended); see `_config.yml`'s `repo_trophies` comment for why profile trophies are off by default.
 
 ## User community
 
 Academics around the world use **al-folio** for their homepages, blogs, and lab pages, as well as webpages for courses, workshops, conferences, meetups, and more.
-
-**[Browse the showcase &rarr;](docs/SHOWCASE.md)**
 
 Want your site listed? Post a request in the _Showcase_ category of [GitHub Discussions](https://github.com/alshedivat/al-folio/discussions) — we review and add entries periodically. Please do not open a pull request for this.
 
@@ -262,10 +246,6 @@ Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.
 [![Google Lighthouse PageSpeed Insights](lighthouse_results/mobile/pagespeed.svg)](https://htmlpreview.github.io/?https://github.com/alshedivat/al-folio/blob/main/lighthouse_results/mobile/alshedivat_github_io_al_folio_.html)
 
 Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.web.dev/report?url=https%3A%2F%2Falshedivat.github.io%2Fal-folio%2F&form_factor=mobile)
-
-## FAQ
-
-For frequently asked questions, please refer to [docs/FAQ.md](docs/FAQ.md).
 
 ## Contributing
 
