@@ -69,7 +69,6 @@ Want to learn more about Jekyll? Check out [this tutorial](https://www.taniarasc
   - [Lighthouse PageSpeed Insights](#lighthouse-pagespeed-insights)
     - [Desktop](#desktop)
     - [Mobile](#mobile)
-  - [FAQ](#faq)
   - [Contributing](#contributing)
     - [Code quality checks](#code-quality-checks)
     - [Maintainers](#maintainers)
