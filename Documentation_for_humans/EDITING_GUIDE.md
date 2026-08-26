@@ -11,7 +11,8 @@ Only four places matter for content edits. Front matter = the `key: value` block
 ## Team — `_people/*.md`
 
 - **Add:** copy a file, rename to `firstname-lastname.md` (becomes their URL). Fill in `name`, `role`, `role_group` (`faculty`/`phd`/`msc`/`intern`/`alumni`), `position`, `avatar_initials`, `avatar_gradient`. Write their bio below the front matter.
-- **Modify:** edit any field or the bio. Optional fields (`email`, `office`, `since`, `socials`, `education`, `awards`, `publications`) — copy the pattern from another profile that has them.
+- **Modify:** edit any field or the bio. Optional fields (`email`, `office`, `since`, `socials`, `education`, `awards`) — copy the pattern from another profile that has them.
+- **Publications:** shown automatically — a profile's Publications section lists every paper in `_publications` whose `authors` list includes that person's `slug` (see below). Nothing to edit here; add the person's `slug` to the paper instead. No papers yet? Shows "Creating papers as we speak."
 - **Remove:** delete the file, or set `role_group: alumni` to move them to alumni instead.
 - **Photo:** upload the image via GitHub, `assets/img/people` → "Add file" → "Upload files", then add `avatar_image: /assets/img/people/your-file.png` to that person's front matter — leading slash, no `https://`, no `/al-folio`. No photo yet? Leave `avatar_image` out entirely and the site shows their initials on `avatar_gradient` instead. **To remove a photo:** delete the `avatar_image` line (the file can stay in `assets/img/people`, it just won't be used).
 
