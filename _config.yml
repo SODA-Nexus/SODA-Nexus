@@ -201,10 +201,11 @@ newsletter:
 collections:
   books:
     output: true
+  # Custom schema (title/date/category/excerpt), rendered entirely by
+  # soda_news.liquid and the Home "Latest news" block — no per-entry pages,
+  # same as publications.
   news:
-    defaults:
-      layout: post
-    output: true
+    output: false
   projects:
     output: true
   teachings:

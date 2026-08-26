@@ -18,21 +18,6 @@ stats:
   - n: UAlberta
     l: ECE department home
 
-# history is the timeline shown further down this page; add a new block to add a new year
-history:
-  - year: "2023"
-    headline: "[PLACEHOLDER: event]"
-    description: "[PLACEHOLDER: one-sentence description]"
-  - year: "2024"
-    headline: "[PLACEHOLDER: event]"
-    description: "[PLACEHOLDER: one-sentence description]"
-  - year: "2025"
-    headline: "[PLACEHOLDER: event]"
-    description: "[PLACEHOLDER: one-sentence description]"
-  - year: "2026"
-    headline: "[PLACEHOLDER: event]"
-    description: "[PLACEHOLDER: one-sentence description]"
-
 # values are the three principle cards shown on this page
 values:
   - title: Rigor

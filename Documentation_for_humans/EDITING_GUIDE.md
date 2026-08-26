@@ -4,9 +4,22 @@ Only four places matter for content edits. Front matter = the `key: value` block
 
 ## News — `_news/*.md`
 
-- **Add:** copy a file, rename it, set `date`, write the announcement below the front matter.
-- **Modify:** edit `date` or the announcement text.
+- **Add:** copy a file, rename it (the filename itself doesn't matter — `date` decides order and grouping). Fill in:
+  - `title` — the headline.
+  - `date` (`YYYY-MM-DD`) — decides sort order and which year section the entry lands in on the News page.
+  - `category` — exactly one of `Publication`, `Award`, `People`, `Partnership`, `Milestone`, `Other`. Shown as a colored tag and used by the News page's category filter buttons.
+  - `excerpt` — 1-2 sentences. Shown on the News page and (for the 3 most recent entries) on Home's "Latest news".
+- **Modify:** edit any field.
 - **Remove:** delete the file.
+- **Related people (optional):** a `people` list adds linked names below the summary on the News page (not shown in Home's compact list). Copy the pattern:
+  ```yaml
+  people:
+    - name: Jane Doe
+      slug: jane-doe
+  ```
+  `slug` must match that person's filename in `_people/` (without `.md`) — it links their name to their profile. Leave `slug` out (name only, no link) for someone who isn't a current lab member. Leave the whole `people:` list out if the entry isn't about anyone in particular.
+- **Where entries show up:** Home's "Latest news" always shows the 3 most recent entries across every category. The News page (`/news/`) shows everything — the single most recent entry featured at the top, then the rest grouped by year (most recent year open, older years collapsed; click a year's row to expand or collapse it). The category filter buttons narrow the list to one category at a time, and automatically expand any collapsed year that still has a match after filtering. A year with more than 10 entries adds a "Load more" button rather than showing them all at once.
+- **Lab history:** the timeline that used to live on the About page is now News entries tagged `category: Milestone` — add a new one the same way as any other entry.
 
 ## Team — `_people/*.md`
 
@@ -34,7 +47,7 @@ Only four places matter for content edits. Front matter = the `key: value` block
 
 Fixed pages — modify only, no add/remove:
 
-- `about-lab.md`: `history` (timeline), `stats`, `values`, `funders`, `address` — each a list of labeled blocks; copy a block to add an entry, edit one to change it.
+- `about-lab.md`: `stats`, `values`, `funders`, `address` — each a list of labeled blocks; copy a block to add an entry, edit one to change it. Lab history lives on the News page now (tag entries `category: Milestone`) — see the News section above.
 - Body text below the front matter uses HTML tags (`<p>`, `<b>`), not Markdown — edit in place, keep the tags.
 
 ## Publishing

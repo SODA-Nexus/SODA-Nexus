@@ -23,12 +23,186 @@
 
       <section class="soda-section">
         <div class="soda-wrap">
-          {% include news.liquid %}
+          {% assign all_news = site.news | sort: 'date' | reverse %}
+          {% if all_news.size == 0 %}
+            <p class="soda-empty-state">News is being added — check back soon.</p>
+          {% else %}
+            {% assign featured = all_news | first %}
+            {% assign remaining = all_news | slice: 1, all_news.size %}
+
+            <div class="soda-news-featured">
+              <div class="soda-side-photo"></div>
+              <div class="soda-news-featured-body">
+                <span class="soda-news-chip" data-category="{{ featured.category }}">{{ featured.category }}</span>
+                <span class="soda-news-date">{{ featured.date | date: '%B %-d, %Y' }}</span>
+                <h2>{{ featured.title }}</h2>
+                <p>{{ featured.excerpt }}</p>
+                {% if featured.people %}
+                  <div class="soda-authors">
+                    <b>Related:</b>
+                    {% for person in featured.people %}
+                      {% if person.slug %}
+                        <a href="{{ '/people/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
+                      {% else %}
+                        <span class="soda-ext">{{ person.name }}</span>
+                      {% endif -%}
+                      {%- unless forloop.last -%}
+                        ,
+                      {% endunless %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if remaining.size > 0 %}
+              <div class="soda-kw-row" id="soda-news-cat-row" role="group" aria-label="Filter news by category">
+                <button type="button" class="soda-kw-btn" data-cat="Publication">Publication</button>
+                <button type="button" class="soda-kw-btn" data-cat="Award">Award</button>
+                <button type="button" class="soda-kw-btn" data-cat="People">People</button>
+                <button type="button" class="soda-kw-btn" data-cat="Partnership">Partnership</button>
+                <button type="button" class="soda-kw-btn" data-cat="Milestone">Milestone</button>
+                <button type="button" class="soda-kw-btn" data-cat="Other">Other</button>
+              </div>
+              <p class="soda-empty-state soda-no-results" id="soda-news-no-results" hidden>No news matches this filter.</p>
+
+              {% assign year_groups = remaining | group_by_exp: 'item', "item.date | date: '%Y'" %}
+              {% for group in year_groups %}
+                <details
+                  class="soda-year-block"
+                  data-year-block
+                  {% if forloop.first %}
+                    open
+                  {% endif %}
+                >
+                  <summary class="soda-year-head">
+                    <div class="soda-num">{{ group.name }}</div>
+                    <div class="soda-count" data-year-count>
+                      {{ group.items.size }} update{% unless group.items.size == 1 %}s{% endunless %}
+                    </div>
+                    <div class="soda-rule2"></div>
+                  </summary>
+                  <div class="soda-news-list">
+                    {% for item in group.items %}
+                      <div class="soda-news-item" data-news-item data-category="{{ item.category }}">
+                        <span class="soda-news-chip" data-category="{{ item.category }}">{{ item.category }}</span>
+                        <span class="soda-news-date">{{ item.date | date: '%B %-d, %Y' }}</span>
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.excerpt }}</p>
+                        {% if item.people %}
+                          <div class="soda-authors">
+                            <b>Related:</b>
+                            {% for person in item.people %}
+                              {% if person.slug %}
+                                <a href="{{ '/people/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
+                              {% else %}
+                                <span class="soda-ext">{{ person.name }}</span>
+                              {% endif -%}
+                              {%- unless forloop.last -%}
+                                ,
+                              {% endunless %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                  {% if group.items.size > 10 %}
+                    <button type="button" class="soda-load-more" data-load-more>Load more</button>
+                  {% endif %}
+                </details>
+              {% endfor %}
+            {% endif %}
+          {% endif %}
         </div>
       </section>
     </main>
 
     {% include soda-footer.liquid %}
     {% include scripts.liquid %}
+    {% if remaining.size > 0 %}
+      <script>
+        (function () {
+          var PAGE_SIZE = 10;
+          var yearBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-year-block]'));
+          var catButtons = Array.prototype.slice.call(document.querySelectorAll('#soda-news-cat-row .soda-kw-btn'));
+          var noResults = document.getElementById('soda-news-no-results');
+          var activeCategory = null;
+
+          yearBlocks.forEach(function (block) {
+            block.dataset.defaultOpen = block.hasAttribute('open') ? 'true' : 'false';
+            block._items = Array.prototype.slice.call(block.querySelectorAll('[data-news-item]'));
+            block._loaded = PAGE_SIZE;
+
+            var loadMoreBtn = block.querySelector('[data-load-more]');
+            if (loadMoreBtn) {
+              loadMoreBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                block._loaded = block._items.length;
+                render();
+              });
+            }
+          });
+
+          function render() {
+            var anyVisible = false;
+
+            yearBlocks.forEach(function (block) {
+              var filtering = activeCategory !== null;
+              var visibleInYear = 0;
+
+              block._items.forEach(function (item, index) {
+                var matchesCategory = !filtering || item.getAttribute('data-category') === activeCategory;
+                var withinPage = filtering || index < block._loaded;
+                var visible = matchesCategory && withinPage;
+                item.hidden = !visible;
+                if (visible) {
+                  visibleInYear += 1;
+                }
+              });
+
+              block.open = filtering ? visibleInYear > 0 : block.dataset.defaultOpen === 'true';
+              block.hidden = visibleInYear === 0;
+
+              var loadMoreBtn = block.querySelector('[data-load-more]');
+              if (loadMoreBtn) {
+                loadMoreBtn.hidden = filtering || block._loaded >= block._items.length;
+              }
+
+              var countEl = block.querySelector('[data-year-count]');
+              if (countEl) {
+                var count = filtering ? visibleInYear : block._items.length;
+                countEl.textContent = count + ' update' + (count === 1 ? '' : 's');
+              }
+
+              if (visibleInYear > 0) {
+                anyVisible = true;
+              }
+            });
+
+            noResults.hidden = anyVisible;
+          }
+
+          catButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var cat = btn.getAttribute('data-cat');
+              if (activeCategory === cat) {
+                activeCategory = null;
+                btn.classList.remove('soda-kw-active');
+              } else {
+                activeCategory = cat;
+                catButtons.forEach(function (b) {
+                  b.classList.remove('soda-kw-active');
+                });
+                btn.classList.add('soda-kw-active');
+              }
+              render();
+            });
+          });
+
+          render();
+        })();
+      </script>
+    {% endif %}
   </body>
 </html>

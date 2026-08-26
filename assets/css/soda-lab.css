@@ -509,11 +509,15 @@ ul.soda-check li:before {
 .soda-list-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 14px;
   padding: 14px 0;
   border-bottom: 1px solid var(--soda-line);
 }
-.soda-list-item:last-child {
+/* :last-of-type, not :last-child — a "View all news" link follows the last
+   .soda-list-item as a sibling, so :last-child never matched it and the
+   divider always showed under the final entry. */
+.soda-list-item:last-of-type {
   border-bottom: none;
 }
 .soda-list-item .soda-tag {
@@ -610,45 +614,6 @@ ul.soda-check li:before {
   color: var(--soda-slate);
   text-align: right;
   max-width: 140px;
-}
-
-.soda-timeline {
-  border-left: 2px solid var(--soda-line);
-  margin-left: 8px;
-  padding-left: 24px;
-}
-.soda-t-item {
-  position: relative;
-  padding-bottom: 26px;
-}
-.soda-t-item:last-child {
-  padding-bottom: 0;
-}
-.soda-t-item:before {
-  content: "";
-  position: absolute;
-  left: -31px;
-  top: 4px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--soda-red);
-  border: 3px solid #fff;
-  box-shadow: 0 0 0 1px var(--soda-red);
-}
-.soda-t-item .soda-yr {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--soda-red);
-}
-.soda-t-item .soda-h {
-  font-size: 14.5px;
-  font-weight: 700;
-  margin: 2px 0 4px;
-}
-.soda-t-item .soda-d {
-  font-size: 13px;
-  color: #4a4a4a;
 }
 
 .soda-value-card {
@@ -1091,8 +1056,12 @@ ul.soda-check li:before {
   .soda-mission-grid,
   .soda-grid-3,
   .soda-loc-grid,
-  .soda-profile {
+  .soda-profile,
+  .soda-news-featured {
     grid-template-columns: 1fr;
+  }
+  .soda-news-featured .soda-side-photo {
+    min-height: 160px;
   }
   .soda-grid-4 {
     grid-template-columns: 1fr 1fr;
@@ -1381,6 +1350,159 @@ ul.soda-check li:before {
   padding-top: 10px;
   border-top: 1px solid var(--soda-line);
   max-width: 75ch;
+}
+
+/* NEWS PAGE */
+.soda-news-featured {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+  border: 1px solid var(--soda-line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 36px;
+}
+.soda-news-featured .soda-side-photo {
+  height: 100%;
+  min-height: 220px;
+  border-radius: 0;
+}
+.soda-news-featured-body {
+  padding: 8px 32px 8px 0;
+}
+.soda-news-featured-body h2 {
+  font-size: 26px;
+  line-height: 1.25;
+  margin: 14px 0 10px;
+  font-weight: 800;
+}
+.soda-news-featured-body p {
+  font-size: 15px;
+  color: #333;
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Category chip — tints of --soda-red (raw rgb so alpha can vary; same base
+   color as --soda-red: #c8262a), darkest for the categories used most often
+   so they stay easy to tell apart at a glance. */
+.soda-news-chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--soda-red-dark);
+  background: rgba(200, 38, 42, 0.12);
+  margin-right: 10px;
+}
+.soda-news-chip[data-category="Publication"] {
+  background: rgba(200, 38, 42, 0.32);
+}
+.soda-news-chip[data-category="Award"] {
+  background: rgba(200, 38, 42, 0.24);
+}
+.soda-news-chip[data-category="People"] {
+  background: rgba(200, 38, 42, 0.18);
+}
+.soda-news-chip[data-category="Partnership"] {
+  background: rgba(200, 38, 42, 0.13);
+}
+.soda-news-chip[data-category="Milestone"] {
+  background: rgba(200, 38, 42, 0.09);
+}
+.soda-news-chip[data-category="Other"] {
+  background: rgba(200, 38, 42, 0.06);
+}
+.soda-news-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--soda-slate);
+}
+/* Compact variant for Home's "Latest news" list, where the full-size chip
+   (sized for the News page's larger cards) read as an oversized blob next
+   to a 13.5px title. */
+.soda-news-chip-sm {
+  font-size: 10px;
+  padding: 2px 8px;
+  margin-right: 0;
+  flex: none;
+}
+
+/* Year sections are <details> here (unlike Publications' plain divs) so a
+   click on the whole row toggles them; the chevron/[open] rules below only
+   ever match an actual <summary> inside an actual <details>, so they can't
+   affect Publications' .soda-year-head divs even though the classes are
+   shared. */
+.soda-year-block > summary.soda-year-head {
+  cursor: pointer;
+  list-style: none;
+}
+.soda-year-block > summary.soda-year-head::-webkit-details-marker {
+  display: none;
+}
+.soda-year-block > summary.soda-year-head::marker {
+  content: "";
+}
+.soda-year-block > summary.soda-year-head:before {
+  content: "▸";
+  color: var(--soda-red);
+  font-size: 13px;
+  transition: transform 0.15s ease;
+}
+.soda-year-block[open] > summary.soda-year-head:before {
+  transform: rotate(90deg);
+}
+.soda-news-list {
+  margin-bottom: 16px;
+}
+.soda-news-item {
+  border: 1px solid var(--soda-line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  background: #fff;
+  margin-bottom: 14px;
+}
+.soda-news-item:last-child {
+  margin-bottom: 0;
+}
+.soda-news-item h3 {
+  font-size: 15px;
+  margin: 8px 0 6px;
+  font-weight: 800;
+}
+.soda-news-item p {
+  font-size: 13.5px;
+  color: #4a4a4a;
+  margin: 0;
+  max-width: 75ch;
+}
+/* .soda-authors (reused from Publications) normally follows a .soda-venue
+   div; here it follows a zero-margin <p> instead, so it needs its own gap. */
+.soda-news-item .soda-authors,
+.soda-news-featured-body .soda-authors {
+  margin-top: 8px;
+}
+.soda-load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-red);
+  background: #fff;
+  border: 1.5px solid var(--soda-red);
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.soda-load-more:hover {
+  background: #fdf0ef;
 }
 
 /* JOIN PAGE */

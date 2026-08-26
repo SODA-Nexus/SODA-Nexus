@@ -46,6 +46,15 @@
       </li>
       <li>
         <a
+          href="{{ '/news/' | relative_url }}"
+          {% if page.url == '/news/' %}
+            class="soda-active"
+          {% endif %}
+          >News</a
+        >
+      </li>
+      <li>
+        <a
           href="{{ '/publications/' | relative_url }}"
           {% if page.url == '/publications/' %}
             class="soda-active"

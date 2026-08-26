@@ -96,7 +96,20 @@
               <div class="soda-bar"></div>
               <h2>Latest news</h2>
             </div>
-            {% include news.liquid limit=true %}
+            {% assign latest_news = site.news | sort: 'date' | reverse | slice: 0, 3 %}
+            {% if latest_news.size == 0 %}
+              <p class="soda-empty-state">News is being added — check back soon.</p>
+            {% else %}
+              {% for item in latest_news %}
+                <div class="soda-list-item">
+                  <div>
+                    <div class="soda-t">{{ item.title }}</div>
+                    <div class="soda-d">{{ item.date | date: '%b %-d, %Y' }}</div>
+                  </div>
+                  <span class="soda-news-chip soda-news-chip-sm" data-category="{{ item.category }}">{{ item.category }}</span>
+                </div>
+              {% endfor %}
+            {% endif %}
             <p style="margin-top: 14px"><a class="soda-view-all" href="{{ '/news/' | relative_url }}">View all news →</a></p>
           </div>
           <div>
