@@ -11,29 +11,56 @@
   <body class="soda-page">
     {% include soda-nav.liquid %}
 
-    <div class="soda-page-head">
-      <div class="soda-wrap">
-        <p class="soda-eyebrow">{{ page.eyebrow }}</p>
-        <h1>{{ page.title }}</h1>
-        <hr class="soda-rule">
-        <p class="soda-sub">{{ page.subtitle }}</p>
-      </div>
-    </div>
-
-    <section class="soda-section">
-      <div class="soda-wrap">
-        <p class="soda-label">Who we're looking for</p>
-        <div class="soda-grid-4">
-          {% for track in page.tracks %}
-            <div class="soda-card soda-track-card">
-              <span class="soda-tag soda-track-tag">{{ track.tag }}</span>
-              <h3>{{ track.title }}</h3>
-              <p>{{ track.description }}</p>
-            </div>
-          {% endfor %}
+    <main class="soda-content">
+      <div class="soda-page-head">
+        <div class="soda-wrap">
+          <p class="soda-eyebrow">{{ page.eyebrow }}</p>
+          <h1>{{ page.title }}</h1>
+          <hr class="soda-rule">
+          <p class="soda-sub">{{ page.subtitle }}</p>
         </div>
       </div>
-    </section>
+
+      <section class="soda-section">
+        <div class="soda-wrap">
+          <p class="soda-label">Who we're looking for</p>
+          <div class="soda-grid-4">
+            {% for track in page.tracks %}
+              <div class="soda-card soda-track-card">
+                <span class="soda-tag soda-track-tag">{{ track.tag }}</span>
+                <h3>{{ track.title }}</h3>
+                <p>{{ track.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="soda-section" style="background: var(--soda-panel)">
+        <div class="soda-wrap">
+          <div class="soda-section-head soda-center">
+            <h2>{{ page.contact.heading }}</h2>
+          </div>
+          <div class="soda-contact-center">
+            <p>{{ page.contact.body }}</p>
+            <div class="soda-subject-hint">
+              <p class="soda-subject-label">Use this subject line so we can route your note to the right track quickly:</p>
+              <p class="soda-subject-format">{{ page.contact.subject_format }}</p>
+              <p class="soda-subject-note">
+                [Track] is one of:
+                {% for track in page.tracks %}
+                  <strong>{{ track.tag }}</strong> ({{ track.title }})
+                  {%- unless forloop.last -%}
+                    {%- if forloop.rindex == 2 %}, or {% else %}, {% endif -%}
+                  {%- endunless %}
+                {% endfor %}
+              </p>
+            </div>
+            <div class="soda-contact-cta">{{ page.contact.email_widget | al_email_protect_html }}</div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     {% include soda-footer.liquid %}
     {% include scripts.liquid %}

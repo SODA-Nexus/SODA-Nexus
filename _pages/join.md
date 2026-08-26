@@ -21,4 +21,17 @@ tracks:
   - tag: Collab
     title: Collaborators
     description: Academic or industry partners working on shared problems.
+
+# contact is the "Get in touch" section shown below the tracks grid
+contact:
+  heading: Get in touch
+  body: Interested in one of the paths above? Send us a note about your background and what you're interested in — we read every application and typically respond within two weeks.
+  # subject_format is shown above the "Email us" link so applicants encode their track in the
+  # subject line for us to triage quickly; [Track] is filled in from page.tracks below, so the
+  # explanation of what each tag means stays in sync with the cards shown above this section.
+  subject_format: "Join the Lab – [Track] – [Your Name]"
+  # email_widget is rendered through al_email_protect_html — the same click-to-copy mechanism
+  # as the Home/About page "Email us" widget. Keep the visible text free of "@" or the address
+  # survives in the rendered HTML instead of being replaced by the widget.
+  email_widget: '<a href="mailto:soda.nexus.lab@ualberta.ca">Email us</a>'
 ---

@@ -384,6 +384,9 @@ body {
 .soda-section-head.soda-between {
   justify-content: space-between;
 }
+.soda-section-head.soda-center {
+  justify-content: center;
+}
 .soda-section-head .soda-left {
   display: flex;
   align-items: center;
@@ -694,6 +697,66 @@ ul.soda-check li:before {
 .soda-addr p {
   font-size: 14px;
   margin: 4px 0;
+}
+
+/* JOIN PAGE — "Get in touch" */
+.soda-contact-center {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+.soda-subject-hint {
+  margin-top: 16px;
+}
+.soda-subject-label,
+.soda-subject-note {
+  font-size: 13px;
+  color: var(--soda-slate);
+  margin: 0 0 6px;
+}
+.soda-subject-format {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--soda-ink);
+  background: var(--soda-cream);
+  border: 1px solid var(--soda-line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 0 0 8px;
+}
+.soda-subject-note strong {
+  color: var(--soda-ink);
+}
+.soda-contact-cta {
+  margin-top: 18px;
+}
+/* Same al_email_protect widget as the Home/About "Email us" link, styled here
+   as a full button instead of small inline text. Values match .soda-btn.soda-solid
+   exactly — the class can't go on the source <a> itself (the gem's HTML-rewrite
+   filter concatenates it into a second, malformed `class=` attribute), so the
+   button skin is applied to the rendered .al-email-protect element instead. */
+.soda-contact-cta .al-email-protect,
+.soda-contact-cta .al-email-protect:visited,
+.soda-contact-cta .al-email-protect:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.soda-contact-cta .al-email-protect {
+  padding: 11px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--soda-red);
+  cursor: pointer;
+  background: var(--soda-red);
+}
+.soda-contact-cta .al-email-protect:hover {
+  background: var(--soda-red-dark);
 }
 
 /* PERSON PAGE */
