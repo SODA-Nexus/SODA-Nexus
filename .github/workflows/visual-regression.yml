@@ -68,7 +68,7 @@ jobs:
           # This suite measures *rendering* parity, so the two sides have to be
           # built from the same content decisions. v0.16.3 shipped profile
           # trophies on; they are off by default now that the free public
-          # instance is dead (see docs/CUSTOMIZE.md). Left as-is the baseline
+          # instance is dead. Left as-is the baseline
           # grows a twelve-image block the candidate does not have, everything
           # below it shifts, and the diff reports a config change as though it
           # were a Tailwind regression.

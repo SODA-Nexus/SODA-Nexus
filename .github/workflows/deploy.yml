@@ -24,9 +24,7 @@ on:
       - "!.github/workflows/prettier.yml"
       - "!lighthouse_results/**"
       - "!docs/CONTRIBUTING.md"
-      - "!docs/CUSTOMIZE.md"
-      - "!docs/FAQ.md"
-      - "!docs/INSTALL.md"
+      - "!Documentation_for_humans/**"
       - "!README.md"
   pull_request:
     branches:
@@ -51,9 +49,7 @@ on:
       - "!.github/workflows/prettier.yml"
       - "!lighthouse_results/**"
       - "!docs/CONTRIBUTING.md"
-      - "!docs/CUSTOMIZE.md"
-      - "!docs/FAQ.md"
-      - "!docs/INSTALL.md"
+      - "!Documentation_for_humans/**"
       - "!README.md"
   workflow_dispatch:
 

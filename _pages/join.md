@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 layout: soda_join
 permalink: /join/
 title: Help us build software that debugs and explains itself.

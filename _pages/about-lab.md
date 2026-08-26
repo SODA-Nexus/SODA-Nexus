@@ -1,5 +1,5 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 layout: soda_about
 permalink: /about/
 title: Software you can trust, built with AI you can trust

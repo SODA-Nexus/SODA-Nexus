@@ -1,11 +1,10 @@
 ---
-# See docs/EDITING_GUIDE.md for the full guide.
+# See Documentation_for_humans/EDITING_GUIDE.md for the full guide.
 layout: soda_home
 permalink: /
 title: Building intelligent techniques for more reliable software
 description: "Research lab at the University of Alberta building AI-assisted techniques for software debugging, testing, and repository analysis."
 eyebrow: Dept. of Electrical &amp; Computer Engineering · University of Alberta
-selected_papers: true
 
 # cta is the row of buttons under the hero text; url should match one of the site's page addresses
 cta:
