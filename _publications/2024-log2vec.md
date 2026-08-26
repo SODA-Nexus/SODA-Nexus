@@ -12,7 +12,7 @@ authors:
     slug: ashrit-reddy-yarava
   - name: Jaskeerat Singh
     slug: jaskeerat-singh
-pdf_url: "#"
+pdf_url: "/assets/pdf/2024-log2vec.pdf"
 # image is optional — set it to a path under assets/img/publications/ to show a thumbnail on the Publications page and home page's Featured publications; delete the line for the plain placeholder
 image: /assets/img/publications/2024-log2vec.png
 abstract: >-

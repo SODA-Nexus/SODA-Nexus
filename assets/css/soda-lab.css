@@ -1337,6 +1337,14 @@ ul.soda-check li:before {
 .soda-dl:hover {
   background: #fdf0ef;
 }
+.soda-dl.soda-dl-disabled {
+  color: var(--soda-slate);
+  border-color: var(--soda-line);
+  cursor: not-allowed;
+}
+.soda-dl.soda-dl-disabled:hover {
+  background: none;
+}
 
 .soda-pub-body details {
   margin-top: 10px;
