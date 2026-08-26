@@ -17,9 +17,41 @@
   --soda-cream: #ffffff;
 }
 
+/* Measured on the live page (getBoundingClientRect + getComputedStyle):
+   .soda-page's own 3 grid rows now sum to its content height exactly, and
+   every non-nav/content/footer child is confirmed display:none or
+   position:fixed — nothing generates a real 4th row. A ~70px white sliver
+   below the footer previously showed on every soda page regardless of
+   content length — that was al_folio_core's global body{padding-bottom:70px}
+   (_sass/_layout.scss), zeroed out on .soda-page below. html's own
+   background is the only rule not under a .soda- prefix here; it now only
+   shows through the sub-pixel rounding gap that remains. */
+html,
+body {
+  background: #1c1c1c;
+}
+
+/* Sticky-footer shell. Three direct children of .soda-page in DOM order —
+   .soda-nav, .soda-content, .soda-footer — land in these three rows via
+   plain implicit grid placement, no grid-row needed on any of them. `auto`
+   rows size strictly to their content and are never compressed to avoid
+   overflowing the container the way a flex item can be (a flexbox version
+   of this shell once crushed .soda-nav to zero height on tall pages — see
+   the regression test in test/visual/sticky-footer.spec.js); `1fr` claims
+   whatever space is left over, which is what pushes the footer to the
+   bottom on a page shorter than one viewport. */
 .soda-page {
   color-scheme: light;
   margin: 0;
+  /* al_folio_core's body{padding-bottom:70px} (_sass/_layout.scss) reserves
+     space for the default theme's own footer and is normally canceled by
+     adding body.sticky-bottom-footer, which soda layouts never do. Zero it
+     here instead — a class selector outranks the gem's element selector
+     regardless of stylesheet load order, so this always wins. */
+  padding-bottom: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
   font-family:
     "Inter",
     -apple-system,
@@ -30,6 +62,22 @@
 }
 .soda-page * {
   box-sizing: border-box;
+}
+/* al_search's <ninja-keys> (the ⌘K command palette) is inserted as a raw
+   direct child of body by scripts.liquid, alongside every plugin's own
+   <script> tags. Scripts are display:none and never become grid items
+   regardless of DOM position, but ninja-keys is a real element — and its
+   own :host CSS (base-styles.min.js, upstream in the al_search gem) never
+   sets `display`, so it defaults to `display: inline` and inherits this
+   page's line-height, producing a real ~26px line-box even with its modal
+   closed. Under .soda-page's 3-row grid, that stopped being a harmless
+   trailing runt in normal flow and became a 4th implicit row — a visible
+   gap below the footer. position:fixed (with no inset of its own, so its
+   visual position is untouched) removes it from grid-item consideration
+   entirely, same as it already does nothing to vanilla-back-to-top's
+   button, which sets position:fixed on itself for the same reason. */
+.soda-page > ninja-keys {
+  position: fixed;
 }
 .soda-page a {
   color: inherit;
