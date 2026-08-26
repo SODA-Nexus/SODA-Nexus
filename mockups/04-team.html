@@ -228,14 +228,16 @@
       }
 
       .team-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-wrap: wrap;
         gap: 20px;
       }
       .member {
+        flex: 0 0 250px;
         display: block;
         cursor: pointer;
         border: 1px solid var(--line);
+        border-left: 3px solid var(--red);
         border-radius: 10px;
         background: #fff;
         padding: 20px 16px;
@@ -249,6 +251,18 @@
         border-color: var(--red);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         transform: translateY(-2px);
+      }
+      /* Role-tier accent on the card's left edge — a tint of --red per tier,
+         darkest for Faculty, lightest for Undergraduate Researchers. Scoped
+         via each .role-group's own modifier class below. */
+      .role-group--phd .member {
+        border-left-color: rgba(200, 38, 42, 0.75);
+      }
+      .role-group--msc .member {
+        border-left-color: rgba(200, 38, 42, 0.5);
+      }
+      .role-group--ugrad .member {
+        border-left-color: rgba(200, 38, 42, 0.3);
       }
       .member .avatar {
         width: 76px;
@@ -280,10 +294,15 @@
       }
 
       .role-group {
-        margin-bottom: 36px;
+        padding: 28px 24px;
+        border-radius: 12px;
       }
-      .role-group:last-child {
-        margin-bottom: 0;
+      /* Checkerboard banding: white, panel, white, panel, in DOM order. */
+      .role-group:nth-of-type(odd) {
+        background: #fff;
+      }
+      .role-group:nth-of-type(even) {
+        background: var(--panel);
       }
       .role-group .label {
         font-size: 12px;
@@ -311,12 +330,6 @@
       footer .foot-text {
         position: relative;
         z-index: 1;
-      }
-
-      @media (max-width: 900px) {
-        .team-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
       }
     </style>
   </head>
@@ -365,7 +378,7 @@
           </div>
         </div>
 
-        <div class="role-group">
+        <div class="role-group role-group--phd">
           <div class="label">PhD Students</div>
           <div class="team-grid">
             <a class="member" href="03-person.html">
@@ -389,7 +402,7 @@
           </div>
         </div>
 
-        <div class="role-group">
+        <div class="role-group role-group--msc">
           <div class="label">MSc Students</div>
           <div class="team-grid">
             <a class="member" href="03-person.html">
@@ -413,7 +426,7 @@
           </div>
         </div>
 
-        <div class="role-group">
+        <div class="role-group role-group--ugrad">
           <div class="label">Undergraduate Researchers</div>
           <div class="team-grid">
             <a class="member" href="03-person.html">

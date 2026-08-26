@@ -247,6 +247,7 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - lighthouse_results/
+  - mockups/
   - package.json
   - package-lock.json
   - _pages/about_einstein.md
