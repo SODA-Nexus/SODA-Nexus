@@ -358,6 +358,18 @@ body {
   color: var(--soda-red);
   font-weight: 700;
 }
+/* al_email_protect's widget leaves its <a> uncolored and gives .al-email-text
+   its own color via --global-theme-color; both default away from the red
+   this wrapper sets everywhere else. Force every part of the widget back to
+   the wrapper's inherited color so the address reads as one solid color. */
+.soda-link .al-email-protect,
+.soda-link .al-email-protect:visited,
+.soda-link .al-email-protect:hover,
+.soda-link .al-email-protect .al-email-text,
+.soda-link .al-email-protect .al-email-sep {
+  color: inherit;
+  text-decoration: none;
+}
 
 /* SECTIONS */
 .soda-section {

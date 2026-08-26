@@ -21,7 +21,7 @@ cta:
 # side_info is the small contact card next to the hero text; each line can include HTML tags
 side_info:
   - "ECERF W6-073<br>University of Alberta<br>Edmonton, Alberta, Canada"
-  - '<span class="soda-link">soda.nexus.lab@ualberta.ca</span>'
+  - '<span class="soda-link"><a href="mailto:soda.nexus.lab@ualberta.ca">Email us</a></span>'
   - '<span class="soda-link">sodanexus-lab.github.io</span>'
 
 # research_areas are the four cards in the research section

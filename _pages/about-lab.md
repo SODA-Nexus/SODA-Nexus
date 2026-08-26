@@ -53,7 +53,7 @@ address:
   - "<b>ECERF W6-073</b>"
   - University of Alberta
   - Edmonton, Alberta, Canada
-  - '<span style="color:var(--soda-red);font-weight:700;">soda.nexus.lab@ualberta.ca</span>'
+  - '<span class="soda-link"><a href="mailto:soda.nexus.lab@ualberta.ca">Email us</a></span>'
 
 map_query: "ECERF, University of Alberta, Edmonton, Alberta, Canada"
 ---
