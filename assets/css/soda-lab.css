@@ -905,14 +905,16 @@ ul.soda-check li:before {
 }
 
 .soda-team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .soda-member {
+  flex: 0 0 250px;
   display: block;
   cursor: pointer;
   border: 1px solid var(--soda-line);
+  border-left: 3px solid var(--soda-red);
   border-radius: 10px;
   background: #fff;
   padding: 20px 16px;
@@ -927,14 +929,28 @@ ul.soda-check li:before {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
+/* Role-tier accent on the card's left edge — a tint of --soda-red per tier,
+   darkest for Faculty, lightest furthest from it. .soda-role-group's own
+   data-tier (set in soda_team.liquid, one per site.people role_group key)
+   scopes each tint to only the cards in that group. */
+[data-tier="phd"] .soda-member {
+  border-left-color: rgba(200, 38, 42, 0.75);
+}
+[data-tier="msc"] .soda-member {
+  border-left-color: rgba(200, 38, 42, 0.5);
+}
+[data-tier="intern"] .soda-member {
+  border-left-color: rgba(200, 38, 42, 0.3);
+}
+[data-tier="alumni"] .soda-member {
+  border-left-color: rgba(200, 38, 42, 0.15);
+}
 .soda-member .soda-avatar {
   width: 76px;
   height: 76px;
   margin: 0 auto 14px;
   overflow: hidden;
-  background:
-    linear-gradient(0deg, rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0) 60%), repeating-linear-gradient(90deg, #8a99a8 0 3px, #99a7b5 3px 6px),
-    linear-gradient(180deg, #bcd4ea, #8fa9c2);
+  font-size: 22px;
 }
 .soda-member .soda-role {
   font-size: 11px;
@@ -952,10 +968,17 @@ ul.soda-check li:before {
 }
 
 .soda-role-group {
-  margin-bottom: 36px;
+  padding: 28px 24px;
+  border-radius: 12px;
 }
-.soda-role-group:last-child {
-  margin-bottom: 0;
+/* Checkerboard banding: alternates by render order (site.people role_groups
+   with zero members are skipped, so this counts only the groups that
+   actually appear — see the rendered_count counter in soda_team.liquid). */
+.soda-role-group.soda-band-a {
+  background: var(--soda-cream);
+}
+.soda-role-group.soda-band-b {
+  background: var(--soda-panel);
 }
 .soda-role-group .soda-label {
   font-size: 12px;
@@ -999,9 +1022,6 @@ ul.soda-check li:before {
     padding: 10px 4px;
   }
 
-  .soda-team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .soda-hero-grid,
   .soda-split,
   .soda-split-2,
@@ -1025,7 +1045,6 @@ ul.soda-check li:before {
 
 /* Narrow phones — the remaining two-column grids get one more step down. */
 @media (max-width: 480px) {
-  .soda-team-grid,
   .soda-grid-4 {
     grid-template-columns: 1fr;
   }

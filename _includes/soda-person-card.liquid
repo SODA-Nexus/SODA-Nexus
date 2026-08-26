@@ -1,8 +1,15 @@
 {% assign person = include.person %}
 <a class="soda-member" href="{{ person.url | relative_url }}">
-  <div class="soda-avatar">
+  <div
+    class="soda-avatar"
+    {% unless person.avatar_image %}
+      style="background: {{ person.avatar_gradient }};"
+    {% endunless %}
+  >
     {% if person.avatar_image %}
       <img src="{{ person.avatar_image | relative_url }}" alt="{{ person.name }}" loading="lazy">
+    {% else %}
+      {{ person.avatar_initials }}
     {% endif %}
   </div>
   <p class="soda-role">{{ person.role }}</p>

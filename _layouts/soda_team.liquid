@@ -11,38 +11,46 @@
   <body class="soda-page">
     {% include soda-nav.liquid %}
 
-    <div class="soda-page-head">
-      <div class="soda-wrap">
-        <p class="soda-eyebrow">{{ page.eyebrow }}</p>
-        <h1>{{ page.title }}</h1>
-        <hr class="soda-rule">
-        <p class="soda-sub">{{ page.subtitle }}</p>
-        <div class="soda-team-photo">
-          {% if page.photo %}
-            <img src="{{ page.photo | relative_url }}" alt="{{ page.photo_caption }}" loading="lazy">
-          {% endif %}
-          <div class="soda-cap">{{ page.photo_caption }}</div>
+    <main class="soda-content">
+      <div class="soda-page-head">
+        <div class="soda-wrap">
+          <p class="soda-eyebrow">{{ page.eyebrow }}</p>
+          <h1>{{ page.title }}</h1>
+          <hr class="soda-rule">
+          <p class="soda-sub">{{ page.subtitle }}</p>
+          <div class="soda-team-photo">
+            {% if page.photo %}
+              <img src="{{ page.photo | relative_url }}" alt="{{ page.photo_caption }}" loading="lazy">
+            {% endif %}
+            <div class="soda-cap">{{ page.photo_caption }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <section class="soda-section">
-      <div class="soda-wrap">
-        {% for group in page.role_groups %}
-          {% assign members = site.people | where: 'role_group', group.key %}
-          {% if members.size > 0 %}
-            <div class="soda-role-group">
-              <div class="soda-label">{{ group.label }}</div>
-              <div class="soda-team-grid">
-                {% for person in members %}
-                  {% include soda-person-card.liquid person=person %}
-                {% endfor %}
+      <section class="soda-section">
+        <div class="soda-wrap">
+          {% assign rendered_count = 0 %}
+          {% for group in page.role_groups %}
+            {% assign members = site.people | where: 'role_group', group.key %}
+            {% if members.size > 0 %}
+              {% assign rendered_count = rendered_count | plus: 1 %}
+              {% assign rendered_mod = rendered_count | modulo: 2 %}
+              <div
+                class="soda-role-group {% if rendered_mod == 1 %}soda-band-a{% else %}soda-band-b{% endif %}"
+                data-tier="{{ group.key }}"
+              >
+                <div class="soda-label">{{ group.label }}</div>
+                <div class="soda-team-grid">
+                  {% for person in members %}
+                    {% include soda-person-card.liquid person=person %}
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </section>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    </main>
 
     {% include soda-footer.liquid %}
     {% include scripts.liquid %}
