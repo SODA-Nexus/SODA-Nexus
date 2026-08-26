@@ -1355,7 +1355,11 @@ ul.soda-check li:before {
 /* NEWS PAGE */
 .soda-news-featured {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  /* Fixed width, not fr — an fr column scales down with the container, so
+     the graphic panel kept visibly shrinking as the window narrowed. Only
+     the text side should absorb that, until the 768px breakpoint stacks
+     both into a single column. */
+  grid-template-columns: 300px 1fr;
   gap: 40px;
   align-items: center;
   border: 1px solid var(--soda-line);
