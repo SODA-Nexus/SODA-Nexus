@@ -21,6 +21,6 @@ abstract: >-
   We mine commit histories across 40 large open-source repositories to identify recurring defect patterns tied to
   specific code change types. Our taxonomy of patterns is used to build a lightweight static checker that flags
   commits with elevated defect risk before merge.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Repository Mining, Defect Prediction]
 ---

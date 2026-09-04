@@ -1,0 +1,160 @@
+---
+---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.liquid %}
+    {% if page.noindex %}
+      <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+    {% include soda-fonts.liquid %}
+    {% include soda-theme-init.liquid %}
+    <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}">
+  </head>
+  <body class="soda-page">
+    {% include soda-nav.liquid %}
+
+    <main class="soda-content">
+      <div class="soda-page-head">
+        <div class="soda-wrap">
+          <h1>{{ page.title }}</h1>
+          <hr class="soda-rule">
+          <p class="soda-sub">Life in the lab, one shuffle at a time.</p>
+        </div>
+      </div>
+
+      <section class="soda-section">
+        <div class="soda-wrap">
+          <div class="soda-gallery-collage" id="soda-gallery-collage"></div>
+
+          {% assign gallery_photos = site.static_files | where_exp: 'f', "f.path contains '/assets/img/gallery/'" %}
+          {% assign valid_exts = 'jpg,jpeg,png,webp' | split: ',' %}
+          {% assign gallery_json = '' %}
+          {% assign gallery_first = true %}
+          {% for photo in gallery_photos %}
+            {% assign ext = photo.extname | remove_first: '.' | downcase %}
+            {% comment %}
+              jekyll-imagemagick (enabled site-wide, see _config.yml) recursively
+              scans assets/img/** and writes its own -{width}.webp resized copies
+              of every source image as additional static_files alongside the
+              original — without this check each real photo here would also list
+              those generated siblings. Their width suffixes come straight from
+              imagemagick.widths so this stays correct if that list ever changes.
+            {% endcomment %}
+            {% assign is_generated_variant = false %}
+            {% if ext == 'webp' %}
+              {% for w in site.imagemagick.widths %}
+                {% assign suffix = '-' | append: w %}
+                {% if photo.basename contains suffix %}
+                  {% assign is_generated_variant = true %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if valid_exts contains ext and is_generated_variant == false %}
+              {% assign filename = photo.basename | append: photo.extname %}
+              {% assign caption = site.data.gallery_captions[filename] %}
+              {% assign src_json = photo.path | relative_url | jsonify %}
+              {% assign caption_json = caption | default: '' | jsonify %}
+              {% assign entry = '{"src":' | append: src_json | append: ',"caption":' | append: caption_json | append: '}' %}
+              {% unless gallery_first %}
+                {% assign gallery_json = gallery_json | append: ',' %}
+              {% endunless %}
+              {% assign gallery_json = gallery_json | append: entry %}
+              {% assign gallery_first = false %}
+            {% endif %}
+          {% endfor %}
+          <script type="application/json" id="soda-gallery-data">
+            [{{ gallery_json }}]
+          </script>
+        </div>
+      </section>
+    </main>
+
+    {% include soda-footer.liquid %}
+    {% include scripts.liquid %}
+
+    <script>
+      (function () {
+        var container = document.getElementById('soda-gallery-collage');
+        var dataEl = document.getElementById('soda-gallery-data');
+        if (!container || !dataEl) return;
+
+        var photos = [];
+        try {
+          photos = JSON.parse(dataEl.textContent);
+        } catch (e) {}
+        if (!photos.length) return;
+
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var tileCount = Math.min(6, photos.length);
+
+        function shuffle(list) {
+          var copy = list.slice();
+          for (var i = copy.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = copy[i];
+            copy[i] = copy[j];
+            copy[j] = tmp;
+          }
+          return copy;
+        }
+
+        function renderTile(photo) {
+          var figure = document.createElement('figure');
+          figure.className = 'soda-gallery-tile';
+
+          var img = document.createElement('img');
+          img.src = photo.src;
+          img.alt = photo.caption || '';
+          img.loading = 'lazy';
+          figure.appendChild(img);
+
+          var figcaption = document.createElement('figcaption');
+          figcaption.textContent = photo.caption || '';
+          figcaption.hidden = !photo.caption;
+          figure.appendChild(figcaption);
+
+          container.appendChild(figure);
+          return { el: figure, img: img, figcaption: figcaption, current: photo };
+        }
+
+        var tiles = shuffle(photos).slice(0, tileCount).map(renderTile);
+
+        // With only one photo total there's nothing else to switch to —
+        // otherwise every tile independently rotates through the full pool
+        // on its own timer, so a tile can land on a photo another tile is
+        // already showing (that's fine — it's a random shuffle, not a
+        // no-repeats deal), it just never repeats itself twice in a row.
+        if (reduceMotion || photos.length <= 1) return;
+
+        function swapTile(tile) {
+          var candidates = photos.filter(function (p) {
+            return p.src !== tile.current.src;
+          });
+          if (!candidates.length) return;
+          var next = candidates[Math.floor(Math.random() * candidates.length)];
+
+          tile.el.classList.add('soda-gallery-tile-fading');
+          setTimeout(function () {
+            tile.img.src = next.src;
+            tile.img.alt = next.caption || '';
+            tile.figcaption.textContent = next.caption || '';
+            tile.figcaption.hidden = !next.caption;
+            tile.current = next;
+            tile.el.classList.remove('soda-gallery-tile-fading');
+          }, 600); // matches .soda-gallery-tile's opacity transition duration
+        }
+
+        tiles.forEach(function (tile) {
+          (function scheduleNext() {
+            var delay = 8000 + Math.random() * 6000;
+            setTimeout(function () {
+              swapTile(tile);
+              scheduleNext();
+            }, delay);
+          })();
+        });
+      })();
+    </script>
+  </body>
+</html>

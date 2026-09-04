@@ -19,6 +19,6 @@ abstract: >-
   Fault localization models trained on one project often generalize poorly to another. We study transfer learning
   strategies that adapt a fault localization model trained on well-resourced projects to new, low-resource
   repositories, recovering most of the in-project accuracy with a fraction of the labeled bug reports.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Fault Localization, Repository Mining]
 ---

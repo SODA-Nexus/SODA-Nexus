@@ -2,8 +2,8 @@
   <div class="soda-bug-drift"><div class="soda-bug-mask"></div></div>
   <div class="soda-wrap">
     <a href="{{ '/' | relative_url }}" class="soda-brand">
-      <div class="soda-mark">SN</div>
-      <div class="soda-name">SODA Nexus</div>
+      <img class="soda-mark" src="{{ '/assets/img/soda-logo.png' | relative_url }}" alt="Software Debugging and Analysis Nexus logo">
+      <div class="soda-name">Software Debugging and Analysis Nexus @ UofA</div>
     </a>
     <button
       type="button"
@@ -72,8 +72,40 @@
         >
       </li>
     </ul>
+    <button type="button" class="soda-theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+      <span class="soda-theme-icon-light" aria-hidden="true">🌙</span>
+      <span class="soda-theme-icon-dark" aria-hidden="true">☀️</span>
+    </button>
   </div>
   <script>
+    (function () {
+      // Owns the "soda-theme" localStorage key that soda-theme-init.liquid's
+      // early head script reads on every subsequent page load — that script
+      // sets html[data-theme] before paint, this one only has to keep the
+      // button's own icon/aria state in sync with whatever it already set.
+      var toggleBtn = document.querySelector('.soda-theme-toggle');
+      if (toggleBtn) {
+        var root = document.documentElement;
+
+        function reflect(theme) {
+          var isDark = theme === 'dark';
+          toggleBtn.classList.toggle('soda-theme-is-dark', isDark);
+          toggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+          toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+
+        reflect(root.getAttribute('data-theme'));
+
+        toggleBtn.addEventListener('click', function () {
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          reflect(next);
+          try {
+            localStorage.setItem('soda-theme', next);
+          } catch (e) {}
+        });
+      }
+    })();
     (function () {
       var nav = document.querySelector('.soda-nav');
       if (!nav) return;

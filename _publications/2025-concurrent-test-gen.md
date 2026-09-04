@@ -21,6 +21,6 @@ abstract: >-
   Testing concurrent systems requires exercising rare thread interleavings that are hard to construct by hand. We use
   large language models to synthesize targeted test schedules guided by static race-detection hints, uncovering 15
   previously unknown concurrency bugs in evaluated projects.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Testing, LLMs, Concurrency]
 ---

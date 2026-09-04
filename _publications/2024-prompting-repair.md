@@ -19,6 +19,6 @@ abstract: >-
   We conduct a systematic empirical study of prompting strategies for LLM-based automated program repair, comparing
   zero-shot, few-shot, and chain-of-thought prompting across four model families. Our results show that including
   failing test output in the prompt matters more than model scale for repair success rate.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Program Repair, LLMs]
 ---

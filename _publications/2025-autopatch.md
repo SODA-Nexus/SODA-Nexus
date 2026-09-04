@@ -19,6 +19,6 @@ abstract: >-
   We mine historical bug-fix commits to learn reusable repair templates, then rank candidate patches for new defects
   by similarity to these templates. AutoPatch produces plausible fixes for 61% of evaluated Defects4J bugs, matching
   or exceeding prior template-based repair tools while requiring no manual template authoring.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Program Repair, Repository Mining]
 ---

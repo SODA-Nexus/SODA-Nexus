@@ -5,7 +5,7 @@
   <head>
     {% include head.liquid %}
     {% include soda-fonts.liquid %}
-    {% include soda-force-light.liquid %}
+    {% include soda-theme-init.liquid %}
     <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}">
   </head>
   <body class="soda-page">
@@ -30,28 +30,36 @@
               {{ page.avatar_initials }}
             {% endif %}
           </div>
-          {% if page.email or page.office or page.since %}
-            <div class="soda-side-box">
-              {% if page.email %}
-                <div class="soda-row">
-                  <div class="soda-k">Email</div>
-                  <div class="soda-v soda-link">{{ page.email | al_email_obfuscate }}</div>
+          <div class="soda-side-box">
+            {% if page.email %}
+              <div class="soda-row">
+                <div class="soda-k">Email</div>
+                <div class="soda-v soda-link">{{ page.email | al_email_obfuscate }}</div>
+              </div>
+            {% endif %}
+            {% if page.office %}
+              <div class="soda-row">
+                <div class="soda-k">Office</div>
+                <div class="soda-v">{{ page.office }}</div>
+              </div>
+            {% endif %}
+            {% if page.since %}
+              <div class="soda-row">
+                <div class="soda-k">Since</div>
+                <div class="soda-v">{{ page.since }}</div>
+              </div>
+            {% endif %}
+            <div class="soda-row soda-row-stacked">
+              <div class="soda-k">Google Scholar</div>
+              {% if page.google_scholar_url %}
+                <div class="soda-v soda-link">
+                  <a href="{{ page.google_scholar_url }}" target="_blank" rel="noopener noreferrer">View profile ↗</a>
                 </div>
-              {% endif %}
-              {% if page.office %}
-                <div class="soda-row">
-                  <div class="soda-k">Office</div>
-                  <div class="soda-v">{{ page.office }}</div>
-                </div>
-              {% endif %}
-              {% if page.since %}
-                <div class="soda-row">
-                  <div class="soda-k">Since</div>
-                  <div class="soda-v">{{ page.since }}</div>
-                </div>
+              {% else %}
+                <div class="soda-v" style="color: var(--soda-slate);">Creating as we speak</div>
               {% endif %}
             </div>
-          {% endif %}
+          </div>
           {% if page.socials %}
             <div class="soda-social-row">
               {% for social in page.socials %}
@@ -95,37 +103,31 @@
         </section>
       {% endif %}
 
-      {% assign person_needle = page.slug | prepend: '|' | append: '|' %}
-      {% assign sorted_publications = site.publications | sort: 'year' | reverse %}
-      {% assign publication_count = 0 %}
+      {% assign highlighted_slugs = page.highlighted_publications | slice: 0, 3 %}
       <section class="soda-section" style="background: var(--soda-panel)">
         <div class="soda-wrap">
           <div class="soda-section-head">
             <div class="soda-bar"></div>
-            <h2>Publications</h2>
+            <h2>Highlighted Publications</h2>
           </div>
-          {% capture publication_cards %}
-          {% for pub in sorted_publications %}
-            {% assign author_slugs = pub.authors | map: 'slug' | join: '|' | prepend: '|' | append: '|' %}
-            {% if author_slugs contains person_needle %}
-              {% assign publication_count = publication_count | plus: 1 %}
-              <div class="soda-pub-card">
-                <div class="soda-pub-thumb">
-                  {% if pub.image %}
-                    <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy">
-                  {% endif %}
+          {% if highlighted_slugs.size > 0 %}
+            {% for pub_slug in highlighted_slugs %}
+              {% assign pub = site.publications | where: 'slug', pub_slug | first %}
+              {% if pub %}
+                <div class="soda-pub-card">
+                  <div class="soda-pub-thumb">
+                    {% if pub.image %}
+                      <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy">
+                    {% endif %}
+                  </div>
+                  <div>
+                    <h4>{{ pub.title }}</h4>
+                    <div class="soda-venue">{{ pub.venue }}</div>
+                    <p>{{ pub.abstract | strip_html | truncatewords: 28 }}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4>{{ pub.title }}</h4>
-                  <div class="soda-venue">{{ pub.venue }}</div>
-                  <p>{{ pub.abstract | strip_html | truncatewords: 28 }}</p>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-          {% if publication_count > 0 %}
-            {{ publication_cards }}
+              {% endif %}
+            {% endfor %}
           {% else %}
             <p class="soda-empty-state">Creating papers as we speak.</p>
           {% endif %}
@@ -151,6 +153,8 @@
           </div>
         </section>
       {% endif %}
+
+      {% include soda_bug_button.liquid %}
     </main>
 
     {% include soda-footer.liquid %}

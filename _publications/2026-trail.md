@@ -19,6 +19,6 @@ abstract: >-
   Rare failure events are underrepresented in system logs, making them difficult for anomaly detectors to learn.
   TRAIL generates synthetic rare-event log sequences that preserve the structural templates of real logs, improving
   detection recall on infrequent failure types without degrading precision on common patterns.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Log Analysis, Anomaly Detection]
 ---

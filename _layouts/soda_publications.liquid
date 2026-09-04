@@ -5,7 +5,7 @@
   <head>
     {% include head.liquid %}
     {% include soda-fonts.liquid %}
-    {% include soda-force-light.liquid %}
+    {% include soda-theme-init.liquid %}
     <link rel="stylesheet" href="{{ '/assets/css/soda-lab.css' | relative_url }}">
   </head>
   <body class="soda-page">
@@ -23,18 +23,29 @@
 
       <section class="soda-section">
         <div class="soda-wrap">
+          {% assign years = site.publications | map: 'year' | uniq | sort | reverse %}
           {% if site.publications.size == 0 %}
             <p class="soda-empty-state">Publications are being added — check back soon.</p>
           {% else %}
+            {% assign keyword_pool = '' %}
+            {% for pub in site.publications %}
+              {% for kw in pub.keywords %}
+                {% assign keyword_pool = keyword_pool | append: kw | append: '|' %}
+              {% endfor %}
+            {% endfor %}
+            {% assign all_keywords = keyword_pool | split: '|' | uniq | sort %}
+
+            {% assign author_slug_pool = '|' %}
+            {% for pub in site.publications %}
+              {% for author in pub.authors %}
+                {% if author.slug %}
+                  {% assign author_slug_pool = author_slug_pool | append: author.slug | append: '|' %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+            {% assign contributing_people = site.people | sort: 'name' %}
+
             <div class="soda-pub-search">
-              <div class="soda-kw-row" id="soda-kw-row" role="group" aria-label="Filter publications by keyword">
-                <button type="button" class="soda-kw-btn" data-kw="Fault Localization">Fault Localization</button>
-                <button type="button" class="soda-kw-btn" data-kw="LLMs">LLMs</button>
-                <button type="button" class="soda-kw-btn" data-kw="Testing">Testing</button>
-                <button type="button" class="soda-kw-btn" data-kw="Log Analysis">Log Analysis</button>
-                <button type="button" class="soda-kw-btn" data-kw="Program Repair">Program Repair</button>
-                <button type="button" class="soda-kw-btn" data-kw="Repository Mining">Repository Mining</button>
-              </div>
               <input
                 type="text"
                 id="soda-pub-search-input"
@@ -42,10 +53,43 @@
                 placeholder="Search publications by title, author, or venue…"
                 autocomplete="off"
               >
+              <div class="soda-filter-row">
+                <div class="soda-filter-field">
+                  <label for="soda-filter-person">Person</label>
+                  <select id="soda-filter-person" class="soda-filter-select">
+                    <option value="">All People</option>
+                    {% for person in contributing_people %}
+                      {% assign person_needle = person.slug | prepend: '|' | append: '|' %}
+                      {% if author_slug_pool contains person_needle %}
+                        <option value="{{ person.slug }}">{{ person.name }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="soda-filter-field">
+                  <label for="soda-filter-field">Field</label>
+                  <select id="soda-filter-field" class="soda-filter-select">
+                    <option value="">All Fields</option>
+                    {% for kw in all_keywords %}
+                      <option value="{{ kw }}">{{ kw }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="soda-filter-field">
+                  <label for="soda-filter-year">Year</label>
+                  <select id="soda-filter-year" class="soda-filter-select">
+                    <option value="">All Years</option>
+                    {% for year in years %}
+                      <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="button" class="soda-filter-clear" id="soda-filter-clear">Clear all filters</button>
+              </div>
+              <p class="soda-filter-count" id="soda-filter-count">Showing all {{ site.publications.size }} publications</p>
             </div>
             <p class="soda-empty-state soda-no-results" id="soda-no-results" hidden>No publications match your search.</p>
           {% endif %}
-          {% assign years = site.publications | map: 'year' | uniq | sort | reverse %}
           {% for year in years %}
             {% assign pubs = site.publications | where: 'year', year | sort: 'order' %}
             <div class="soda-year-block" data-year-block>
@@ -58,7 +102,13 @@
               </div>
 
               {% for pub in pubs %}
-                <div class="soda-pub" data-pub data-kw="{{ pub.keywords | join: '|' }}">
+                <div
+                  class="soda-pub"
+                  data-pub
+                  data-kw="{{ pub.keywords | join: '|' }}"
+                  data-year="{{ pub.year }}"
+                  data-authors="{{ pub.authors | map: 'slug' | join: ',' }}"
+                >
                   <div class="soda-thumb{% if pub.image %} soda-thumb-photo{% endif %}">
                     {% if pub.image %}
                       <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy">
@@ -121,10 +171,15 @@
       <script>
         (function () {
           var searchInput = document.getElementById('soda-pub-search-input');
-          var kwButtons = Array.prototype.slice.call(document.querySelectorAll('.soda-kw-btn'));
+          var personSelect = document.getElementById('soda-filter-person');
+          var fieldSelect = document.getElementById('soda-filter-field');
+          var yearSelect = document.getElementById('soda-filter-year');
+          var clearBtn = document.getElementById('soda-filter-clear');
           var yearBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-year-block]'));
+          var allPubs = Array.prototype.slice.call(document.querySelectorAll('[data-pub]'));
           var noResults = document.getElementById('soda-no-results');
-          var activeKeyword = null;
+          var countEl = document.getElementById('soda-filter-count');
+          var totalPubs = allPubs.length;
 
           function pubText(pub) {
             return pub.textContent.toLowerCase();
@@ -134,8 +189,15 @@
             return (pub.getAttribute('data-kw') || '').split('|');
           }
 
+          function pubAuthors(pub) {
+            return (pub.getAttribute('data-authors') || '').split(',');
+          }
+
           function applyFilters() {
             var query = searchInput.value.trim().toLowerCase();
+            var person = personSelect.value;
+            var field = fieldSelect.value;
+            var year = yearSelect.value;
             var visibleTotal = 0;
 
             yearBlocks.forEach(function (block) {
@@ -144,8 +206,10 @@
 
               blockPubs.forEach(function (pub) {
                 var matchesQuery = query === '' || pubText(pub).indexOf(query) !== -1;
-                var matchesKeyword = activeKeyword === null || pubKeywords(pub).indexOf(activeKeyword) !== -1;
-                var visible = matchesQuery && matchesKeyword;
+                var matchesField = field === '' || pubKeywords(pub).indexOf(field) !== -1;
+                var matchesPerson = person === '' || pubAuthors(pub).indexOf(person) !== -1;
+                var matchesYear = year === '' || pub.getAttribute('data-year') === year;
+                var visible = matchesQuery && matchesField && matchesPerson && matchesYear;
 
                 pub.style.display = visible ? '' : 'none';
                 if (visible) {
@@ -154,33 +218,31 @@
               });
 
               block.hidden = visibleInYear === 0;
-              var countEl = block.querySelector('[data-year-count]');
-              if (countEl) {
-                countEl.textContent = visibleInYear + ' paper' + (visibleInYear === 1 ? '' : 's');
+              var yearCountEl = block.querySelector('[data-year-count]');
+              if (yearCountEl) {
+                yearCountEl.textContent = visibleInYear + ' paper' + (visibleInYear === 1 ? '' : 's');
               }
               visibleTotal += visibleInYear;
             });
 
             noResults.hidden = visibleTotal !== 0;
+            countEl.textContent =
+              visibleTotal === totalPubs
+                ? 'Showing all ' + totalPubs + ' publications'
+                : 'Showing ' + visibleTotal + ' of ' + totalPubs + ' publications';
           }
 
           searchInput.addEventListener('input', applyFilters);
+          personSelect.addEventListener('change', applyFilters);
+          fieldSelect.addEventListener('change', applyFilters);
+          yearSelect.addEventListener('change', applyFilters);
 
-          kwButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-              var kw = btn.getAttribute('data-kw');
-              if (activeKeyword === kw) {
-                activeKeyword = null;
-                btn.classList.remove('soda-kw-active');
-              } else {
-                activeKeyword = kw;
-                kwButtons.forEach(function (b) {
-                  b.classList.remove('soda-kw-active');
-                });
-                btn.classList.add('soda-kw-active');
-              }
-              applyFilters();
-            });
+          clearBtn.addEventListener('click', function () {
+            searchInput.value = '';
+            personSelect.value = '';
+            fieldSelect.value = '';
+            yearSelect.value = '';
+            applyFilters();
           });
         })();
       </script>

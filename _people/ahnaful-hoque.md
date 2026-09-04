@@ -14,6 +14,13 @@ avatar_gradient: "linear-gradient(135deg, #6b7280, #454b54)"
 avatar_image: /assets/img/people/ahnaful-hoque.png
 position: Former Research Intern · SODA Nexus Lab
 blurb: Former Research Intern
+# google_scholar_url is optional — the person's Google Scholar profile URL. A "Google Scholar" row always shows in the sidebar; set this to show a "View profile" link, or leave it blank and the row shows "Creating as we speak" instead.
+google_scholar_url:
+# highlighted_publications lists up to 3 publication slugs (the filename in _publications, without .md) to feature on this profile, in the order shown — only the first 3 are used. No papers yet? Leave the list empty and the section shows "Creating papers as we speak."
+highlighted_publications:
+  - 2026-explainable-debugging
+  - 2026-far-loc
+  - 2026-trail
 ---
 
 Ahnaful Hoque was a Research Intern at the SODA Nexus Lab, Department of Electrical &amp; Computer Engineering, University of Alberta.

@@ -21,6 +21,6 @@ abstract: >-
   We present a debugging assistant that pairs retrieval-augmented generation with structured explanations, letting
   developers inspect why a suggested fix location was chosen. A user study with 24 developers shows faster triage
   times and higher trust compared to unexplained LLM suggestions.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Debugging, LLMs, Explainability]
 ---

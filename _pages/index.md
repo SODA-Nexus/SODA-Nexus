@@ -58,6 +58,15 @@ work_with_us:
   - icon: 🤝
     title: Collaborators
     description: we're interested in partnerships at the intersection of software engineering and AI.
+
+# funders are the partner/funding logos shown below the publications section; logo is optional
+funders:
+  - name: NSERC
+    logo: /assets/img/funders/nserc.png
+  - name: Alberta Innovates
+    logo: /assets/img/funders/alberta-innovates.png
+  - name: Faculty of Engineering
+    logo: /assets/img/funders/faculty-of-engineering.png
 ---
 
 <p class="soda-lead">The <b>SODA (SOftware Debugging and Analysis) Nexus Lab</b> develops AI-assisted software engineering techniques that help developers understand, test, debug, and improve complex software systems.</p>

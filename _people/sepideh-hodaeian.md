@@ -13,6 +13,11 @@ avatar_gradient: "linear-gradient(135deg, #5c8a63, #3a5f40)"
 # avatar_image is optional — set it to a path under assets/img/people/ to show a photo instead of initials; delete the line to go back to initials
 avatar_image: /assets/img/people/sepideh-hodaeian.png
 position: MSc Student · SODA Nexus Lab · Dept. of Electrical &amp; Computer Engineering, University of Alberta
+# google_scholar_url is optional — the person's Google Scholar profile URL. A "Google Scholar" row always shows in the sidebar; set this to show a "View profile" link, or leave it blank and the row shows "Creating as we speak" instead.
+google_scholar_url:
+# highlighted_publications lists up to 3 publication slugs (the filename in _publications, without .md) to feature on this profile, in the order shown — only the first 3 are used. No papers yet? Leave the list empty and the section shows "Creating papers as we speak."
+highlighted_publications:
+  - 2025-concurrent-test-gen
 ---
 
 Sepideh Hodaeian is a MSc student at the SODA Nexus Lab, Department of Electrical &amp; Computer Engineering, University of Alberta.

@@ -1,0 +1,11 @@
+# Optional captions for photos in assets/img/gallery/, keyed by filename
+# (including extension). Any photo without an entry here renders with no
+# caption — no error, no placeholder text.
+#
+# conference-2025-uofa.jpg: "SODA Nexus at SE 2025, Edmonton"
+
+# Dummy demo photos (assets/img/gallery/) — captioned intentionally on only
+# some of them, to show both the captioned and uncaptioned rendering paths.
+lab-retreat-2024.png: "Lab retreat, 2024"
+poster-session-se25.png: "Poster session at SE 2025"
+graduation-2025.png: "Convocation, 2025"

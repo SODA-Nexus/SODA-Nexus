@@ -22,6 +22,6 @@ abstract: >-
   more accurately and efficiently. By retrieving semantically related code fragments and grounding a language
   model's reasoning in real functionality descriptions, our method reduces false positives compared to purely
   embedding-based baselines across five open-source benchmarks.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Fault Localization, LLMs, Retrieval-Augmented Generation]
 ---

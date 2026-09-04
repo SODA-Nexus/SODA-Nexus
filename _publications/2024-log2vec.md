@@ -19,6 +19,6 @@ abstract: >-
   We propose contextual log-line embeddings that capture both token-level and template-level structure, improving
   downstream log parsing accuracy on noisy production logs. Log2Vec outperforms prior parsing methods on eight public
   log datasets while requiring no manually crafted grammars.
-# keywords power the filter buttons on the Publications page
+# keywords power the "Field" filter dropdown on the Publications page
 keywords: [Log Analysis]
 ---

@@ -8,13 +8,61 @@
  */
 
 :root {
+  /* --soda-red / --soda-red-dark are FILL colors only (solid button/dot/bar
+     backgrounds that already carry white text on top) — their contrast with
+     that white text doesn't depend on the surrounding page theme, so they
+     stay identical in light and dark mode. Anywhere red sits directly on a
+     page/card surface instead (link text, icon glyphs, borders, kickers)
+     uses --soda-red-text / --soda-red-text-hover, which DO get brighter
+     dark-mode values below, since #c8262a on a near-black background falls
+     under 4.5:1. */
   --soda-red: #c8262a;
   --soda-red-dark: #a31e22;
+  --soda-red-text: var(--soda-red);
+  --soda-red-text-hover: var(--soda-red-dark);
   --soda-ink: #1a1a1a;
   --soda-slate: #5b6b7c;
   --soda-line: #e7e5e1;
-  --soda-panel: #f7f6f3;
+  --soda-panel: #f0eee6;
   --soda-cream: #ffffff;
+  /* Secondary body-copy grays, factored out of what were one-off literals
+     (#333, #4a4a4a/#444, #8a8a8a) so dark mode can redefine them once
+     instead of at every call site. text-4's light value is bumped from the
+     #8a8a8a it replaces (2.97:1 on --soda-panel) to #666 (4.59:1) to clear
+     the same 4.5:1 AA bar the dark-mode audit below is held to. */
+  --soda-text-2: #333333;
+  --soda-text-3: #4a4a4a;
+  --soda-text-4: #666666;
+  /* The theme-toggle button's own fill is intentionally NOT tied to
+     --soda-panel/--soda-cream — it inverts against the *page* tone instead
+     of following it, so the button itself hints at the theme a click leads
+     to: a dark chip in light mode, a light chip once dark mode is on. */
+  --soda-toggle-bg: #4a4a4a;
+  --soda-toggle-fg: #ffffff;
+}
+
+/* Dark theme palette — toggled via html[data-theme="dark"] (see the toggle
+   button/script in soda-nav.liquid and the early-run init script in
+   soda-theme-init.liquid). Every value below was checked with the WCAG AA
+   contrast formula against the surfaces it actually renders on
+   (--soda-cream and --soda-panel, both redefined here too): 4.5:1 for
+   normal text, 3:1 for large text / non-text UI boundaries like borders.
+   al_folio_core's own [data-theme="dark"] styles are untouched — this file
+   only ever adds `.soda-*`-scoped rules, per AGENTS.md's thin-starter
+   boundary. */
+:root[data-theme="dark"] {
+  --soda-ink: #ededed; /* 14.6:1 on --soda-cream, 12.9:1 on --soda-panel */
+  --soda-slate: #9fb0bf; /* 7.7:1 on --soda-cream, 6.8:1 on --soda-panel */
+  --soda-line: #707070; /* 3.4:1 on --soda-cream, 3.1:1 on --soda-panel (non-text 3:1 bar) */
+  --soda-panel: #262626;
+  --soda-cream: #1c1c1c;
+  --soda-text-2: #d6d6d6; /* 11.7:1 / 10.4:1 */
+  --soda-text-3: #b8b8b8; /* 8.6:1 / 7.6:1 */
+  --soda-text-4: #8f8f8f; /* 5.3:1 / 4.7:1 */
+  --soda-red-text: #ff6b6f; /* 6.2:1 on --soda-cream, 5.5:1 on --soda-panel */
+  --soda-red-text-hover: #ff9a9d; /* lighter still, for hover/active text states */
+  --soda-toggle-bg: #8c8c8c;
+  --soda-toggle-fg: #1a1a1a;
 }
 
 /* Measured on the live page (getBoundingClientRect + getComputedStyle):
@@ -59,6 +107,9 @@ body {
   color: var(--soda-ink);
   background: var(--soda-cream);
   line-height: 1.6;
+}
+[data-theme="dark"] .soda-page {
+  color-scheme: dark;
 }
 .soda-page * {
   box-sizing: border-box;
@@ -133,10 +184,16 @@ body {
   top: 0;
   z-index: 100;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--soda-cream);
 }
 .soda-nav .soda-bug-drift .soda-bug-mask {
   background-color: rgba(22, 22, 22, 0.16);
+}
+/* The dark icon texture above is tuned for the light nav's white background;
+   over --soda-cream's dark-mode value it would be nearly invisible, so swap
+   to a light tint of the same strength instead. */
+[data-theme="dark"] .soda-nav .soda-bug-drift .soda-bug-mask {
+  background-color: rgba(255, 255, 255, 0.14);
 }
 .soda-nav .soda-wrap {
   display: flex;
@@ -149,26 +206,25 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .soda-brand .soda-mark {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: var(--soda-ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--soda-red);
-  font-weight: 800;
-  font-size: 13px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .soda-brand .soda-name {
   font-weight: 800;
-  font-size: 18px;
+  font-size: 15px;
+  line-height: 1.2;
   letter-spacing: 0.2px;
 }
 .soda-nav ul {
   display: flex;
+  flex-shrink: 0;
   gap: 28px;
   list-style: none;
   margin: 0;
@@ -179,7 +235,53 @@ body {
 }
 .soda-nav ul a:hover,
 .soda-nav ul a.soda-active {
-  color: var(--soda-red);
+  color: var(--soda-red-text);
+}
+
+/* Dark-mode toggle — sits at the end of .soda-nav's flex row, right after
+   the nav links (see soda-nav.liquid), so it lands next to Join on desktop
+   and stays in the persistent top-right row on mobile instead of collapsing
+   into the hamburger menu. */
+.soda-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 18px;
+  padding: 0;
+  border: 1px solid var(--soda-line);
+  border-radius: 50%;
+  background: var(--soda-toggle-bg);
+  color: var(--soda-toggle-fg);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  flex: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.soda-theme-toggle:hover,
+.soda-theme-toggle:focus-visible {
+  border-color: var(--soda-red-text);
+}
+.soda-theme-toggle:focus-visible {
+  outline: 2px solid var(--soda-red-text);
+  outline-offset: 2px;
+}
+/* The button shows the icon for the theme a click would switch TO — a moon
+   while light (click to go dark), a sun once dark (click to go light) — set
+   by toggling this class in soda-nav.liquid's script, in lockstep with
+   html[data-theme]. */
+.soda-theme-toggle .soda-theme-icon-dark {
+  display: none;
+}
+.soda-theme-toggle.soda-theme-is-dark .soda-theme-icon-light {
+  display: none;
+}
+.soda-theme-toggle.soda-theme-is-dark .soda-theme-icon-dark {
+  display: block;
 }
 
 .soda-nav-toggle {
@@ -206,7 +308,7 @@ body {
     opacity 0.2s ease;
 }
 .soda-nav-toggle:focus-visible {
-  outline: 2px solid var(--soda-red);
+  outline: 2px solid var(--soda-red-text);
   outline-offset: 3px;
 }
 .soda-nav-open .soda-nav-toggle-bar:nth-child(1) {
@@ -280,7 +382,7 @@ body {
 }
 .soda-lead {
   font-size: 15.5px;
-  color: #333;
+  color: var(--soda-text-2);
   margin: 0 0 14px;
   max-width: 52ch;
 }
@@ -301,29 +403,33 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1.5px solid var(--soda-red);
+  border: 1.5px solid var(--soda-red-text);
   cursor: pointer;
 }
 .soda-btn.soda-solid {
   background: var(--soda-red);
+  border-color: var(--soda-red);
   color: #fff;
 }
 .soda-btn.soda-solid:hover {
   background: var(--soda-red-dark);
 }
 .soda-btn.soda-ghost {
-  color: var(--soda-red);
-  background: #fff;
+  color: var(--soda-red-text);
+  background: var(--soda-cream);
 }
 .soda-btn.soda-ghost:hover {
   background: #fdf0ef;
+}
+[data-theme="dark"] .soda-btn.soda-ghost:hover {
+  background: rgba(255, 107, 111, 0.16);
 }
 
 .soda-side-card {
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   overflow: hidden;
-  background: #fff;
+  background: var(--soda-cream);
 }
 .soda-side-photo {
   height: 170px;
@@ -355,7 +461,7 @@ body {
 }
 .soda-side-info .soda-link,
 .soda-link {
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   font-weight: 700;
 }
 /* al_email_protect's widget leaves its <a> uncolored and gives .al-email-text
@@ -374,6 +480,16 @@ body {
 /* SECTIONS */
 .soda-section {
   padding: 44px 0;
+  border-top: 1px solid var(--soda-line);
+}
+/* Alternating tone bands so adjacent sections read as distinct blocks
+   instead of blending together — same cream/panel pair the team page
+   uses for its role-group bands (.soda-band-a / .soda-band-b). */
+.soda-tone-a {
+  background: var(--soda-cream);
+}
+.soda-tone-b {
+  background: var(--soda-panel);
 }
 .soda-section-head {
   display: flex;
@@ -393,15 +509,25 @@ body {
   gap: 10px;
 }
 .soda-section-head .soda-bar {
-  width: 4px;
-  height: 20px;
+  width: 5px;
+  height: 26px;
   background: var(--soda-red);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 .soda-section-head h2 {
   font-size: 21px;
   margin: 0;
   font-weight: 800;
+}
+/* Small uppercase tag above a section head — gives each section its own
+   named identity at a glance, on top of the tone-band contrast. */
+.soda-kicker {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soda-red-text);
+  margin: 0 0 8px;
 }
 
 .soda-grid-4 {
@@ -418,30 +544,49 @@ body {
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   padding: 22px 18px;
-  background: #fff;
+  background: var(--soda-cream);
   text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.soda-card:hover,
+.soda-card:focus-visible {
+  border-color: var(--soda-red-text);
 }
 .soda-card .soda-icon {
-  width: 52px;
-  height: 52px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
   background: var(--soda-panel);
   margin: 0 auto 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  color: var(--soda-red);
+  font-size: 50px;
+  color: var(--soda-red-text);
 }
 .soda-card h3 {
   font-size: 15px;
   margin: 0 0 8px;
   font-weight: 800;
 }
-.soda-card p {
+.soda-card-hint {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.6em;
+  color: var(--soda-text-4);
+}
+.soda-card-desc {
   font-size: 13px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
+  display: none;
+}
+/* Each card toggles its own .soda-card-expanded class on click/Enter/Space
+   (see the inline script in soda_home.liquid), so state persists per-card
+   regardless of what else on the page gets clicked afterward. */
+.soda-card-expanded .soda-card-desc {
+  display: block;
 }
 
 .soda-split,
@@ -459,7 +604,7 @@ body {
 }
 .soda-mission-grid p {
   font-size: 14.5px;
-  color: #333;
+  color: var(--soda-text-2);
   margin: 0 0 14px;
 }
 .soda-loc-grid {
@@ -480,30 +625,37 @@ ul.soda-check li {
 }
 ul.soda-check li:before {
   content: "✓";
-  color: var(--soda-red);
+  color: var(--soda-red-text);
+  font-weight: 800;
+}
+ul.soda-check li b {
   font-weight: 800;
 }
 .soda-contact-tile {
   display: flex;
+  align-items: center;
   gap: 14px;
   margin-bottom: 16px;
 }
 .soda-contact-tile .soda-icn {
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: #fdeceb;
-  color: var(--soda-red);
+  background: var(--soda-cream);
+  color: var(--soda-red-text);
   display: flex;
   align-items: center;
   justify-content: center;
   flex: none;
-  font-size: 16px;
+  font-size: 32px;
 }
 .soda-contact-tile p {
   margin: 2px 0 0;
   font-size: 13.5px;
-  color: #444;
+  color: var(--soda-text-3);
+}
+.soda-contact-tile p b {
+  font-weight: 800;
 }
 
 .soda-list-item {
@@ -539,7 +691,7 @@ ul.soda-check li:before {
 .soda-view-all {
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
 }
 
 .soda-pub-card {
@@ -551,6 +703,8 @@ ul.soda-check li:before {
   height: 82px;
   border-radius: 6px;
   overflow: hidden;
+  /* Deliberately unthemed — a static "document thumbnail" placeholder
+     graphic, not page chrome, so it stays the same in both themes. */
   background: linear-gradient(135deg, #eee, #ccc);
   flex: none;
 }
@@ -567,13 +721,13 @@ ul.soda-check li:before {
 }
 .soda-pub-card .soda-venue {
   font-size: 12px;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   font-weight: 700;
   margin-bottom: 6px;
 }
 .soda-pub-card p {
   font-size: 12.5px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
 }
 
@@ -584,7 +738,7 @@ ul.soda-check li:before {
 }
 .soda-page-head .soda-sub {
   font-size: 15px;
-  color: #333;
+  color: var(--soda-text-2);
   max-width: 70ch;
   margin: 0;
 }
@@ -607,7 +761,7 @@ ul.soda-check li:before {
 .soda-stat-row .soda-n {
   font-size: 22px;
   font-weight: 800;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
 }
 .soda-stat-row .soda-l {
   font-size: 12.5px;
@@ -620,7 +774,7 @@ ul.soda-check li:before {
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   padding: 20px;
-  background: #fff;
+  background: var(--soda-cream);
 }
 .soda-value-card h3 {
   font-size: 14.5px;
@@ -629,30 +783,41 @@ ul.soda-check li:before {
 }
 .soda-value-card p {
   font-size: 13px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
 }
 
+/* auto-fit + minmax spans the chips across the full row with equal widths,
+   and reflows to fewer columns continuously as the viewport narrows —
+   no fixed breakpoints needed the way .soda-grid-4 uses. */
 .soda-funders {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
-  flex-wrap: wrap;
 }
 .soda-fund-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   border: 1px solid var(--soda-line);
   border-radius: 8px;
-  padding: 16px 24px;
+  padding: 20px 24px;
   font-size: 13px;
   font-weight: 700;
   color: var(--soda-slate);
-  background: var(--soda-panel);
+  background: var(--soda-cream);
+}
+.soda-fund-logo {
+  height: 56px;
+  width: auto;
 }
 
 .soda-map-box {
   height: 220px;
   border-radius: 10px;
   overflow: hidden;
-  background: #f2f1ee;
+  background: var(--soda-panel);
   border: 1px solid var(--soda-line);
   position: relative;
 }
@@ -731,7 +896,7 @@ ul.soda-check li:before {
   color: var(--soda-slate);
 }
 .soda-breadcrumb span {
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   font-weight: 700;
 }
 
@@ -767,6 +932,7 @@ ul.soda-check li:before {
   padding: 16px 18px;
   font-size: 13px;
   margin-top: 6px;
+  width: 180px;
 }
 .soda-side-box .soda-row {
   display: flex;
@@ -788,6 +954,13 @@ ul.soda-check li:before {
 .soda-side-box .soda-v {
   font-size: 13px;
 }
+.soda-side-box .soda-row-stacked {
+  flex-direction: column;
+  gap: 4px;
+}
+.soda-side-box .soda-row-stacked .soda-k {
+  width: auto;
+}
 .soda-social-row {
   display: flex;
   gap: 8px;
@@ -808,7 +981,7 @@ ul.soda-check li:before {
 .soda-role {
   font-size: 13px;
   font-weight: 700;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin: 0 0 6px;
@@ -819,12 +992,12 @@ ul.soda-check li:before {
 }
 .soda-position {
   font-size: 15px;
-  color: #333;
+  color: var(--soda-text-2);
   margin: 0 0 18px;
 }
 .soda-bio {
   font-size: 14.5px;
-  color: #333;
+  color: var(--soda-text-2);
   max-width: 70ch;
   margin: 0 0 22px;
 }
@@ -857,7 +1030,7 @@ ul.soda-check li:before {
   flex: none;
   font-size: 12.5px;
   font-weight: 800;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
 }
 .soda-edu-item h4 {
   font-size: 14.5px;
@@ -866,7 +1039,7 @@ ul.soda-check li:before {
 }
 .soda-edu-item p {
   font-size: 13px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
 }
 
@@ -885,7 +1058,7 @@ ul.soda-check li:before {
   height: 32px;
   border-radius: 50%;
   background: #fdeceb;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -899,6 +1072,12 @@ ul.soda-check li:before {
 .soda-award-item .soda-d {
   font-size: 12px;
   color: var(--soda-slate);
+}
+/* The pale-pink icon wash below is tuned for a white card; blend the same
+   red into --soda-panel's dark value instead so the roundel stays visible
+   rather than reading as near-black-on-near-black. */
+[data-theme="dark"] .soda-award-item .soda-ic {
+  background: rgba(255, 107, 111, 0.18);
 }
 
 /* TEAM PAGE */
@@ -944,7 +1123,7 @@ ul.soda-check li:before {
   border: 1px solid var(--soda-line);
   border-left: 3px solid var(--soda-red);
   border-radius: 10px;
-  background: #fff;
+  background: var(--soda-cream);
   padding: 20px 16px;
   text-align: center;
   transition:
@@ -953,9 +1132,14 @@ ul.soda-check li:before {
     transform 0.15s ease;
 }
 .soda-member:hover {
-  border-color: var(--soda-red);
+  border-color: var(--soda-red-text);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
+}
+[data-theme="dark"] .soda-member:hover {
+  /* A black shadow this faint disappears against a dark card; dark themes
+     generally need a much higher-opacity shadow to register at all. */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 /* Role-tier accent on the card's left edge — a tint of --soda-red per tier,
    darkest for Faculty, lightest furthest from it. .soda-role-group's own
@@ -972,6 +1156,21 @@ ul.soda-check li:before {
 }
 [data-tier="alumni"] .soda-member {
   border-left-color: rgba(200, 38, 42, 0.15);
+}
+/* Those alpha tints blend visibly toward white; against a dark card they
+   blend toward black instead and the lighter tiers all but disappear, so
+   dark mode gets its own boosted-alpha, brighter-red set. */
+[data-theme="dark"] [data-tier="phd"] .soda-member {
+  border-left-color: rgba(255, 107, 111, 0.9);
+}
+[data-theme="dark"] [data-tier="msc"] .soda-member {
+  border-left-color: rgba(255, 107, 111, 0.65);
+}
+[data-theme="dark"] [data-tier="intern"] .soda-member {
+  border-left-color: rgba(255, 107, 111, 0.45);
+}
+[data-theme="dark"] [data-tier="alumni"] .soda-member {
+  border-left-color: rgba(255, 107, 111, 0.3);
 }
 .soda-member .soda-avatar {
   width: 76px;
@@ -991,7 +1190,7 @@ ul.soda-check li:before {
 }
 .soda-member p {
   font-size: 12.5px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
 }
 
@@ -1038,9 +1237,19 @@ ul.soda-check li:before {
     width: 100%;
     flex-basis: 100%;
     padding-top: 16px;
+    /* Source order puts this after .soda-theme-toggle (so desktop's plain
+       flex row lands the toggle next to Join, the list's last link) — order
+       pulls it visually back below the toggle once flex-wrap is on, so the
+       toggle stays in the persistent top row instead of wrapping under the
+       menu when open. */
+    order: 2;
   }
   .soda-nav-open ul {
     display: flex;
+  }
+  .soda-theme-toggle {
+    order: 1;
+    margin-left: 0;
   }
   .soda-nav ul li {
     width: 100%;
@@ -1056,13 +1265,13 @@ ul.soda-check li:before {
   .soda-mission-grid,
   .soda-grid-3,
   .soda-loc-grid,
-  .soda-profile,
-  .soda-news-featured {
+  .soda-profile {
     grid-template-columns: 1fr;
   }
-  .soda-news-featured .soda-side-photo {
-    min-height: 160px;
-  }
+  /* .soda-news-featured's own mobile override lives next to its desktop rule
+     in the NEWS PAGE section below, not here — its desktop grid-template-columns
+     is itself unguarded and comes later in the file, so it would otherwise
+     win the cascade at any width and silently defeat this block. */
   .soda-grid-4 {
     grid-template-columns: 1fr 1fr;
   }
@@ -1108,8 +1317,8 @@ ul.soda-check li:before {
     border-color 0.15s ease;
 }
 .soda-kw-btn:hover {
-  color: var(--soda-red);
-  border-color: var(--soda-red);
+  color: var(--soda-red-text);
+  border-color: var(--soda-red-text);
 }
 .soda-kw-btn.soda-kw-active {
   color: #fff;
@@ -1121,17 +1330,71 @@ ul.soda-check li:before {
   font-family: inherit;
   font-size: 14px;
   color: var(--soda-ink);
-  background: #fff;
+  background: var(--soda-cream);
   border: 1.5px solid var(--soda-line);
   border-radius: 8px;
   padding: 12px 16px;
 }
 .soda-search-input:focus {
   outline: none;
-  border-color: var(--soda-red);
+  border-color: var(--soda-red-text);
 }
 .soda-search-input::placeholder {
   color: var(--soda-slate);
+}
+.soda-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 14px;
+}
+.soda-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+}
+.soda-filter-field label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--soda-slate);
+}
+.soda-filter-select {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--soda-ink);
+  background: var(--soda-cream);
+  border: 1.5px solid var(--soda-line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.soda-filter-select:focus {
+  outline: none;
+  border-color: var(--soda-red-text);
+}
+.soda-filter-clear {
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--soda-red-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 9px 4px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.soda-filter-clear:hover {
+  color: var(--soda-red-text-hover);
+}
+.soda-filter-count {
+  font-size: 12.5px;
+  color: var(--soda-slate);
+  margin: 12px 0 0;
 }
 .soda-empty-state {
   font-size: 14px;
@@ -1156,7 +1419,7 @@ ul.soda-check li:before {
 .soda-year-head .soda-num {
   font-size: 24px;
   font-weight: 800;
-  color: var(--soda-red);
+  color: var(--soda-red-text);
 }
 .soda-year-head .soda-count {
   font-size: 12.5px;
@@ -1175,13 +1438,17 @@ ul.soda-check li:before {
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   padding: 20px;
-  background: #fff;
+  background: var(--soda-cream);
   margin-bottom: 16px;
 }
 .soda-pub:last-child {
   margin-bottom: 0;
 }
 
+/* .soda-thumb and its .soda-tl1/.soda-tl2/.soda-ln children are a stylized
+   "document page" mockup (literal placeholder bars standing in for a title
+   and text lines, not real content) — deliberately unthemed, like a paper
+   page or a photo thumbnail, so it stays white in both themes. */
 .soda-thumb {
   width: 110px;
   height: 142px;
@@ -1269,7 +1536,7 @@ ul.soda-check li:before {
 }
 .soda-authors {
   font-size: 13px;
-  color: #444;
+  color: var(--soda-text-3);
   margin-bottom: 10px;
 }
 .soda-authors a {
@@ -1278,11 +1545,11 @@ ul.soda-check li:before {
   border-bottom: 1px dashed var(--soda-slate);
 }
 .soda-authors a:hover {
-  color: var(--soda-red);
-  border-color: var(--soda-red);
+  color: var(--soda-red-text);
+  border-color: var(--soda-red-text);
 }
 .soda-authors .soda-ext {
-  color: #444;
+  color: var(--soda-text-3);
   font-weight: 400;
 }
 
@@ -1298,13 +1565,16 @@ ul.soda-check li:before {
   gap: 6px;
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--soda-red);
-  border: 1.5px solid var(--soda-red);
+  color: var(--soda-red-text);
+  border: 1.5px solid var(--soda-red-text);
   padding: 6px 12px;
   border-radius: 6px;
 }
 .soda-dl:hover {
   background: #fdf0ef;
+}
+[data-theme="dark"] .soda-dl:hover {
+  background: rgba(255, 107, 111, 0.16);
 }
 .soda-dl.soda-dl-disabled {
   color: var(--soda-slate);
@@ -1333,7 +1603,7 @@ ul.soda-check li:before {
 }
 .soda-pub-body summary:before {
   content: "▸";
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   font-size: 11px;
   transition: transform 0.15s ease;
 }
@@ -1341,11 +1611,11 @@ ul.soda-check li:before {
   transform: rotate(90deg);
 }
 .soda-pub-body details[open] summary {
-  color: var(--soda-red);
+  color: var(--soda-red-text);
 }
 .soda-abstract {
   font-size: 13px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin-top: 8px;
   padding-top: 10px;
   border-top: 1px solid var(--soda-line);
@@ -1365,13 +1635,24 @@ ul.soda-check li:before {
   border: 1px solid var(--soda-line);
   border-radius: 12px;
   overflow: hidden;
-  background: #fff;
+  background: var(--soda-cream);
   margin-bottom: 36px;
+}
+.soda-news-featured-visual {
+  height: 100%;
+  min-height: 220px;
 }
 .soda-news-featured .soda-side-photo {
   height: 100%;
   min-height: 220px;
   border-radius: 0;
+}
+.soda-news-featured-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  display: block;
 }
 .soda-news-featured-body {
   padding: 8px 32px 8px 0;
@@ -1384,9 +1665,24 @@ ul.soda-check li:before {
 }
 .soda-news-featured-body p {
   font-size: 15px;
-  color: #333;
+  color: var(--soda-text-2);
   margin: 0;
   max-width: 60ch;
+}
+/* Same 768px breakpoint as the shared block above, kept local: this rule has
+   to come after .soda-news-featured's own unguarded grid-template-columns
+   (both set the same property at equal specificity, so source order decides
+   the winner regardless of viewport) — living in the shared block above it
+   in the file would make it lose the cascade at every width, mobile included. */
+@media (max-width: 768px) {
+  .soda-news-featured {
+    grid-template-columns: 1fr;
+  }
+  .soda-news-featured-visual,
+  .soda-news-featured .soda-side-photo,
+  .soda-news-featured-visual img {
+    min-height: 160px;
+  }
 }
 
 /* Category chip — tints of --soda-red (raw rgb so alpha can vary; same base
@@ -1422,6 +1718,34 @@ ul.soda-check li:before {
 .soda-news-chip[data-category="Other"] {
   background: rgba(200, 38, 42, 0.06);
 }
+/* At these alphas, blending #c8262a toward a near-black dark background (vs.
+   light-mode's near-white) lands the chip color AND --soda-red-dark's text
+   both near-black — unreadable. Dark mode instead blends the brighter
+   --soda-red-text color at higher alphas (chosen so the lightest chip,
+   Other, still clears 4.5:1) and switches the label to --soda-ink; verified
+   down to 5.36:1 (Publication, the most saturated chip). */
+[data-theme="dark"] .soda-news-chip {
+  color: var(--soda-ink);
+  background: rgba(255, 107, 111, 0.19);
+}
+[data-theme="dark"] .soda-news-chip[data-category="Publication"] {
+  background: rgba(255, 107, 111, 0.51);
+}
+[data-theme="dark"] .soda-news-chip[data-category="Award"] {
+  background: rgba(255, 107, 111, 0.38);
+}
+[data-theme="dark"] .soda-news-chip[data-category="People"] {
+  background: rgba(255, 107, 111, 0.29);
+}
+[data-theme="dark"] .soda-news-chip[data-category="Partnership"] {
+  background: rgba(255, 107, 111, 0.21);
+}
+[data-theme="dark"] .soda-news-chip[data-category="Milestone"] {
+  background: rgba(255, 107, 111, 0.14);
+}
+[data-theme="dark"] .soda-news-chip[data-category="Other"] {
+  background: rgba(255, 107, 111, 0.1);
+}
 .soda-news-date {
   font-size: 12px;
   font-weight: 700;
@@ -1454,7 +1778,7 @@ ul.soda-check li:before {
 }
 .soda-year-block > summary.soda-year-head:before {
   content: "▸";
-  color: var(--soda-red);
+  color: var(--soda-red-text);
   font-size: 13px;
   transition: transform 0.15s ease;
 }
@@ -1468,7 +1792,7 @@ ul.soda-check li:before {
   border: 1px solid var(--soda-line);
   border-radius: 10px;
   padding: 18px 20px;
-  background: #fff;
+  background: var(--soda-cream);
   margin-bottom: 14px;
 }
 .soda-news-item:last-child {
@@ -1481,7 +1805,7 @@ ul.soda-check li:before {
 }
 .soda-news-item p {
   font-size: 13.5px;
-  color: #4a4a4a;
+  color: var(--soda-text-3);
   margin: 0;
   max-width: 75ch;
 }
@@ -1498,15 +1822,18 @@ ul.soda-check li:before {
   font-family: inherit;
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--soda-red);
-  background: #fff;
-  border: 1.5px solid var(--soda-red);
+  color: var(--soda-red-text);
+  background: var(--soda-cream);
+  border: 1.5px solid var(--soda-red-text);
   border-radius: 6px;
   padding: 8px 16px;
   cursor: pointer;
 }
 .soda-load-more:hover {
   background: #fdf0ef;
+}
+[data-theme="dark"] .soda-load-more:hover {
+  background: rgba(255, 107, 111, 0.16);
 }
 
 /* JOIN PAGE */
@@ -1528,4 +1855,148 @@ ul.soda-check li:before {
   color: var(--soda-red-dark);
   border: none;
   margin-bottom: 12px;
+}
+[data-theme="dark"] .soda-track-tag {
+  background: rgba(255, 107, 111, 0.38);
+  color: var(--soda-ink);
+}
+
+/* BUG BUTTON — fixed corner link to /gallery/, shown on Team + person pages.
+   Reuses the same insect path data as .soda-bug-mask above (the site's one
+   bug motif) as a single upright icon instead of a repeating diagonal tile. */
+.soda-bug-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soda-cream);
+  border: 1px solid var(--soda-line);
+  color: var(--soda-red-text);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  z-index: 40;
+  animation: soda-bug-crawl 5.5s ease-in-out infinite;
+  transition:
+    border-color 0.15s ease,
+    animation-duration 0.15s ease;
+}
+.soda-bug-button-icon {
+  width: 24px;
+  height: 24px;
+}
+@keyframes soda-bug-crawl {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-3px, -2px) rotate(-6deg);
+  }
+  50% {
+    transform: translate(2px, -4px) rotate(4deg);
+  }
+  75% {
+    transform: translate(-2px, 1px) rotate(-3deg);
+  }
+}
+/* Same keyframes, just faster — reads as the bug scurrying once it notices
+   the cursor, without needing a second @keyframes block. */
+.soda-bug-button:hover,
+.soda-bug-button:focus-visible {
+  animation-duration: 1.4s;
+  border-color: var(--soda-red-text);
+}
+.soda-bug-button:focus-visible {
+  outline: 2px solid var(--soda-red-text);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .soda-bug-button {
+    animation: none;
+  }
+}
+@media (max-width: 480px) {
+  .soda-bug-button {
+    right: 12px;
+    bottom: 12px;
+    /* 44px, not 40 — the WCAG 2.5.5 / Apple HIG minimum tap target size,
+       specifically worth holding to on the breakpoint aimed at phones. */
+    width: 44px;
+    height: 44px;
+  }
+  .soda-bug-button-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* GALLERY PAGE — /gallery/, linked only from the bug button (no nav entry,
+   noindex). A fixed number of tiles (see soda_gallery.liquid's tileCount,
+   capped at 6) each hold one randomly-picked photo from the full pool
+   auto-listed out of assets/img/gallery/ via site.static_files; every tile
+   independently, and on its own random timer, crossfades to another photo
+   from the pool that isn't already showing elsewhere in the collage. */
+.soda-gallery-collage {
+  display: grid;
+  /* Fixed 2 columns x 3 rows (tileCount in soda_gallery.liquid is capped at
+     6 to match) rather than auto-fit — a deliberate fixed collage shape,
+     not a reflowing grid. */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 16px;
+}
+.soda-gallery-tile {
+  position: relative;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--soda-panel);
+  border: 1px solid var(--soda-line);
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.soda-gallery-tile-fading {
+  opacity: 0;
+}
+.soda-gallery-tile img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+.soda-gallery-tile figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .soda-gallery-tile {
+    transition: none;
+  }
+}
+@media (max-width: 480px) {
+  .soda-gallery-collage {
+    grid-template-columns: 1fr;
+    /* The 3-row explicit grid above only has 3 tracks for what's now a
+       single column of 6 tiles — without resetting this, tiles 4-6 fall
+       into implicit auto rows sized differently than 1-3. `none` lets all
+       six size uniformly. */
+    grid-template-rows: none;
+  }
+  .soda-gallery-tile img {
+    /* Six tiles stacked in one column at the full 240px desktop height is
+       ~1440px of pure photos before the footer — shorten it for a quicker
+       single-column scroll. */
+    height: 170px;
+  }
 }

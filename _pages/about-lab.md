@@ -27,12 +27,6 @@ values:
   - title: Mentorship
     description: We invest in students as researchers first, giving them ownership over problems from day one.
 
-# funders is a plain list of names shown in the funding section
-funders:
-  - NSERC
-  - Alberta Innovates
-  - Faculty of Engineering
-
 # address is the contact block shown near the map on this page; each line can include HTML tags
 address:
   - "<b>ECERF W6-073</b>"

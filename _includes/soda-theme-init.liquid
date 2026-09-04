@@ -1,0 +1,18 @@
+<meta name="color-scheme" content="light dark">
+<script>
+  // Sets html[data-theme] from the visitor's stored preference, synchronously
+  // and before first paint, so there's no flash of the wrong theme. This runs
+  // after head.liquid's own theme script (gem-owned, al_folio_core's site-wide
+  // light/dark toggle) and overrides its result — soda-nav.liquid's own
+  // toggle button owns a separate "soda-theme" localStorage key instead, so a
+  // visitor's al_folio_core theme choice (if they ever had one) doesn't leak
+  // into these pages, and vice versa. Defaults to light for a first-time
+  // visitor, matching this design's original (pre-toggle) appearance.
+  (function () {
+    var stored = null;
+    try {
+      stored = localStorage.getItem('soda-theme');
+    } catch (e) {}
+    document.documentElement.setAttribute('data-theme', stored === 'dark' ? 'dark' : 'light');
+  })();
+</script>
