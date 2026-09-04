@@ -69,12 +69,10 @@ grep -q 'al_marimo' "${default_site}/index.html" && fail "home page wrongly load
 
 # --- al_email_protect -------------------------------------------------------
 
-# Off by default, so this builds with an override rather than changing the
-# shipped config: turning it on for the demo site would flip the default for
-# everyone who copies this template.
-override="${tmp_dir}/protect-email.yml"
-printf 'protect_email: true\n' >"${override}"
-protected_site="$(build protected --config "_config.yml,${override}")"
+# This site (unlike the stock al-folio demo) turns protect_email on in the
+# shipped _config.yml, so the "on" half is the default build and the "off"
+# half needs the override instead.
+protected_site="${default_site}"
 
 # Scope note: this asserts the gating and the runtime, NOT that site-wide
 # addresses are obfuscated. `al_folio_core`'s metadata.liquid renders social
@@ -92,8 +90,12 @@ grep -q 'assets/al_email_protect/css/email-protect.css' "${protected_site}/index
 [ -f "${protected_site}/assets/al_email_protect/css/email-protect.css" ] \
   || fail "email-protect stylesheet referenced but not published"
 
-# ...and with it off (the default), the plugin costs nothing.
-grep -q 'al_email_protect' "${default_site}/index.html" \
+# ...and with it explicitly off, the plugin costs nothing.
+override="${tmp_dir}/protect-email-off.yml"
+printf 'protect_email: false\n' >"${override}"
+unprotected_site="$(build unprotected --config "_config.yml,${override}")"
+
+grep -q 'al_email_protect' "${unprotected_site}/index.html" \
   && fail "email-protect assets loaded while disabled"
 
 echo "new plugin integration checks passed"
